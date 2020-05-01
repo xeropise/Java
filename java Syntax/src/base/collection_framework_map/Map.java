@@ -1,4 +1,4 @@
-package java.collection_framework_map;
+package base.collection_framework_map;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

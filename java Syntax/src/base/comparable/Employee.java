@@ -1,4 +1,4 @@
-package java.comparable;
+package base.comparable;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

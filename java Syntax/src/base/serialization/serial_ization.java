@@ -1,4 +1,4 @@
-package java.serialization;
+package base.serialization;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

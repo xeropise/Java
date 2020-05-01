@@ -1,4 +1,4 @@
-package java.collection_framework_collection;
+package base.collection_framework_collection;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
