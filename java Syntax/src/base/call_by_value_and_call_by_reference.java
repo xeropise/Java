@@ -12,13 +12,13 @@ public class call_by_value_and_call_by_reference {
 		// 1. 인자 값을 기본형을 사용 했을 때
 //		int num1= 10, num2 = 20;
 //		
-////		System.out.println("Before");
-////		System.out.println("num1 = " + num1);
-////		System.out.println("num2 = " + num2);
-////		swap(num1, num2);
-////		System.out.println("After");
-////		System.out.println("num1 = " + num1);
-////		System.out.println("num2 = " + num2);
+//		System.out.println("Before");
+//		System.out.println("num1 = " + num1);
+//		System.out.println("num2 = " + num2);
+//		swap1(num1, num2);
+//		System.out.println("After");
+//		System.out.println("num1 = " + num1);
+//		System.out.println("num2 = " + num2);
 		
 		// 결론 : 자바는 기본형 데이터를 처리할 때 Call By Value 형식으로 처리한다.
 		
@@ -62,7 +62,15 @@ public class call_by_value_and_call_by_reference {
 	}
 	
 	// 자리 바꾸기 메소드
-	static void swap(Integer num1, Integer num2) {
+	
+	static void swap1(int num1, int num2) {
+		int temp;
+		
+		temp = num2;
+		num1 = temp;
+		num2 = num1;
+	}
+	static void swap2(Integer num1, Integer num2) {
 		Integer temp;	//임시 변수
 		
 		// 자리 바꾸기
