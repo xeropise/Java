@@ -30,7 +30,7 @@ public class call_by_value_and_call_by_reference {
 //		System.out.println("Before");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
-//		swap(num1, num2);
+//		swap2(num1, num2);
 //		System.out.println("After");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
@@ -59,6 +59,18 @@ public class call_by_value_and_call_by_reference {
 		// 그것을 통하여 같은 객체를 가리키도록 하는 방식
 		
 		// 최종 결론 자바의 메소드로 인자 값을 넘기는 방법은 Call By Value이다
+		
+		// 4. String으로 Swap 예제
+		
+		String a = "10";
+		String b = "20";
+		System.out.println("Before");
+		System.out.println("String a = " + a);
+		System.out.println("String b = " + b);
+		swapString(a,b);
+		System.out.println("After");
+		System.out.println("String a = " + a);
+		System.out.println("String b = " + b);
 	}
 	
 	// 자리 바꾸기 메소드
@@ -87,6 +99,17 @@ public class call_by_value_and_call_by_reference {
 		one.setNum(two.num);
 		
 		two.setNum(temp);
+	}
+	
+	static void swapString(String a, String b) {
+		String temp; // 임시 변수
+		
+		// 자리 바꾸기
+		
+		temp = a; 
+		a = b;
+		b= temp;
+		
 	}
 	
 	static class NumberClass {
