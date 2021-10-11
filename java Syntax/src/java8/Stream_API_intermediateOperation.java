@@ -11,101 +11,101 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Stream_API_intermediateOperation {
-	
+
 	public static void main(String[] args) {
 
-		// ================================================ 2. Áß°£ ÀÛ¾÷ ===================================================================
-		
+		// ================================================ 2. ì¤‘ê°„ ìž‘ì—… ===================================================================
+
 		List<String> names = Arrays.asList("a","b","c");
-		
-		
+
+
 		// 1) filter
 		// Filtering
-		// ½ºÆ®¸² ³» ¿ä¼ÒµéÀ» ÇÏ³ª¾¿ Æò°¡ÇØ¼­ °É·¯³»´Â ÀÛ¾÷, ÀÎÀÚ·Î ¹Þ´Â Predicate´Â booleanÀ» ¸®ÅÏÇÏ´Â ÇÔ¼öÇü ÀÎÅÍÆäÀÌ½º·Î Æò°¡½ÄÀÌ µé¾î°¡°Ô µÈ´Ù.
-		
+		// ìŠ¤íŠ¸ë¦¼ ë‚´ ìš”ì†Œë“¤ì„ í•˜ë‚˜ì”© í‰ê°€í•´ì„œ ê±¸ëŸ¬ë‚´ëŠ” ìž‘ì—…, ì¸ìžë¡œ ë°›ëŠ” PredicateëŠ” booleanì„ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜í˜• ì¸í„°íŽ˜ì´ìŠ¤ë¡œ í‰ê°€ì‹ì´ ë“¤ì–´ê°€ê²Œ ëœë‹¤.
+
 		Stream<String> filterStream = names.stream().filter(name -> name.contains("a")); // [Elena, Java]
-		// "a"°¡ µé¾î°£ ½ºÆ®¸²¸¸ ¸®ÅÏ
-		
+		// "a"ê°€ ë“¤ì–´ê°„ ìŠ¤íŠ¸ë¦¼ë§Œ ë¦¬í„´
+
 		// 2) map
-		// Mapping : ½ºÆ®¸²¿¡ µé¾î°¡ ÀÖ´Â °ªÀÌ inputÀÌ µÇ¾î¼­ Æ¯Á¤ ·ÎÁ÷À» °ÅÁø ÈÄ, outputÀÌ ¸®ÅÏµÇ´Â »õ·Î¿î ½ºÆ®¸²¿¡ ´ã±â°ÔµÇ´Âµ¥, ÀÌ·¯ÇÑ ÀÛ¾÷À» ¸»ÇÔ
-		// ½ºÆ®¸² ³» ¿ä¼ÒµéÀ» ÇÏ³ª¾¿ Æ¯Á¤ °ªÀ¸·Î º¯È¯ÇØÁØ´Ù, ÀÌ ¶§ °ªÀ» º¯È¯ÇÏ±â À§ÇÑ ¶÷´Ù¸¦ ÀÎÀÚ·Î ¹Þ´Â´Ù.
+		// Mapping : ìŠ¤íŠ¸ë¦¼ì— ë“¤ì–´ê°€ ìžˆëŠ” ê°’ì´ inputì´ ë˜ì–´ì„œ íŠ¹ì • ë¡œì§ì„ ê±°ì§„ í›„, outputì´ ë¦¬í„´ë˜ëŠ” ìƒˆë¡œìš´ ìŠ¤íŠ¸ë¦¼ì— ë‹´ê¸°ê²Œë˜ëŠ”ë°, ì´ëŸ¬í•œ ìž‘ì—…ì„ ë§í•¨
+		// ìŠ¤íŠ¸ë¦¼ ë‚´ ìš”ì†Œë“¤ì„ í•˜ë‚˜ì”© íŠ¹ì • ê°’ìœ¼ë¡œ ë³€í™˜í•´ì¤€ë‹¤, ì´ ë•Œ ê°’ì„ ë³€í™˜í•˜ê¸° ìœ„í•œ ëžŒë‹¤ë¥¼ ì¸ìžë¡œ ë°›ëŠ”ë‹¤.
 		Stream<String> mappingStream = names.stream().map(String::toUpperCase);  //[ERIC, ELENAM, JAVA]
-		
-		// ´ÙÀ½Ã³·³ ¿ä¼Ò ³» µé¾îÀÖ´Â Product °³Ã¼ÀÇ ¼ö·®À» ²¨³»¿Ã ¼öµµ ÀÖÀ½
-		
-//		Stream<Integer> stream = 
+
+		// ë‹¤ìŒì²˜ëŸ¼ ìš”ì†Œ ë‚´ ë“¤ì–´ìžˆëŠ” Product ê°œì²´ì˜ ìˆ˜ëŸ‰ì„ êº¼ë‚´ì˜¬ ìˆ˜ë„ ìžˆìŒ
+
+//		Stream<Integer> stream =
 //							productList.stream()
 //								.map(Product::getAmount);
-		
+
 		// 3) flatMap
-		// ÀÎÀÚ·Î mapper¸¦ ¹Þ°í ÀÖ´Âµ¥, ¸®ÅÏ Å¸ÀÔÀÌ Stream, Áï »õ·Î¿î ½ºÆ®¸²À» »ý¼ºÇØ¼­ ¸®ÅÏÇÏ´Â ¶÷´Ù¸¦ ³Ñ°Ü¾ß ÇÑ´Ù.
-		// flatMapÀº ÁßÃ¸ ±¸Á¶¸¦ ÇÑ ´Ü°è Á¦°ÅÇÏ°í, ´ÜÀÏ ÄÃ·º¼ÇÀ¸·Î ¸¸µé¾îÁÖ´Â ¿ªÇÒÀ» ÇÑ´Ù. 
-		// ÀÌ·¯ÇÑ ÀÛ¾÷À» flattening(ÇÃ·¡Æ®´×)ÀÌ¶ó°í ÇÑ´Ù.
-		
+		// ì¸ìžë¡œ mapperë¥¼ ë°›ê³  ìžˆëŠ”ë°, ë¦¬í„´ íƒ€ìž…ì´ Stream, ì¦‰ ìƒˆë¡œìš´ ìŠ¤íŠ¸ë¦¼ì„ ìƒì„±í•´ì„œ ë¦¬í„´í•˜ëŠ” ëžŒë‹¤ë¥¼ ë„˜ê²¨ì•¼ í•œë‹¤.
+		// flatMapì€ ì¤‘ì²© êµ¬ì¡°ë¥¼ í•œ ë‹¨ê³„ ì œê±°í•˜ê³ , ë‹¨ì¼ ì»¬ë ‰ì…˜ìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ëŠ” ì—­í• ì„ í•œë‹¤.
+		// ì´ëŸ¬í•œ ìž‘ì—…ì„ flattening(í”Œëž˜íŠ¸ë‹)ì´ë¼ê³  í•œë‹¤.
+
 		List<List<String>> list = Arrays.asList(Arrays.asList("a"),Arrays.asList("b"));
-		
-		// flatMapÀ» »ç¿ëÇØ¼­ ÁßÃ¸ ±¸Á¶¸¦ Á¦°ÅÇÑ ÈÄ ÀÛ¾÷ÇÒ ¼ö ÀÖÀ½
-		// ¼ÖÁ÷È÷ ¸¹ÀÌ ¾î·Æ´Ù...
+
+		// flatMapì„ ì‚¬ìš©í•´ì„œ ì¤‘ì²© êµ¬ì¡°ë¥¼ ì œê±°í•œ í›„ ìž‘ì—…í•  ìˆ˜ ìžˆìŒ
+		// ì†”ì§ížˆ ë§Žì´ ì–´ë µë‹¤...
 		List<String> flatList = list.stream().flatMap(Collection::stream)
-											 .collect(Collectors.toList());
-		
-		// °´Ã¼¿¡ Àû¿ëÇÑ ¿¹
-		// ÇÐ»ý °´Ã¼¸¦ °¡Áø ½ºÆ®¸²¿¡¼­ ÇÐ»ýÀÇ ±¹¿©¼ö Á¡¼ö¸¦ »Ì¾Æ »õ·Î¿î ½ºÆ®¸²À» ¸¸µé¾î Æò±ÕÀ» ±¸ÇÏ´Â ÄÚµå
-		// ÀÌ´Â map ¸Þ¼Òµå ÀÚÃ¼¸¸À¸·Î´Â ÇÑ¹ø¿¡ ÇÒ ¼ö ¾ø´Â ±â´ÉÀÌ´Ù.
+				.collect(Collectors.toList());
+
+		// ê°ì²´ì— ì ìš©í•œ ì˜ˆ
+		// í•™ìƒ ê°ì²´ë¥¼ ê°€ì§„ ìŠ¤íŠ¸ë¦¼ì—ì„œ í•™ìƒì˜ êµ­ì—¬ìˆ˜ ì ìˆ˜ë¥¼ ë½‘ì•„ ìƒˆë¡œìš´ ìŠ¤íŠ¸ë¦¼ì„ ë§Œë“¤ì–´ í‰ê· ì„ êµ¬í•˜ëŠ” ì½”ë“œ
+		// ì´ëŠ” map ë©”ì†Œë“œ ìžì²´ë§Œìœ¼ë¡œëŠ” í•œë²ˆì— í•  ìˆ˜ ì—†ëŠ” ê¸°ëŠ¥ì´ë‹¤.
 //		students.stream()
-//		  .flatMapToInt(student -> 
-//		                IntStream.of(student.getKor(), 
-//		                             student.getEng(), 
+//		  .flatMapToInt(student ->
+//		                IntStream.of(student.getKor(),
+//		                             student.getEng(),
 //		                             student.getMath()))
-//		  .average().ifPresent(avg -> 
+//		  .average().ifPresent(avg ->
 //		                       System.out.println(Math.round(avg * 10)/10.0));
 
-		
+
 		// 4) Sorting
-		// ÀÎÀÚ ¾øÀÌ ±×³É È£ÃâÇÒ °æ¿ì ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+		// ì¸ìž ì—†ì´ ê·¸ëƒ¥ í˜¸ì¶œí•  ê²½ìš° ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		List<Integer> intList =IntStream.of(14, 11, 20, 39, 23)
-			.sorted()
-			.boxed()
-			.collect(Collectors.toList());
-			// [11, 14, 20, 23, 39]
-		
-		// ÀÎÀÚ¸¦ ³Ñ±â´Â °æ¿ì, 
-		// ´ÙÀ½Àº String List¿¡¼­ ¾ËÆÄºª ¼øÀ¸·Î Á¤·ÄÇÑ ÄÚµå¿Í Comparator¸¦ ³Ñ°Ü¼­ ¿ª¼øÀ¸·Î Á¤·ÄÇÑ °Í
+				.sorted()
+				.boxed()
+				.collect(Collectors.toList());
+		// [11, 14, 20, 23, 39]
+
+		// ì¸ìžë¥¼ ë„˜ê¸°ëŠ” ê²½ìš°,
+		// ë‹¤ìŒì€ String Listì—ì„œ ì•ŒíŒŒë²³ ìˆœìœ¼ë¡œ ì •ë ¬í•œ ì½”ë“œì™€ Comparatorë¥¼ ë„˜ê²¨ì„œ ì—­ìˆœìœ¼ë¡œ ì •ë ¬í•œ ê²ƒ
 		List<String> lang =
-					Arrays.asList("Java","Scala","Groovy", "Python", "Go", "Swift");
-		
+				Arrays.asList("Java","Scala","Groovy", "Python", "Go", "Swift");
+
 		lang.stream()
-			.sorted()
-			.collect(Collectors.toList());
+				.sorted()
+				.collect(Collectors.toList());
 		// [Go, Groovy, Java, Python, Scala, Swift]
-		
+
 		lang.stream()
-			.sorted(Comparator.reverseOrder())
-			.collect(Collectors.toList());
+				.sorted(Comparator.reverseOrder())
+				.collect(Collectors.toList());
 		// [Swift, Scala, Python, Java, Groovy, Go]
-		
-		// ComparatorÀÇ compare ¸Þ¼Òµå´Â µÎ ÀÎÀÚ¸¦ ºñ±³ÇØ¼­ °ªÀ» ¸®ÅÏÇÔ 
-		// ±âº»ÀûÀ¸·Î Comparator »ç¿ë¹ý°ú µ¿ÀÏ, ÀÌ¸¦ ÀÌ¿ëÇØ ¹®ÀÚ¿­ ±æÀÌ¸¦ ±âÁØÀ¸·Î Á¤·Ä
+
+		// Comparatorì˜ compare ë©”ì†Œë“œëŠ” ë‘ ì¸ìžë¥¼ ë¹„êµí•´ì„œ ê°’ì„ ë¦¬í„´í•¨
+		// ê¸°ë³¸ì ìœ¼ë¡œ Comparator ì‚¬ìš©ë²•ê³¼ ë™ì¼, ì´ë¥¼ ì´ìš©í•´ ë¬¸ìžì—´ ê¸¸ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì •ë ¬
 		lang.stream()
-			.sorted(Comparator.comparingInt(String::length))
-			.collect(Collectors.toList());
+				.sorted(Comparator.comparingInt(String::length))
+				.collect(Collectors.toList());
 		// [Go, Java, Scala, Swift, Groovy, Python ]
-		
+
 		lang.stream()
-			.sorted( (s1,s2) -> s2.length() - s1.length())
-			.collect(Collectors.toList());
+				.sorted( (s1,s2) -> s2.length() - s1.length())
+				.collect(Collectors.toList());
 		// [Groovy, Python, Scala, Swift, java, Go]
-		
-		
+
+
 		// 5) Iterating
-		// ½ºÆ®¸² ³» ¿ä¼Òµé °¢°¢À» ´ë»óÀ¸·Î Æ¯Á¤ ¿¬»êÀ» ¼öÇàÇÏ´Â ¸Þ¼Òµå·Î´Â peekÀÌ ÀÖ´Ù.
-		// ±×³É È®ÀÎÇØº»´Ù´Â ´Ü¾î ¶æÃ³·³ Æ¯Á¤ °á°ú¸¦ ¹ÝÈ¯ÇÏÁö ¾Ê´Â ÇÔ¼öÇü ÀÎÅÍÆäÀÌ½º Consumer¸¦ ÀÎÀÚ·Î ¹ÞÀ½
-		// µû¶ó¼­ ½ºÆ®¸² ³» ¿ä¼Òµé °¢°¢¿¡ Æ¯Á¤ ÀÛ¾÷À» ¼öÇàÇÒ »Ó °á°ú¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö ¾ÊÀ½
-		// ´ÙÀ½Ã³·³ ÀÛ¾÷À» Ã³¸®ÇÏ´Â Áß°£¿¡ °á°ú¸¦ È®ÀÎÇØº¼ ¶§, »ç¿ëÇÒ ¼ö ÀÖ´Ù.
-		
+		// ìŠ¤íŠ¸ë¦¼ ë‚´ ìš”ì†Œë“¤ ê°ê°ì„ ëŒ€ìƒìœ¼ë¡œ íŠ¹ì • ì—°ì‚°ì„ ìˆ˜í–‰í•˜ëŠ” ë©”ì†Œë“œë¡œëŠ” peekì´ ìžˆë‹¤.
+		// ê·¸ëƒ¥ í™•ì¸í•´ë³¸ë‹¤ëŠ” ë‹¨ì–´ ëœ»ì²˜ëŸ¼ íŠ¹ì • ê²°ê³¼ë¥¼ ë°˜í™˜í•˜ì§€ ì•ŠëŠ” í•¨ìˆ˜í˜• ì¸í„°íŽ˜ì´ìŠ¤ Consumerë¥¼ ì¸ìžë¡œ ë°›ìŒ
+		// ë”°ë¼ì„œ ìŠ¤íŠ¸ë¦¼ ë‚´ ìš”ì†Œë“¤ ê°ê°ì— íŠ¹ì • ìž‘ì—…ì„ ìˆ˜í–‰í•  ë¿ ê²°ê³¼ì— ì˜í–¥ì„ ë¯¸ì¹˜ì§€ ì•ŠìŒ
+		// ë‹¤ìŒì²˜ëŸ¼ ìž‘ì—…ì„ ì²˜ë¦¬í•˜ëŠ” ì¤‘ê°„ì— ê²°ê³¼ë¥¼ í™•ì¸í•´ë³¼ ë•Œ, ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤.
+
 		int sum = IntStream.of(1, 3, 5, 7, 9)
 				.peek(System.out::println)
 				.sum();
 	}
-	
+
 }

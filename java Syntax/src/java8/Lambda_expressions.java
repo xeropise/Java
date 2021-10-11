@@ -6,47 +6,47 @@ import java.util.concurrent.locks.Condition;
 public class Lambda_expressions {
 	
 	/*
-	 java.util.function ÆÐÅ°Áö¿¡´Â ¼ö¸¹Àº Functional Interface µéÀÌ µî·ÏµÇ¾î ÀÖÀ½
-	  ÀÌ ÆÐÅ°Áö¿¡ µî·ÏµÇ¾î ÀÖ´Â ¸ðµç ÀÎÅÍÆäÀÌ½ºµéÀº @Functionalinterface·Î ÁöÁ¤µÇ¾î ÀÖÀ½
-	  
-	 (Object Å¬·¡½ºÀÇ ¸Þ¼­µå¸¦ Á¦¿ÜÇÏ°í) ´Ü ÇÏ³ªÀÇ Ãß»ó ¸Þ¼­µå¸¸À» °¡Áø ÀÎÅÍÆäÀÌ½º¸¦ ÀÇ¹ÌÇÏ¸ç,
-	 ±×·± ÀÌÀ¯·Î ´Ü ÇÏ³ªÀÇ ±â´ÉÀû °è¾àÀ» Ç¥»óÇÏ°Ô µÊ.
-  
+	 java.util.function íŒ¨í‚¤ì§€ì—ëŠ” ìˆ˜ë§Žì€ Functional Interface ë“¤ì´ ë“±ë¡ë˜ì–´ ìžˆìŒ
+	  ì´ íŒ¨í‚¤ì§€ì— ë“±ë¡ë˜ì–´ ìžˆëŠ” ëª¨ë“  ì¸í„°íŽ˜ì´ìŠ¤ë“¤ì€ @Functionalinterfaceë¡œ ì§€ì •ë˜ì–´ ìžˆìŒ
+
+	 (Object í´ëž˜ìŠ¤ì˜ ë©”ì„œë“œë¥¼ ì œì™¸í•˜ê³ ) ë‹¨ í•˜ë‚˜ì˜ ì¶”ìƒ ë©”ì„œë“œë§Œì„ ê°€ì§„ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì˜ë¯¸í•˜ë©°,
+	 ê·¸ëŸ° ì´ìœ ë¡œ ë‹¨ í•˜ë‚˜ì˜ ê¸°ëŠ¥ì  ê³„ì•½ì„ í‘œìƒí•˜ê²Œ ë¨.
+
 	*/
-	
-	// ¿¹½Ã 1
-	
-	//Functional InterfaceÀÎ °æ¿ì : ¸Þ¼Òµå°¡ ÇÏ³ª¸¸ ÀÖÀ½
+
+	// ì˜ˆì‹œ 1
+
+	//Functional Interfaceì¸ ê²½ìš° : ë©”ì†Œë“œê°€ í•˜ë‚˜ë§Œ ìžˆìŒ
 	public interface Functional {
 		public boolean test(Condition condition);
 	}
-	
-	//java.lang.Runnableµµ °á°úÀûÀ¸·Î Functional Interface
+
+	//java.lang.Runnableë„ ê²°ê³¼ì ìœ¼ë¡œ Functional Interface
 	public interface Runnable {
 		public void run();
 	}
-	
-	//±¸ÇöÇØ¾ß ÇÒ ¸Þ¼Òµå°¡ ÇÏ³ª ÀÌ»ó ÀÖ´Â °æ¿ì´Â Functional Interface(x)
+
+	//êµ¬í˜„í•´ì•¼ í•  ë©”ì†Œë“œê°€ í•˜ë‚˜ ì´ìƒ ìžˆëŠ” ê²½ìš°ëŠ” Functional Interface(x)
 	public interface NonFunctional {
 		public void actionA();
 		public void actionB();
 	}
-	
-	// ¿¹½Ã 2
-	
-	//Object °´Ã¼ÀÇ ¸Þ¼Òµå¸¸ ÀÎÅÍÆäÀÌ½º¿¡ ¼±¾ðµÇ¾î ÀÖ´Â °æ¿ì´Â Functional Interface°¡ ¾Æ´Ô
+
+	// ì˜ˆì‹œ 2
+
+	//Object ê°ì²´ì˜ ë©”ì†Œë“œë§Œ ì¸í„°íŽ˜ì´ìŠ¤ì— ì„ ì–¸ë˜ì–´ ìžˆëŠ” ê²½ìš°ëŠ” Functional Interfaceê°€ ì•„ë‹˜
 	public interface NotFunctional {
 		public boolean equals(Object obj);
 	}
-	
-	//Object °´Ã¼ÀÇ ¸Þ¼Òµå¸¦ Á¦¿ÜÇÏ°í ÇÏ³ªÀÇ Ãß»ó ¸Þ¼Òµå¸¸ ¼±¾ðµÇ¾î ÀÖ´Â °æ¿ì´Â Functional InterfaceÀÓ
+
+	//Object ê°ì²´ì˜ ë©”ì†Œë“œë¥¼ ì œì™¸í•˜ê³  í•˜ë‚˜ì˜ ì¶”ìƒ ë©”ì†Œë“œë§Œ ì„ ì–¸ë˜ì–´ ìžˆëŠ” ê²½ìš°ëŠ” Functional Interfaceìž„
 	public interface Functional2 {
 		public boolean equals(Object obj);
 		public void execute();
-		
+
 	}
-	
-	//Object °´Ã¼ÀÇ clone ¸Þ¼Òµå´Â public ¸Þ¼Òµå°¡ ¾Æ´Ï±â ¶§¹®¿¡, Functional InterfaceÀÇ ´ë»óÀÌ µÊ¤·
+
+	//Object ê°ì²´ì˜ clone ë©”ì†Œë“œëŠ” public ë©”ì†Œë“œê°€ ì•„ë‹ˆê¸° ë•Œë¬¸ì—, Functional Interfaceì˜ ëŒ€ìƒì´ ë¨ã…‡
 	public interface Functional3 {
 		public Object clone();
 	}
@@ -54,28 +54,28 @@ public class Lambda_expressions {
 		public Object clone();
 		public void execute();
 	}
-	
-	// ¾î³ëÅ×ÀÌ¼Ç Å¸ÀÔ @FunctionalInterface´Â ¾î¶² ÀÎÅÍÆäÀÌ½º°¡ Functional Interface¶ó´Â °ÍÀ»
-	// ³ªÅ¸³»±â À§ÇØ »ç¿ëµÈ´Ù, ÀÌ°ÍÀ» ÀÌ¿ëÇÏ¸é ºÎÀûÀýÇÑ ¸Þ¼­µå ¼±¾ðÀÌ Æ÷ÇÔµÇ¾î ÀÖ°Å³ª, ÇÔ¼öÇüÀÌ¾î¾ß ÇÏ´Â ÀÎÅÍÆäÀÌ½º°¡
-	// ´Ù¸¥ ÀÎÅÍÆäÀÌ½º¸¦ »ó¼ÓÇÑ °æ¿ì ¹Ì¸® È®ÀÎÇÒ ¼ö ÀÖ´Ù.
-	
-	// @FunctionalInterface·Î ÁöÁ¤µÇ¾î ÀÖÀ¸¸é¼­ ½ÇÁ¦·Î´Â Functional Interface°¡ ¾Æ´Ñ 
-	// ÀÎÅÍÆäÀÌ½º¸¦ ¼±¾ðÇÑ °æ¿ì, ÄÄÆÄÀÏ Å¸ÀÓ ¿¡·¯°¡ ¹ß»ýÇÑ´Ù.
-	
-	// ¾î¶² ÀÎÅÍÆäÀÌ½ºµéÀº ¿ì¿¬È÷ ÇÔ¼öÇüÀ¸·Î Á¤ÀÇµÉ ¼öµµ ÀÖ±â ¶§¹®¿¡, Functional InterfaceµéÀÌ ¸ðµÎ
-	// @FunctionalInterface ¾î³ëÅ×ÀÌ¼ÇÀ¸·Î ¼±¾ðµÉ ÇÊ¿äµµ ¾ø°í, ±×·¸°Ô ÇÏ´Â °ÍÀÌ ¹Ù¶÷Á÷ ÇÏÁöµµ ¾Ê´Ù.
-	
+
+	// ì–´ë…¸í…Œì´ì…˜ íƒ€ìž… @FunctionalInterfaceëŠ” ì–´ë–¤ ì¸í„°íŽ˜ì´ìŠ¤ê°€ Functional Interfaceë¼ëŠ” ê²ƒì„
+	// ë‚˜íƒ€ë‚´ê¸° ìœ„í•´ ì‚¬ìš©ëœë‹¤, ì´ê²ƒì„ ì´ìš©í•˜ë©´ ë¶€ì ì ˆí•œ ë©”ì„œë“œ ì„ ì–¸ì´ í¬í•¨ë˜ì–´ ìžˆê±°ë‚˜, í•¨ìˆ˜í˜•ì´ì–´ì•¼ í•˜ëŠ” ì¸í„°íŽ˜ì´ìŠ¤ê°€
+	// ë‹¤ë¥¸ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ìƒì†í•œ ê²½ìš° ë¯¸ë¦¬ í™•ì¸í•  ìˆ˜ ìžˆë‹¤.
+
+	// @FunctionalInterfaceë¡œ ì§€ì •ë˜ì–´ ìžˆìœ¼ë©´ì„œ ì‹¤ì œë¡œëŠ” Functional Interfaceê°€ ì•„ë‹Œ
+	// ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì„ ì–¸í•œ ê²½ìš°, ì»´íŒŒì¼ íƒ€ìž„ ì—ëŸ¬ê°€ ë°œìƒí•œë‹¤.
+
+	// ì–´ë–¤ ì¸í„°íŽ˜ì´ìŠ¤ë“¤ì€ ìš°ì—°ížˆ í•¨ìˆ˜í˜•ìœ¼ë¡œ ì •ì˜ë  ìˆ˜ë„ ìžˆê¸° ë•Œë¬¸ì—, Functional Interfaceë“¤ì´ ëª¨ë‘
+	// @FunctionalInterface ì–´ë…¸í…Œì´ì…˜ìœ¼ë¡œ ì„ ì–¸ë  í•„ìš”ë„ ì—†ê³ , ê·¸ë ‡ê²Œ í•˜ëŠ” ê²ƒì´ ë°”ëžŒì§ í•˜ì§€ë„ ì•Šë‹¤.
+
 	// @FunctionalInterface Annotation
-	// Áï ÀÎÅÍÆäÀÌ½º°¡ Functional InterfaceÀÎÁö ¾Æ´ÑÁö È®½ÇÈ÷ ÇÏ±â¸¦ ¿øÇÒ ¶§ »ç¿ë
+	// ì¦‰ ì¸í„°íŽ˜ì´ìŠ¤ê°€ Functional Interfaceì¸ì§€ ì•„ë‹Œì§€ í™•ì‹¤ížˆ í•˜ê¸°ë¥¼ ì›í•  ë•Œ ì‚¬ìš©
 // ============================================================================ //
-	
-/*	
+
+/*
 	() -> {}                // No parameters; result is void
 	() -> 42                // No parameters, expression body
 	() -> null              // No parameters, expression body
 	() -> { return 42; }    // No parameters, block body with return
 	() -> { System.gc(); }  // No parameters, void block body
-	 
+
 	() -> {                 // Complex block body with returns
 	  if (true) return 12;
 	  else {
@@ -84,31 +84,31 @@ public class Lambda_expressions {
 	      result *= i;
 	    return result;
 	  }
-	}                         
-	 
+	}
+
 	(int x) -> x+1              // Single declared-type parameter
 	(int x) -> { return x+1; }  // Single declared-type parameter
 	(x) -> x+1                  // Single inferred-type parameter
 	x -> x+1                    // Parentheses optional for single inferred-type parameter
-	 
+
 	(String s) -> s.length()      // Single declared-type parameter
 	(Thread t) -> { t.start(); }  // Single declared-type parameter
 	s -> s.length()               // Single inferred-type parameter
 	t -> { t.start(); }           // Single inferred-type parameter
-	 
+
 	(int x, int y) -> x+y  // Multiple declared-type parameters
 	(x, y) -> x+y          // Multiple inferred-type parameters
 	(x, int y) -> x+y    // Illegal: can't mix inferred and declared types
-	(x, final y) -> x+y  // Illegal: no modifiers with inferred types 
+	(x, final y) -> x+y  // Illegal: no modifiers with inferred types
 */
-	
-	// ÀÚÃ¼ »ý¼ºÇÑ ÀÎÅÍÆäÀÌ½º 
+
+	// ìžì²´ ìƒì„±í•œ ì¸í„°íŽ˜ì´ìŠ¤
 	@FunctionalInterface
 	public interface ArithmeticOperator {
 		public int operate(int a, int b);
 	}
-	
-	// ÀÚÃ¼ »ý¼ºÇÑ ArithmeticOperator ÀÎÅÍÆäÀÌ½º¸¦ »ç¿ëÇÏ´Â °æ¿ì
+
+	// ìžì²´ ìƒì„±í•œ ArithmeticOperator ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì‚¬ìš©í•˜ëŠ” ê²½ìš°
 	public void testArithmeticOperator() {
 		ArithmeticOperator plusOperator = (a, b) -> a+b;
 		ArithmeticOperator minusOperator =(a, b) -> a-b;
@@ -125,15 +125,15 @@ public class Lambda_expressions {
 			}
 			return a % b;
 		};
-		
-	    int a = new Random().nextInt(10000);
-	    int b = new Random().nextInt(10000);
-	    int plus = plusOperator.operate(a, b);
-	    int minus = minusOperator.operate(a, b);
-	    int multiply = multiplyOperator.operate(a, b);
-	    int divide = divideOperator.operate(a, b);
-	    int spare = spareOperator.operate(a, b);
-	 
+
+		int a = new Random().nextInt(10000);
+		int b = new Random().nextInt(10000);
+		int plus = plusOperator.operate(a, b);
+		int minus = minusOperator.operate(a, b);
+		int multiply = multiplyOperator.operate(a, b);
+		int divide = divideOperator.operate(a, b);
+		int spare = spareOperator.operate(a, b);
+
 	}
-	
+
 }

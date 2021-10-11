@@ -5,50 +5,50 @@ import java.util.function.Consumer;
 
 public class optional {
 
-    public static void main(String[] args){
-    	
-    	
-    	// 1. Optional ª˝º∫
-    	
-    	Optional<String> opName = Optional.empty();
-    	Optional<String> opName2 = Optional.of("xeropise");
-    	Optional<String> opName3 = Optional.ofNullable("xeropise"); // null ¿ª ≥÷æÓµµ ∞°¥…
-    	
-    	// 2. Optional get
-    	// ∞™ ∞°¡Æø¿±‚
-    	// get()¿ª ¿ÃøÎ«ÿº≠ ¡¶≥◊∏Øø° «•±‚µ» ¿⁄∑·«¸¿« ∞™¿ª ∞°¡Æø√ ºˆ ¿÷¥Ÿ.
-    	//opName.get(); // java.util.NoSuchElementException¿Ã ≥≠¥Ÿ.
-    	//opName2.get();  
-    	//opName3.get(); // ∞™¿Ã ∫Û ∞ÊøÏ, java.util.NoSuchElementException¿Ã ≥≠¥Ÿ.
-    	
-    	
-    	// 3. Optional isPresent
-    	// isPresent()∏¶ ¿ÃøÎ«œø© ∞™¿Ã ∫Òæ˙¥¬¡ˆ æÀ ºˆ ¿÷Ω¿¥œ¥Ÿ.
-    	System.out.println( opName.isPresent() );
-    	System.out.println( opName2.isPresent() );
-    	System.out.println( opName3.isPresent() );
-    	
-    	
-    	// 4. Optional ifPresent
-    	//ifPresent()∏¶ ¿ÃøÎ«œø© ∞™¿Ã ¿÷¿ª ∞ÊøÏ, ø¯«œ¥¬ √≥∏Æ∏¶ «“ ºˆ ¿÷µµ∑œ µµøÕ¡›¥œ¥Ÿ.
-    	opName.ifPresent(System.out::println);
-    	
-    	
-    	// 5. Optional isElse, isElseGet, isElseThrow
-    	opName2.orElse(defaultValue());
-    	opName2.orElseGet(() -> defaultValue());
-    	
-    	opName3.orElse(defaultValue());
-    	opName3.orElseGet(() -> defaultValue());
-    	
-    	opName3.orElseThrow(NullPointerException::new);
+	public static void main(String[] args){
+
+
+		// 1. Optional ÏÉùÏÑ±
+
+		Optional<String> opName = Optional.empty();
+		Optional<String> opName2 = Optional.of("xeropise");
+		Optional<String> opName3 = Optional.ofNullable("xeropise"); // null ÏùÑ ÎÑ£Ïñ¥ÎèÑ Í∞ÄÎä•
+
+		// 2. Optional get
+		// Í∞í Í∞ÄÏ†∏Ïò§Í∏∞
+		// get()ÏùÑ Ïù¥Ïö©Ìï¥ÏÑú Ï†úÎÑ§Î¶≠Ïóê ÌëúÍ∏∞Îêú ÏûêÎ£åÌòïÏùò Í∞íÏùÑ Í∞ÄÏ†∏Ïò¨ Ïàò ÏûàÎã§.
+		//opName.get(); // java.util.NoSuchElementExceptionÏù¥ ÎÇúÎã§.
+		//opName2.get();
+		//opName3.get(); // Í∞íÏù¥ Îπà Í≤ΩÏö∞, java.util.NoSuchElementExceptionÏù¥ ÎÇúÎã§.
+
+
+		// 3. Optional isPresent
+		// isPresent()Î•º Ïù¥Ïö©ÌïòÏó¨ Í∞íÏù¥ ÎπÑÏóàÎäîÏßÄ Ïïå Ïàò ÏûàÏäµÎãàÎã§.
+		System.out.println( opName.isPresent() );
+		System.out.println( opName2.isPresent() );
+		System.out.println( opName3.isPresent() );
+
+
+		// 4. Optional ifPresent
+		//ifPresent()Î•º Ïù¥Ïö©ÌïòÏó¨ Í∞íÏù¥ ÏûàÏùÑ Í≤ΩÏö∞, ÏõêÌïòÎäî Ï≤òÎ¶¨Î•º Ìï† Ïàò ÏûàÎèÑÎ°ù ÎèÑÏôÄÏ§çÎãàÎã§.
+		opName.ifPresent(System.out::println);
+
+
+		// 5. Optional isElse, isElseGet, isElseThrow
+		opName2.orElse(defaultValue());
+		opName2.orElseGet(() -> defaultValue());
+
+		opName3.orElse(defaultValue());
+		opName3.orElseGet(() -> defaultValue());
+
+		opName3.orElseThrow(NullPointerException::new);
 	}
-    
-    private static String defaultValue() {
-        System.out.println("call defaultValue()");
-        return "default name : wonchul";
-    }
+
+	private static String defaultValue() {
+		System.out.println("call defaultValue()");
+		return "default name : wonchul";
+	}
 
 
-    
+
 }

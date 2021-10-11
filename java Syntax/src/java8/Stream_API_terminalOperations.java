@@ -18,256 +18,256 @@ import java.util.stream.Stream;
 public class Stream_API_terminalOperations {
 
 	public static void main(String[] args) {
-		
-		// ================================================ 3. ÃÖÁ¾ ÀÛ¾÷ ===================================================================
-		
+
+		// ================================================ 3. ìµœì¢… ì‘ì—… ===================================================================
+
 		// Calculating
-		// Stream API´Â ´Ù¾çÇÑ Á¾·á ÀÛ¾÷À» Á¦°øÇÑ´Ù, ÃÖ¼Ò, ÃÖ´ë, ÇÕ, Æò±Õ µî ±âº»Çü Å¸ÀÔÀ¸·Î °á°ú¸¦ ¸¸µé¾î³¾ ¼ö ÀÖ´Ù.
-		
+		// Stream APIëŠ” ë‹¤ì–‘í•œ ì¢…ë£Œ ì‘ì—…ì„ ì œê³µí•œë‹¤, ìµœì†Œ, ìµœëŒ€, í•©, í‰ê·  ë“± ê¸°ë³¸í˜• íƒ€ì…ìœ¼ë¡œ ê²°ê³¼ë¥¼ ë§Œë“¤ì–´ë‚¼ ìˆ˜ ìˆë‹¤.
+
 		long count = IntStream.of(1, 3, 5, 7, 9).count();
 		long sum = LongStream.of(1, 3, 5, 7, 9).sum();
-		
-		// ¡Ø ½ºÆ®¸²ÀÌ ºñ¾î ÀÖ´Â°æ¿ì, count¿Í sumÀº 0À» Ãâ·Â,
-		//   ÇÏÁö¸¸ Æò±Õ, ÃÖ¼Ò, ÃÖ´ëÀÇ °æ¿ì¿¡´Â Ç¥ÇöÇÒ ¼ö ¾ø±â ¶§¹®¿¡ OptionalÀ» ÀÌ¿ëÇØ ¸®ÅÏÇÑ´Ù.
-		
+
+		// â€» ìŠ¤íŠ¸ë¦¼ì´ ë¹„ì–´ ìˆëŠ”ê²½ìš°, countì™€ sumì€ 0ì„ ì¶œë ¥,
+		//   í•˜ì§€ë§Œ í‰ê· , ìµœì†Œ, ìµœëŒ€ì˜ ê²½ìš°ì—ëŠ” í‘œí˜„í•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— Optionalì„ ì´ìš©í•´ ë¦¬í„´í•œë‹¤.
+
 		OptionalInt min = IntStream.of(1, 3, 5, 7, 9).min();
 		OptionalInt max = IntStream.of(1, 3, 5, 7, 9).max();
-		
-		// ½ºÆ®¸²¿¡¼­ ¹Ù·Î ifPresent ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ¼­ Optional Ã³¸®ÇÒ ¼ö µµ ÀÖ´Ù.
+
+		// ìŠ¤íŠ¸ë¦¼ì—ì„œ ë°”ë¡œ ifPresent ë©”ì†Œë“œë¥¼ ì´ìš©í•´ì„œ Optional ì²˜ë¦¬í•  ìˆ˜ ë„ ìˆë‹¤.
 		DoubleStream.of(1.1, 2.2, 3.3, 4.4, 5.5)
-			.average()
-			.ifPresent(System.out::println);
-		
-		
-		
+				.average()
+				.ifPresent(System.out::println);
+
+
+
 		// Reduction
-		// ½ºÆ®¸² reduce ¶ó´Â ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ¼­ °á°ú¸¦ ¸¸µé¾î³½´Ù.
-		// reduce´Â 3°³ÀÇ ÆÄ¶ó¹ÌÅÍ¸¦ ¹Ş´Â´Ù
-		// accumulator : °¢ ¿ä¼Ò¸¦ Ã³¸®ÇÏ´Â °è»ê ·ÎÁ÷. °¢ ¿ä¼Ò°¡ ¿Ã ¶§¸¶´Ù Áß°£ °á°ú¸¦ »ı¼ºÇÏ´Â ·ÎÁ÷.
-		// identity : °è»êÀ» À§ÇÑ ÃÊ±â°ªÀ¸·Î ½ºÆ®¸²ÀÌ ºñ¾î¼­ °è»êÇÒ ³»¿ëÀÌ ¾ø´õ¶óµµ ÀÌ °ªÀº ¸®ÅÏ.
-		// combiner : º´·Ä(parallel) ½ºÆ®¸²¿¡¼­ ³ª´² °è»êÇÑ °á°ú¸¦ ÇÏ³ª·Î ÇÕÄ¡´Â µ¿ÀÛÇÏ´Â ·ÎÁ÷.
-		
-		// ÀÎÀÚ°¡ 1°³ (BinaryOperator<T> accumulator))¸¸ ÀÖ´Â °æ¿ì
-		
+		// ìŠ¤íŠ¸ë¦¼ reduce ë¼ëŠ” ë©”ì†Œë“œë¥¼ ì´ìš©í•´ì„œ ê²°ê³¼ë¥¼ ë§Œë“¤ì–´ë‚¸ë‹¤.
+		// reduceëŠ” 3ê°œì˜ íŒŒë¼ë¯¸í„°ë¥¼ ë°›ëŠ”ë‹¤
+		// accumulator : ê° ìš”ì†Œë¥¼ ì²˜ë¦¬í•˜ëŠ” ê³„ì‚° ë¡œì§. ê° ìš”ì†Œê°€ ì˜¬ ë•Œë§ˆë‹¤ ì¤‘ê°„ ê²°ê³¼ë¥¼ ìƒì„±í•˜ëŠ” ë¡œì§.
+		// identity : ê³„ì‚°ì„ ìœ„í•œ ì´ˆê¸°ê°’ìœ¼ë¡œ ìŠ¤íŠ¸ë¦¼ì´ ë¹„ì–´ì„œ ê³„ì‚°í•  ë‚´ìš©ì´ ì—†ë”ë¼ë„ ì´ ê°’ì€ ë¦¬í„´.
+		// combiner : ë³‘ë ¬(parallel) ìŠ¤íŠ¸ë¦¼ì—ì„œ ë‚˜ëˆ  ê³„ì‚°í•œ ê²°ê³¼ë¥¼ í•˜ë‚˜ë¡œ í•©ì¹˜ëŠ” ë™ì‘í•˜ëŠ” ë¡œì§.
+
+		// ì¸ìê°€ 1ê°œ (BinaryOperator<T> accumulator))ë§Œ ìˆëŠ” ê²½ìš°
+
 		OptionalInt reduced = IntStream.range(1, 4)
 				.reduce((a,b) -> {	// [1, 2, 3]
 					return Integer.sum(a, b);
 				});
-		
-		// ÀÎÀÚ°¡ 2°³ (T identity, BinaryOperator<T> accumulator)
-		
-		int reducedTwoParams = 
+
+		// ì¸ìê°€ 2ê°œ (T identity, BinaryOperator<T> accumulator)
+
+		int reducedTwoParams =
 				IntStream.range(1, 4) // [1, 2, 3]
-					.reduce(10, Integer::sum); // method reference
-				// 10ÀÌ ÃÊ±â°ª, ½ºÆ®¸² ³» °ªÀ» ´õÇØ¼­ °á°ú´Â 16 ( 10 + 1+ 2+ 3)
-		
-		// ÀÎÀÚ°¡ 3°³ (U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner) )
-		
+						.reduce(10, Integer::sum); // method reference
+		// 10ì´ ì´ˆê¸°ê°’, ìŠ¤íŠ¸ë¦¼ ë‚´ ê°’ì„ ë”í•´ì„œ ê²°ê³¼ëŠ” 16 ( 10 + 1+ 2+ 3)
+
+		// ì¸ìê°€ 3ê°œ (U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner) )
+
 		Integer reducedParallel = Arrays.asList(1, 2, 3)
-				  .parallelStream()
-				  .reduce(10,
-				          Integer::sum,
-				          (a, b) -> {
-				            System.out.println("combiner was called");
-				            return a + b;
-				          });
-		// 3¹øÂ° ÀÎÀÚÀÎ Combiner´Â º´·Ä Ã³¸® ½Ã °¢ÀÚ ´Ù¸¥ ¾²·¹µå¿¡¼­ ½ÇÇàÇÑ °á°ú¸¦ ¸¶Áö¸·¿¡ ÇÕÄ¡´Â ´Ü°è,
-		// º´·Ä½ºÆ®¸²¿¡¼­¸¸ µ¿ÀÛÇÑ´Ù.
-		
-		
-		
-		
+				.parallelStream()
+				.reduce(10,
+						Integer::sum,
+						(a, b) -> {
+							System.out.println("combiner was called");
+							return a + b;
+						});
+		// 3ë²ˆì§¸ ì¸ìì¸ CombinerëŠ” ë³‘ë ¬ ì²˜ë¦¬ ì‹œ ê°ì ë‹¤ë¥¸ ì“°ë ˆë“œì—ì„œ ì‹¤í–‰í•œ ê²°ê³¼ë¥¼ ë§ˆì§€ë§‰ì— í•©ì¹˜ëŠ” ë‹¨ê³„,
+		// ë³‘ë ¬ìŠ¤íŠ¸ë¦¼ì—ì„œë§Œ ë™ì‘í•œë‹¤.
+
+
+
+
 		// Collecting
-		// collect() ´Â ¶Ç ´Ù¸¥ Á¾·á ÀÛ¾÷
-		// Collector Å¸ÀÔÀÇ ÀÎÀÚ¸¦ ¹Ş¾Æ¼­ Ã³¸®, ÀÚÁÖ »ç¿ëÇÏ´Â ÀÛ¾÷Àº Collectors °´Ã¼¿¡¼­ Á¦°ø.
-		List<Product> productList = 
-				  Arrays.asList(new Product(23, "potatoes"),
-				                new Product(14, "orange"),
-				                new Product(13, "lemon"),
-				                new Product(23, "bread"),
-				                new Product(13, "sugar"));
-		
+		// collect() ëŠ” ë˜ ë‹¤ë¥¸ ì¢…ë£Œ ì‘ì—…
+		// Collector íƒ€ì…ì˜ ì¸ìë¥¼ ë°›ì•„ì„œ ì²˜ë¦¬, ìì£¼ ì‚¬ìš©í•˜ëŠ” ì‘ì—…ì€ Collectors ê°ì²´ì—ì„œ ì œê³µ.
+		List<Product> productList =
+				Arrays.asList(new Product(23, "potatoes"),
+						new Product(14, "orange"),
+						new Product(13, "lemon"),
+						new Product(23, "bread"),
+						new Product(13, "sugar"));
+
 		// Collectors.toList()
-		// ½ºÆ®¸²¿¡¼­ ÀÛ¾÷ÇÑ °á°ú¸¦ ´ãÀº List¸¦ ¹İÈ¯
-		// ´ÙÀ½ ¿¹Á¦´Â mapÀ¸·Î °¢ ¿ä¼ÒÀÇ ÀÌ¸§À» °¡Á®¿Â ÈÄ, Collectors.toList¸¦ ÀÌ¿ëÇØ¼­ List·Î °á°ú¸¦ °¡Á®¿Â´Ù.
-		
+		// ìŠ¤íŠ¸ë¦¼ì—ì„œ ì‘ì—…í•œ ê²°ê³¼ë¥¼ ë‹´ì€ Listë¥¼ ë°˜í™˜
+		// ë‹¤ìŒ ì˜ˆì œëŠ” mapìœ¼ë¡œ ê° ìš”ì†Œì˜ ì´ë¦„ì„ ê°€ì ¸ì˜¨ í›„, Collectors.toListë¥¼ ì´ìš©í•´ì„œ Listë¡œ ê²°ê³¼ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+
 		List<String> collectorCollection =
 				productList.stream()
-					.map(Product::getName)
-					.collect(Collectors.toList());
-			// [potatoes, oragne, lemon, bread, sugar]
-		
-		
+						.map(Product::getName)
+						.collect(Collectors.toList());
+		// [potatoes, oragne, lemon, bread, sugar]
+
+
 		// Collectors.joining()
-		// ½ºÆ®¸²¿¡¼­ ÀÛ¾÷ÇÑ °á°ú¸¦ ÇÏ³ªÀÇ StringÀ¸·Î ÀÌ¾î ºÙÀÏ ¼ö ÀÖ´Ù.
-		
-		String listToString = 
+		// ìŠ¤íŠ¸ë¦¼ì—ì„œ ì‘ì—…í•œ ê²°ê³¼ë¥¼ í•˜ë‚˜ì˜ Stringìœ¼ë¡œ ì´ì–´ ë¶™ì¼ ìˆ˜ ìˆë‹¤.
+
+		String listToString =
 				productList.stream()
-					.map(Product::getName)
-					.collect(Collectors.joining());
-			// potatoesorangelemonbreadsugar
-		
-		// Collectors.joining()Àº 3°³ÀÇ ÀÎÀÚ¸¦ ¹ŞÀ» ¼ö ÀÖ´Ù
-		// delimiter : °¢ ¿ä¼Ò Áß°£¿¡ µé¾î°¡ ¿ä¼Ò¸¦ ±¸ºĞ½ÃÄÑÁÖ´Â ±¸ºĞÀÚ
-		// prefix : °á°ú ¸Ç ¾Õ¿¡ ºÙ´Â ¹®ÀÚ
-		//suffix : °á°ú ¸Ç µÚ¿¡ ºÙ´Â ¹®ÀÚ
-		
+						.map(Product::getName)
+						.collect(Collectors.joining());
+		// potatoesorangelemonbreadsugar
+
+		// Collectors.joining()ì€ 3ê°œì˜ ì¸ìë¥¼ ë°›ì„ ìˆ˜ ìˆë‹¤
+		// delimiter : ê° ìš”ì†Œ ì¤‘ê°„ì— ë“¤ì–´ê°€ ìš”ì†Œë¥¼ êµ¬ë¶„ì‹œì¼œì£¼ëŠ” êµ¬ë¶„ì
+		// prefix : ê²°ê³¼ ë§¨ ì•ì— ë¶™ëŠ” ë¬¸ì
+		//suffix : ê²°ê³¼ ë§¨ ë’¤ì— ë¶™ëŠ” ë¬¸ì
+
 		listToString =
 				productList.stream()
-					.map(Product::getName)
-					.collect(Collectors.joining(", ", "<", ">"));
-		    // <potatoes, orange, lemon, bread, sugar>
-		
-		
+						.map(Product::getName)
+						.collect(Collectors.joining(", ", "<", ">"));
+		// <potatoes, orange, lemon, bread, sugar>
+
+
 		// Collectors.averageingInt()
-		
-		// ¼ıÀÚ °ª(Integer value)ÀÇ Æò±Õ(arithmetic mean)À» ³À´Ï´Ù.
-		
-		Double averageAmount = 
+
+		// ìˆ«ì ê°’(Integer value)ì˜ í‰ê· (arithmetic mean)ì„ ëƒ…ë‹ˆë‹¤.
+
+		Double averageAmount =
 				productList.stream()
-					.collect(Collectors.averagingInt(Product::getQuantity));
-				// 17.2
-		
-		
+						.collect(Collectors.averagingInt(Product::getQuantity));
+		// 17.2
+
+
 		// Collectors.summingInt()
-		
-		// ¼ıÀÚ°ªÀÇ ÇÕ(sum)À» ³½´Ù.
-		
+
+		// ìˆ«ìê°’ì˜ í•©(sum)ì„ ë‚¸ë‹¤.
+
 		Integer summingAmount =
 				productList.stream()
-					.collect(Collectors.summingInt(Product::getQuantity));
-				// 86
-		
-		// IntStream À¸·Î ¹Ù²ãÁÖ´Â mapToInt ¸Ş¼Òµå¸¦ »ç¿ëÇØ¼­ Á» ´õ °£´ÜÇÏ°Ô Ç¥Çö °¡´É
-		
+						.collect(Collectors.summingInt(Product::getQuantity));
+		// 86
+
+		// IntStream ìœ¼ë¡œ ë°”ê¿”ì£¼ëŠ” mapToInt ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•´ì„œ ì¢€ ë” ê°„ë‹¨í•˜ê²Œ í‘œí˜„ ê°€ëŠ¥
+
 		summingAmount =
 				productList.stream()
-					.mapToInt(Product::getQuantity)
-					.sum();
-		
-		
-		
+						.mapToInt(Product::getQuantity)
+						.sum();
+
+
+
 		// Collectors.summarizingInt()
-		// ÇÕ°è¿Í Æò±Õ ¸ğµÎ ¾òÀ» ¼ö ÀÖ´Â ¹æ¹ı
+		// í•©ê³„ì™€ í‰ê·  ëª¨ë‘ ì–»ì„ ìˆ˜ ìˆëŠ” ë°©ë²•
 		// summarizingInt
-		
+
 		IntSummaryStatistics statistics =
 				productList.stream()
-					.collect(Collectors.summarizingInt(Product::getQuantity));
-					
+						.collect(Collectors.summarizingInt(Product::getQuantity));
+
 		// IntSummaryStatistics {count=5, sum=86, min=13, average=17.200000, max=23}
-		
-		
-		
-		
+
+
+
+
 		// Collectors.groupingBy()
-		// Æ¯Á¤ Á¶°ÇÀ¸·Î ¿ä¼ÒµéÀ» ±×·ìÁöÀ» ¼ö ÀÖ´Ù.
-		// ¼ö·®À» ±âÁØÀ¸·Î ±×·ìÇÎÇØº¸°Ú´Ù, ¿©±â¼­ ¹Ş´Â ÀÎÀÚ´Â ÇÔ¼öÇü ÀÎÅÍÆäÀÌ½º Function
-		
+		// íŠ¹ì • ì¡°ê±´ìœ¼ë¡œ ìš”ì†Œë“¤ì„ ê·¸ë£¹ì§€ì„ ìˆ˜ ìˆë‹¤.
+		// ìˆ˜ëŸ‰ì„ ê¸°ì¤€ìœ¼ë¡œ ê·¸ë£¹í•‘í•´ë³´ê² ë‹¤, ì—¬ê¸°ì„œ ë°›ëŠ” ì¸ìëŠ” í•¨ìˆ˜í˜• ì¸í„°í˜ì´ìŠ¤ Function
+
 		Map<Integer, List<Product>> collectorMapOfLists =
 				productList.stream()
-					.collect(Collectors.groupingBy(Product::getQuantity));
-		
-		// °á°ú
-		//		{23=[Product{amount=23, name='potatoes'}, 
-		//		     Product{amount=23, name='bread'}], 
-		//		 13=[Product{amount=13, name='lemon'}, 
-		//		     Product{amount=13, name='sugar'}], 
+						.collect(Collectors.groupingBy(Product::getQuantity));
+
+		// ê²°ê³¼
+		//		{23=[Product{amount=23, name='potatoes'},
+		//		     Product{amount=23, name='bread'}],
+		//		 13=[Product{amount=13, name='lemon'},
+		//		     Product{amount=13, name='sugar'}],
 		//		 14=[Product{amount=14, name='orange'}]}
-		
-		
+
+
 		// Collectors.partitioningBy()
-		
+
 		Map<Boolean, List<Product>> mapPartitioned=
 				productList.stream()
-					.collect(Collectors.partitioningBy(el -> el.getQuantity() > 15));
-		// °á°ú
-		//		{false=[Product{amount=14, name='orange'}, 
-		//		        Product{amount=13, name='lemon'}, 
-		//		        Product{amount=13, name='sugar'}], 
-		//		 true=[Product{amount=23, name='potatoes'}, 
+						.collect(Collectors.partitioningBy(el -> el.getQuantity() > 15));
+		// ê²°ê³¼
+		//		{false=[Product{amount=14, name='orange'},
+		//		        Product{amount=13, name='lemon'},
+		//		        Product{amount=13, name='sugar'}],
+		//		 true=[Product{amount=23, name='potatoes'},
 		//		       Product{amount=23, name='bread'}]}
-		
-		
+
+
 		// Collectors.collectingAndThen()
-		
-		// Æ¯Á¤ Å¸ÀÔÀ¸·Î °á°ú¸¦ collectÇÑ ÀÌÈÄ¿¡ Ãß°¡ ÀÛ¾÷ÀÌ ÇÊ¿äÇÑ °æ¿ì »ç¿ë
-		// Collections.toSet À» ÀÌ¿ëÇØ¼­ °á°ú¸¦ SetÀ¸·Î collect ÇÑ ÈÄ, ¼öÁ¤ ºÒ°¡ÇÑ SetÀ¸·Î º¯È¯ÇÏ´Â ÀÛ¾÷
-		Set<Product> unmodifiableSet = 
-				 productList.stream()
-				  .collect(Collectors.collectingAndThen(Collectors.toSet(),
-				                                        Collections::unmodifiableSet));
-		
+
+		// íŠ¹ì • íƒ€ì…ìœ¼ë¡œ ê²°ê³¼ë¥¼ collectí•œ ì´í›„ì— ì¶”ê°€ ì‘ì—…ì´ í•„ìš”í•œ ê²½ìš° ì‚¬ìš©
+		// Collections.toSet ì„ ì´ìš©í•´ì„œ ê²°ê³¼ë¥¼ Setìœ¼ë¡œ collect í•œ í›„, ìˆ˜ì • ë¶ˆê°€í•œ Setìœ¼ë¡œ ë³€í™˜í•˜ëŠ” ì‘ì—…
+		Set<Product> unmodifiableSet =
+				productList.stream()
+						.collect(Collectors.collectingAndThen(Collectors.toSet(),
+								Collections::unmodifiableSet));
+
 		// Collector.of()
-		
-		// ÀÌ ¿Ü¿¡ ÇÊ¿äÇÑ ·ÎÁ÷ÀÌ ÀÖÀ¸¸é, Á÷Á¢ collector¸¦ ¸¸µé ¼öµµ ÀÖ´Ù.
-		
+
+		// ì´ ì™¸ì— í•„ìš”í•œ ë¡œì§ì´ ìˆìœ¼ë©´, ì§ì ‘ collectorë¥¼ ë§Œë“¤ ìˆ˜ë„ ìˆë‹¤.
+
 		Collector<Product, ?, LinkedList<Product>> toLinkedList =
 				Collector.of(LinkedList::new,
-							 LinkedList::add,
-							 (first, second) -> {
-								 first.addAll(second);
-								 return first;
-							 });
-		// Collector¸¦ ÇÏ³ª »ı¼º
-		// supplier ´Â LinkedListÀÇ »ı¼ºÀÚ, accumulator¿¡´Â list¿¡ Ãß°¡ÇÏ´Â add()
-		// ½ºÆ®¸²ÀÇ °¢ ¿ä¼Ò¿¡ LinkedList¸¦ ¸¸µé°í ¿ä¼Ò¸¦ Ãß°¡ÇÏ°Ô µÈ´Ù.
-		// ¸¶Áö¸·À¸·Î combiner¸¦ ÀÌ¿ëÇØ °á°ú¸¦ Á¶ÇÕÇÏ´Âµ¥, »ı¼ºµÈ ¸®½ºÆ®µéÀ» ÇÏ³ªÀÇ ¸®½ºÆ®·Î ÇÕÄ¡°í ÀÖ´Ù.
-		
-		// ´Ù¶ó¼­ ´ÙÀ½°ú °°ÀÌ collect() ¿¡ ¿ì¸®°¡ ¸¸µç Ä¿½ºÅÒ ¼¿·ºÅÍ¸¦ ³Ñ°ÜÁÙ ¼ö ÀÖ°í, °á°ú°¡ ´ã±ä LinkedList°¡ ¹İÈ¯
-		
+						LinkedList::add,
+						(first, second) -> {
+							first.addAll(second);
+							return first;
+						});
+		// Collectorë¥¼ í•˜ë‚˜ ìƒì„±
+		// supplier ëŠ” LinkedListì˜ ìƒì„±ì, accumulatorì—ëŠ” listì— ì¶”ê°€í•˜ëŠ” add()
+		// ìŠ¤íŠ¸ë¦¼ì˜ ê° ìš”ì†Œì— LinkedListë¥¼ ë§Œë“¤ê³  ìš”ì†Œë¥¼ ì¶”ê°€í•˜ê²Œ ëœë‹¤.
+		// ë§ˆì§€ë§‰ìœ¼ë¡œ combinerë¥¼ ì´ìš©í•´ ê²°ê³¼ë¥¼ ì¡°í•©í•˜ëŠ”ë°, ìƒì„±ëœ ë¦¬ìŠ¤íŠ¸ë“¤ì„ í•˜ë‚˜ì˜ ë¦¬ìŠ¤íŠ¸ë¡œ í•©ì¹˜ê³  ìˆë‹¤.
+
+		// ë‹¤ë¼ì„œ ë‹¤ìŒê³¼ ê°™ì´ collect() ì— ìš°ë¦¬ê°€ ë§Œë“  ì»¤ìŠ¤í…€ ì…€ë ‰í„°ë¥¼ ë„˜ê²¨ì¤„ ìˆ˜ ìˆê³ , ê²°ê³¼ê°€ ë‹´ê¸´ LinkedListê°€ ë°˜í™˜
+
 		LinkedList<Product> linkedListOfPersons =
 				productList.stream()
-					.collect(toLinkedList);
-		
-		
-		
+						.collect(toLinkedList);
+
+
+
 		// Matching
-		// ¸ÅÄªÀº Á¶°Ç½Ä ¶÷´Ù Predicate¸¦ ¹Ş¾Æ¼­ ÇØ´ç Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ¿ä¼Ò°¡ ÀÖ´ÂÁö, Ã¼Å©ÇÑ °á°ú¸¦ ¸®ÅÏ
-		// ´ÙÀ½°ú °°Àº ¼¼ °¡Áö ¸Ş¼Òµå°¡ ÀÖ´Ù
+		// ë§¤ì¹­ì€ ì¡°ê±´ì‹ ëŒë‹¤ Predicateë¥¼ ë°›ì•„ì„œ í•´ë‹¹ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìš”ì†Œê°€ ìˆëŠ”ì§€, ì²´í¬í•œ ê²°ê³¼ë¥¼ ë¦¬í„´
+		// ë‹¤ìŒê³¼ ê°™ì€ ì„¸ ê°€ì§€ ë©”ì†Œë“œê°€ ìˆë‹¤
 		/*
-		1. ÇÏ³ª¶óµµ Á¶°ÇÀ» ¸¸Á·ÇÏ´Â ¿ä¼Ò°¡ ÀÖ´ÂÁö(anyMatch)
-		2. ¸ğµÎ Á¶°ÇÀ» ¸¸Á·ÇÏ´ÂÁö(allMatch)
-		3. ¸ğµÎ Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¾Ê´ÂÁö(noneMatch)
+		1. í•˜ë‚˜ë¼ë„ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ìš”ì†Œê°€ ìˆëŠ”ì§€(anyMatch)
+		2. ëª¨ë‘ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ”ì§€(allMatch)
+		3. ëª¨ë‘ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ì•ŠëŠ”ì§€(noneMatch)
 		*/
-		
+
 		List<String> names = Arrays.asList("Eric", "Elena", "Java");
-		
+
 		boolean anyMatch = names.stream()
 				.anyMatch(name -> name.contains("a"));
 		boolean allMatch = names.stream()
 				.allMatch(name -> name.length() > 3);
 		boolean noneMatch = names.stream()
 				.noneMatch(name -> name.endsWith("s"));
-		
-		
+
+
 		// Iterating
-		
-		// foreach ´Â ¿ä¼Ò¸¦ µ¹¸é¼­ ½ÇÇàµÇ´Â ÃÖÁ¾ ÀÛ¾÷
-		// ¾Õ¼­ »ìÆìº» peek °ú´Â Áß°£ ÀÛ¾÷°ú ÃÖÁ¾ ÀÛ¾÷ÀÇ Â÷ÀÌ°¡ ÀÖ´Ù.
-		
+
+		// foreach ëŠ” ìš”ì†Œë¥¼ ëŒë©´ì„œ ì‹¤í–‰ë˜ëŠ” ìµœì¢… ì‘ì—…
+		// ì•ì„œ ì‚´í´ë³¸ peek ê³¼ëŠ” ì¤‘ê°„ ì‘ì—…ê³¼ ìµœì¢… ì‘ì—…ì˜ ì°¨ì´ê°€ ìˆë‹¤.
+
 		names.stream().forEach(System.out::println);
-		
-		
+
+
 	}
-	
+
 	static class Product {
-		
+
 		int quantity =0;
 		String name = null;
-		
+
 		public Product(int quantity, String name) {
 			this.quantity = quantity;
 			this.name = name;
 		}
-		
+
 		public String getName() {
-			
+
 			return this.name;
 		}
-		
+
 		public int getQuantity() {
-			
+
 			return this.quantity;
 		}
 	}

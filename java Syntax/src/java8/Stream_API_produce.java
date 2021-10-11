@@ -16,117 +16,117 @@ import java.util.stream.Stream;
 public class Stream_API_produce {
 
 	public static void main(String[] args) throws IOException {
-		
-		// ¶÷´Ù½ÄÀ» È°¿ëÇÒ ¼ö ÀÖÀ½
-		
-		// ½ºÆ®¸² »ç¿ë ¹æ¹ı?
-		
-		// 1. »ı¼ºÇÏ±â : ½ºÆ®¸² ÀÎ½ºÅÏ½º »ı¼º
-		// 2. °¡°øÇÏ±â : ÇÊÅÍ¸µ(filtering) ¹× ¸ÊÇÎ(mapping)µî ¿øÇÏ´Â °á°ú¸¦ ¸¸µé¾î°¡´Â Áß°£ ÀÛ¾÷(intermediate operations)
-		// 3. °á°ú ¸¸µé±â: ÃÖÁ¾ÀûÀ¸·Î °á°ú¸¦ ¸¸µé¾î³»´Â ÀÛ¾÷(terminal operations)
-		
-		// ÀüÃ¼ -> ¸ÊÇÎ -> ÇÊÅÍ¸µ 1 -> ÇÊÅÍ¸µ 2 -> °á°ú ¸¸µé±â -> °á°ú¹°
-		
-//================================================ 1. »ı¼ºÇÏ±â ===================================================================
-		
-		// 1) ¹è¿­ ½ºÆ®¸²
+
+		// ëŒë‹¤ì‹ì„ í™œìš©í•  ìˆ˜ ìˆìŒ
+
+		// ìŠ¤íŠ¸ë¦¼ ì‚¬ìš© ë°©ë²•?
+
+		// 1. ìƒì„±í•˜ê¸° : ìŠ¤íŠ¸ë¦¼ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+		// 2. ê°€ê³µí•˜ê¸° : í•„í„°ë§(filtering) ë° ë§µí•‘(mapping)ë“± ì›í•˜ëŠ” ê²°ê³¼ë¥¼ ë§Œë“¤ì–´ê°€ëŠ” ì¤‘ê°„ ì‘ì—…(intermediate operations)
+		// 3. ê²°ê³¼ ë§Œë“¤ê¸°: ìµœì¢…ì ìœ¼ë¡œ ê²°ê³¼ë¥¼ ë§Œë“¤ì–´ë‚´ëŠ” ì‘ì—…(terminal operations)
+
+		// ì „ì²´ -> ë§µí•‘ -> í•„í„°ë§ 1 -> í•„í„°ë§ 2 -> ê²°ê³¼ ë§Œë“¤ê¸° -> ê²°ê³¼ë¬¼
+
+//================================================ 1. ìƒì„±í•˜ê¸° ===================================================================
+
+		// 1) ë°°ì—´ ìŠ¤íŠ¸ë¦¼
 		String[] array = new String[] {"a","b","c"};
-		
+
 		Stream<String> stream = Arrays.stream(array);
-		Stream<String> streamOfArrayPart = Arrays.stream(array, 1, 3); // 1~2 ¿ä¼Ò [b,c]
-		
-		// 2) ÄÃ·º¼Ç ½ºÆ®¸²
+		Stream<String> streamOfArrayPart = Arrays.stream(array, 1, 3); // 1~2 ìš”ì†Œ [b,c]
+
+		// 2) ì»¬ë ‰ì…˜ ìŠ¤íŠ¸ë¦¼
 		List<String>list = Arrays.asList("a","b","c");
-		
+
 		Stream<String> streamC = list.stream();
-		Stream<String> parallelStream = list.parallelStream(); // º´·Ä Ã³¸® ½ºÆ®¸²
-		
-		// 3) ´Ù¸¥ ¹æ¹ıµé
-		// 3-1) Stream.of()    nullµµ ÀÌ·¸°Ô ¸¸µé ¼ö ÀÖÀ½
+		Stream<String> parallelStream = list.parallelStream(); // ë³‘ë ¬ ì²˜ë¦¬ ìŠ¤íŠ¸ë¦¼
+
+		// 3) ë‹¤ë¥¸ ë°©ë²•ë“¤
+		// 3-1) Stream.of()    nullë„ ì´ë ‡ê²Œ ë§Œë“¤ ìˆ˜ ìˆìŒ
 		Stream<String> stream1 = Stream.of(null);
-		
+
 		// 3-2) Stream.builder()
-		// ½ºÆ®¸² ºô´õ·Î ½ºÆ®¸²¿¡ Á÷Á¢ ¿øÇÏ´Â °ªÀ» ³ÖÀ» ¼ö ÀÖÀ½, ¸¶Áö¸·¿¡ build¸Ş¼Òµå·Î ½ºÆ®¸² ¸®ÅÏ
+		// ìŠ¤íŠ¸ë¦¼ ë¹Œë”ë¡œ ìŠ¤íŠ¸ë¦¼ì— ì§ì ‘ ì›í•˜ëŠ” ê°’ì„ ë„£ì„ ìˆ˜ ìˆìŒ, ë§ˆì§€ë§‰ì— buildë©”ì†Œë“œë¡œ ìŠ¤íŠ¸ë¦¼ ë¦¬í„´
 		Stream<String> builderStream = Stream.<String>builder()
-											.add("È«").add("±æ").add("µ¿")
-											.build();
-		
+				.add("í™").add("ê¸¸").add("ë™")
+				.build();
+
 		// 3-3) Stream.generate()
-		// generate ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÏ¸é, Supplier<T> ¿¡ ÇØ´çÇÏ´Â ¶÷´Ù·Î °ªÀ» ³ÖÀ» ¼ö ÀÖ´Ù. 
+		// generate ë©”ì†Œë“œë¥¼ ì´ìš©í•˜ë©´, Supplier<T> ì— í•´ë‹¹í•˜ëŠ” ëŒë‹¤ë¡œ ê°’ì„ ë„£ì„ ìˆ˜ ìˆë‹¤.
 		Stream<String> generateStream = Stream.generate(() -> "ABC"  );
-		
+
 		// 3-4) Stream.itereate()
-		// generate¿Í À¯»çÇÑµ¥, ÀÎÀÚ°¡ ¾ø´Â generate¿¡ ¹İÇØ ÀÎÀÚ°¡ 2°³ÀÓ,  Ã¹¹øÂ°´Â ÃÊ±â°ª, µÎ¹øÂ°´Â ÇÔ¼ö
-		// ÃÊ±â°ªÀ» ÇÔ¼ö¿¡ ´ëÀÔÇÏ¸é 0,2,4,8... ¹«ÇÑÇÑ ½ºÆ®¸² »ı¼º, limit·Î Á¦ÇÑ½ÃÅ´
+		// generateì™€ ìœ ì‚¬í•œë°, ì¸ìê°€ ì—†ëŠ” generateì— ë°˜í•´ ì¸ìê°€ 2ê°œì„,  ì²«ë²ˆì§¸ëŠ” ì´ˆê¸°ê°’, ë‘ë²ˆì§¸ëŠ” í•¨ìˆ˜
+		// ì´ˆê¸°ê°’ì„ í•¨ìˆ˜ì— ëŒ€ì…í•˜ë©´ 0,2,4,8... ë¬´í•œí•œ ìŠ¤íŠ¸ë¦¼ ìƒì„±, limitë¡œ ì œí•œì‹œí‚´
 		Stream<Integer> iterateStream= Stream.iterate(0, n -> n + 2).limit(5);
-		
+
 		// 3-5) Stream.empty()
 		Stream<String> emptyStream = Stream.empty();
-		
-		// 3-6) *** ±âº» Å¸ÀÔÇü ½ºÆ®¸² ***
-		// Á¦³×¸¯À» »ç¿ëÇÏ¸é ¸®½ºÆ®³ª ¹è¿­À» ÀÌ¿ëÇØ¼­ ±âº»Å¸ÀÔ (int,long,double) ½ºÆ®¸²À» »ı¼ºÇÒ ¼ö ÀÖ´Ù.
-		// ÇÏÁö¸¸ Á¦³×¸¯À» »ç¿ëÇÏÁö ¾Ê°í, Á÷Á¢ÀûÀ¸·Î ÇØ´ç Å¸ÀÔÀÇ ½ºÆ®¸²À» ´Ù·ê ¼ö ÀÖÀ½.
+
+		// 3-6) *** ê¸°ë³¸ íƒ€ì…í˜• ìŠ¤íŠ¸ë¦¼ ***
+		// ì œë„¤ë¦­ì„ ì‚¬ìš©í•˜ë©´ ë¦¬ìŠ¤íŠ¸ë‚˜ ë°°ì—´ì„ ì´ìš©í•´ì„œ ê¸°ë³¸íƒ€ì… (int,long,double) ìŠ¤íŠ¸ë¦¼ì„ ìƒì„±í•  ìˆ˜ ìˆë‹¤.
+		// í•˜ì§€ë§Œ ì œë„¤ë¦­ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³ , ì§ì ‘ì ìœ¼ë¡œ í•´ë‹¹ íƒ€ì…ì˜ ìŠ¤íŠ¸ë¦¼ì„ ë‹¤ë£° ìˆ˜ ìˆìŒ.
 		IntStream intStream = IntStream.range(1, 5);  // [ 1, 2, 3, 4]
 		LongStream longStream = LongStream.range(1, 5); // [ 1, 2, 3, 4, 5 ]
-		
-		// Á¦³×¸¯À» »ç¿ëÇÏÁö ¾Ê±â ¶§¹®¿¡ ºÒÇÊ¿äÇÑ ¿ÀÅä¹Ú½Ì(auto-boxing)ÀÌ ÀÏ¾î³ªÁö ¾Ê´Â´Ù, ÇÊ¿äÇÑ °æ¿ì boxed ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ¼­ ¹Ú½Ì(boxing) ÇÒ ¼ö ÀÖ´Ù.
+
+		// ì œë„¤ë¦­ì„ ì‚¬ìš©í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ë¶ˆí•„ìš”í•œ ì˜¤í† ë°•ì‹±(auto-boxing)ì´ ì¼ì–´ë‚˜ì§€ ì•ŠëŠ”ë‹¤, í•„ìš”í•œ ê²½ìš° boxed ë©”ì†Œë“œë¥¼ ì´ìš©í•´ì„œ ë°•ì‹±(boxing) í•  ìˆ˜ ìˆë‹¤.
 		Stream<Integer> boxedIntStream = IntStream.range(1, 5).boxed();
-		
-		// Random Å¬·¡½º
-		// Random Å¬·¡½º´Â ³­¼ö¸¦ °¡Áö°í ¼¼°¡Áö Å¸ÀÔÀÇ ½ºÆ®¸²(intStream, LongStream, DoubleStream)À» ¸¸µé¾î ³¾ ¼ö ÀÖ´Ù.
+
+		// Random í´ë˜ìŠ¤
+		// Random í´ë˜ìŠ¤ëŠ” ë‚œìˆ˜ë¥¼ ê°€ì§€ê³  ì„¸ê°€ì§€ íƒ€ì…ì˜ ìŠ¤íŠ¸ë¦¼(intStream, LongStream, DoubleStream)ì„ ë§Œë“¤ì–´ ë‚¼ ìˆ˜ ìˆë‹¤.
 		DoubleStream doubleStream = new Random().doubles(3);
-		
-		// 3-7) *** ¹®ÀÚ¿­ ½ºÆ®¸µ ***
-		// StringÀ» ÀÌ¿ëÇØ¼­ ½ºÆ®¸²À» »ı¼ºÇÒ ¼öµµ ÀÖÁö¸¸, ´ÙÀ½Àº °¢ ¹®ÀÚ(char)¸¦ IntStreamÀ¸·Î º¯È¯ÇÑ ¿¹Á¦, char´Â ¹®ÀÚÀÌÁö¸¸ º»ÁúÀûÀ¸·Î ¼ıÀÚÀÌ±â ¶§¹®¿¡ °¡´É
+
+		// 3-7) *** ë¬¸ìì—´ ìŠ¤íŠ¸ë§ ***
+		// Stringì„ ì´ìš©í•´ì„œ ìŠ¤íŠ¸ë¦¼ì„ ìƒì„±í•  ìˆ˜ë„ ìˆì§€ë§Œ, ë‹¤ìŒì€ ê° ë¬¸ì(char)ë¥¼ IntStreamìœ¼ë¡œ ë³€í™˜í•œ ì˜ˆì œ, charëŠ” ë¬¸ìì´ì§€ë§Œ ë³¸ì§ˆì ìœ¼ë¡œ ìˆ«ìì´ê¸° ë•Œë¬¸ì— ê°€ëŠ¥
 		IntStream charStream = "Stream".chars(); // [83, 116, 114, 101, 97, 109]
-		
-		// Á¤±ÔÇ¥Çö½ÄÀ¸·Î ¹®ÀÚ¿­À» ÀÚ¸£°í °¢ ¿ä¼Ò µé·Î ½ºÆ®¸²À» ¸¸µç ¿¹Á¦
-		Stream<String> stringStream = 
-				  Pattern.compile(", ").splitAsStream("Eric, Elena, Java"); 
-											// [Eric, Elena, Java]
-		
-		// 3-8) *** ÆÄÀÏ ½ºÆ®¸² ***
-		// ÀÚ¹Ù NIO ÀÇ Files Å¬·¡½ºÀÇ lines ¸Ş¼Òµå´Â ÇØ´ç ÆÄÀÏÀÇ °¢ ¶óÀÎÀ» ½ºÆ®¸µ Å¸ÀÔÀÇ ½ºÆ®¸²À¸·Î ¸¸µé¾îÁİ´Ï´Ù.
-		Stream<String> lineStream = 
-				  Files.lines(Paths.get("file.txt"), 
-				              Charset.forName("UTF-8"));
-		
-		// 3-9) *** º´·Ä ½ºÆ®¸² Parellel ½ºÆ®¸² ***
-		// º´·Ä ½ºÆ®¸² »ı¼º
+
+		// ì •ê·œí‘œí˜„ì‹ìœ¼ë¡œ ë¬¸ìì—´ì„ ìë¥´ê³  ê° ìš”ì†Œ ë“¤ë¡œ ìŠ¤íŠ¸ë¦¼ì„ ë§Œë“  ì˜ˆì œ
+		Stream<String> stringStream =
+				Pattern.compile(", ").splitAsStream("Eric, Elena, Java");
+		// [Eric, Elena, Java]
+
+		// 3-8) *** íŒŒì¼ ìŠ¤íŠ¸ë¦¼ ***
+		// ìë°” NIO ì˜ Files í´ë˜ìŠ¤ì˜ lines ë©”ì†Œë“œëŠ” í•´ë‹¹ íŒŒì¼ì˜ ê° ë¼ì¸ì„ ìŠ¤íŠ¸ë§ íƒ€ì…ì˜ ìŠ¤íŠ¸ë¦¼ìœ¼ë¡œ ë§Œë“¤ì–´ì¤ë‹ˆë‹¤.
+		Stream<String> lineStream =
+				Files.lines(Paths.get("file.txt"),
+						Charset.forName("UTF-8"));
+
+		// 3-9) *** ë³‘ë ¬ ìŠ¤íŠ¸ë¦¼ Parellel ìŠ¤íŠ¸ë¦¼ ***
+		// ë³‘ë ¬ ìŠ¤íŠ¸ë¦¼ ìƒì„±
 		//Stream<Product> parallelStream = productList.parallelStream();
 
-		// º´·Ä ¿©ºÎ È®ÀÎ
+		// ë³‘ë ¬ ì—¬ë¶€ í™•ì¸
 		//boolean isParallel = parallelStream.isParallel();
-		
-//		// ´ÙÀ½ ÄÚµå´Â °¢ ÀÛ¾÷À» ¾²·¹µå¸¦ ÀÌ¿ëÇØ º´·Ä·Î Ã³¸®ÇÔ
+
+//		// ë‹¤ìŒ ì½”ë“œëŠ” ê° ì‘ì—…ì„ ì“°ë ˆë“œë¥¼ ì´ìš©í•´ ë³‘ë ¬ë¡œ ì²˜ë¦¬í•¨
 //		boolean isMany = parallelStream
 //				  .map(product -> product.getAmount() * 10)
 //				  .anyMatch(amount -> amount > 200);
-		
-		// ¹è¿­À» ÀÌ¿ëÇØ¼­ º´·Ä ½ºÆ®¸² »ı¼º, º´·Ä ½ºÆ®¸²ÀÌ ¹«Á¶°Ç ÁÁÀº°ÍÀÌ ¾Æ´Ô¿¡ ÁÖÀÇ
+
+		// ë°°ì—´ì„ ì´ìš©í•´ì„œ ë³‘ë ¬ ìŠ¤íŠ¸ë¦¼ ìƒì„±, ë³‘ë ¬ ìŠ¤íŠ¸ë¦¼ì´ ë¬´ì¡°ê±´ ì¢‹ì€ê²ƒì´ ì•„ë‹˜ì— ì£¼ì˜
 		// Arrays.stream(arr).parallel();
-		
-		// ÄÃ·º¼Ç°ú ¹è¿­ÀÌ ¾Æ´Ñ °æ¿ì ´ÙÀ½°ú °°ÀÌ parallel ¸Ş¼Òµå¸¦ ÀÌ¿ëÇØ¼­ Ã³¸®
-		
+
+		// ì»¬ë ‰ì…˜ê³¼ ë°°ì—´ì´ ì•„ë‹Œ ê²½ìš° ë‹¤ìŒê³¼ ê°™ì´ parallel ë©”ì†Œë“œë¥¼ ì´ìš©í•´ì„œ ì²˜ë¦¬
+
 		IntStream intParellelStream = IntStream.range(1, 150).parallel();
 		boolean isParallel = intStream.isParallel();
-		
-		// ´Ù½Ã ½ÃÄö¼È ¸ğµå·Î µ¹¸®·Á¸é ÀÌ·¸°Ô..
+
+		// ë‹¤ì‹œ ì‹œí€€ì…œ ëª¨ë“œë¡œ ëŒë¦¬ë ¤ë©´ ì´ë ‡ê²Œ..
 		intStream = intParellelStream.sequential();
 		isParallel = intParellelStream.isParallel();
-		
-		
+
+
 		// 3-10) Stream.concat
-		// µÎ°³ÀÇ ½ºÆ®¸²À» ¿¬°áÇØ¼­ ÇÏ³ªÀÇ ½ºÆ®¸²À» ¸¸µé ¼öµµ ÀÖ´Ù
+		// ë‘ê°œì˜ ìŠ¤íŠ¸ë¦¼ì„ ì—°ê²°í•´ì„œ í•˜ë‚˜ì˜ ìŠ¤íŠ¸ë¦¼ì„ ë§Œë“¤ ìˆ˜ë„ ìˆë‹¤
 		Stream<String> streamA = Stream.of("Java", "Scala", "Groovy");
 		Stream<String> streamB = Stream.of("Python", "Go", "Swift");
 		Stream<String> concat = Stream.concat(streamA, streamB);
-		// [Java, Scala, Groovy, Python, Go, Swift]		
+		// [Java, Scala, Groovy, Python, Go, Swift]
 	}
-	
-	
+
+
 	public Stream<String> streamOf(List<String> list){
-		
+
 		return list==null || list.isEmpty()
 				? Stream.empty() : list.stream();
 	}

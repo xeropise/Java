@@ -3,14 +3,14 @@ package java7;
 public class G1_Garbage_Collector {
 
 	public static void main(String[] args) {
-//		ÀÌÀüÀÇ Garbage Collector Ã³·³ µ¿ÀÏÇÑ ¿µ¿ªÀ» »ç¿ëÇÏÁö¸¸ °íÁ¤µÈ Å©±â°¡ ¾Æ´Ï¸ç À¯¿¬¼ºÀ» Á¦°ø.
-//		G1 Àº CMS ÄÃ·ºÅÍ¿Í À¯»çÇÑ ¹æ½ÄÀ¸·Î µ¿ÀÛÇÏ¸ç °´Ã¼ÀÇ À¯È¿È­¸¦ °áÁ¤ÇÏ´Â µ¿½Ã¿¡ ¸¶Å· ´Ü°è¸¦ ¼öÇàÇÏ¸ç,
-//		¸¶Å· ´Ü°è¸¦ ¿Ï·áÇÏ°í ³ª¸é ´ëºÎºÐÀÇ ºñ¾îÀÖ´Â ¿µ¿ªÀ» ¾Ë°í ÀÖÀ½.
-//		=> ¹ÙµÏÆÇ ¿µ¿ª¿¡ ¸Þ¸ð¸®¸¦ ÇÒ´çÇÏ°í GC ¸¦ ½ÇÇàÇÏ´Âµ¥ ÇØ´ç¿µ¿ªÀÌ ²ËÂ÷°Ô µÇ¸é ´Ù¸¥ ºó ¿µ¿ª¿¡ ¸Þ¸ð¸®¸¦ ÇÒ´çÇÏ´Â ¹æ½Ä
-		
-		// °Ë»öÇÕ½Ã´Ù..
-		
-		// https://d2.naver.com/helloworld/1329 ÂüÁ¶
+//		ì´ì „ì˜ Garbage Collector ì²˜ëŸ¼ ë™ì¼í•œ ì˜ì—­ì„ ì‚¬ìš©í•˜ì§€ë§Œ ê³ ì •ëœ í¬ê¸°ê°€ ì•„ë‹ˆë©° ìœ ì—°ì„±ì„ ì œê³µ.
+//		G1 ì€ CMS ì»¬ë ‰í„°ì™€ ìœ ì‚¬í•œ ë°©ì‹ìœ¼ë¡œ ë™ìž‘í•˜ë©° ê°ì²´ì˜ ìœ íš¨í™”ë¥¼ ê²°ì •í•˜ëŠ” ë™ì‹œì— ë§ˆí‚¹ ë‹¨ê³„ë¥¼ ìˆ˜í–‰í•˜ë©°,
+//		ë§ˆí‚¹ ë‹¨ê³„ë¥¼ ì™„ë£Œí•˜ê³  ë‚˜ë©´ ëŒ€ë¶€ë¶„ì˜ ë¹„ì–´ìžˆëŠ” ì˜ì—­ì„ ì•Œê³  ìžˆìŒ.
+//		=> ë°”ë‘‘íŒ ì˜ì—­ì— ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ê³  GC ë¥¼ ì‹¤í–‰í•˜ëŠ”ë° í•´ë‹¹ì˜ì—­ì´ ê½‰ì°¨ê²Œ ë˜ë©´ ë‹¤ë¥¸ ë¹ˆ ì˜ì—­ì— ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ëŠ” ë°©ì‹
+
+		// ê²€ìƒ‰í•©ì‹œë‹¤..
+
+		// https://d2.naver.com/helloworld/1329 ì°¸ì¡°
 
 	}
 

@@ -2,16 +2,16 @@ package java7;
 
 public class Catching_Multiple_Exception_Type_in_Single_Catch_Block {
 
-	public static void main(String[] args) {
-        try{    
-            int array[] = new int[10];    
-            array[10] = 30/0;    
-        }    
-        catch(ArithmeticException | ArrayIndexOutOfBoundsException e){  
-            System.out.println(e.getMessage());  
-        }   
-        
-        // ´ÜÀÏ catch ºí·Ï¿¡¼­ ¿©·¯°³ÀÇ ¿¹¿ÜÃ³¸®(Exception) °¡´É
-	}
+    public static void main(String[] args) {
+        try{
+            int array[] = new int[10];
+            array[10] = 30/0;
+        }
+        catch(ArithmeticException | ArrayIndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
+        }
+
+        // ë‹¨ì¼ catch ë¸”ë¡ì—ì„œ ì—¬ëŸ¬ê°œì˜ ì˜ˆì™¸ì²˜ë¦¬(Exception) ê°€ëŠ¥
+    }
 
 }

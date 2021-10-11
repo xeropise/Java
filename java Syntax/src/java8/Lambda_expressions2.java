@@ -5,83 +5,83 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class Lambda_expressions2 {
-	
-	// java.util.function.Function ÀÎÅÍÆäÀÌ½ºÀÇ apply ¸Ş¼Òµå°¡ ÇÏ³ªÀÇ ÆÄ¶ó¹ÌÅÍ¸¸ ¹ŞÀ» ¼ö ÀÖ±â ¶§¹®¿¡ Á¤ÀÇÇÑ Å¬·¡½º
+
+	// java.util.function.Function ì¸í„°í˜ì´ìŠ¤ì˜ apply ë©”ì†Œë“œê°€ í•˜ë‚˜ì˜ íŒŒë¼ë¯¸í„°ë§Œ ë°›ì„ ìˆ˜ ìˆê¸° ë•Œë¬¸ì— ì •ì˜í•œ í´ë˜ìŠ¤
 	public class TwoNumbers {
-	    private int first;
-	    private int second;
-	    public TwoNumbers(int first, int second) {
-	        this.first = first;
-	        this.second = second;
-	    }
-	    public int getFirst() {
-	        return first;
-	    }
-	    public void setFirst(int first) {
-	        this.first = first;
-	    }
-	    public int getSecond() {
-	        return second;
-	    }
-	    public void setSecond(int second) {
-	        this.second = second;
-	    }
+		private int first;
+		private int second;
+		public TwoNumbers(int first, int second) {
+			this.first = first;
+			this.second = second;
+		}
+		public int getFirst() {
+			return first;
+		}
+		public void setFirst(int first) {
+			this.first = first;
+		}
+		public int getSecond() {
+			return second;
+		}
+		public void setSecond(int second) {
+			this.second = second;
+		}
 	}
-	  
-	// º°µµÀÇ ÀÎÅÍÆäÀÌ½º³ª ¸Ş¼Òµå ¾øÀÌ java.util.function.Function ÀÎÅÍÆäÀÌ½º¸¦ Á÷Á¢»ç¿ë
+
+	// ë³„ë„ì˜ ì¸í„°í˜ì´ìŠ¤ë‚˜ ë©”ì†Œë“œ ì—†ì´ java.util.function.Function ì¸í„°í˜ì´ìŠ¤ë¥¼ ì§ì ‘ì‚¬ìš©
 
 	private void testFunction() {
-	    Function<TwoNumbers, Integer> plusOperator = n -> n.getFirst() + n.getSecond();
-	    Function<TwoNumbers, Integer> minusOperator = n -> n.getFirst() - n.getSecond();
-	    Function<TwoNumbers, Integer> multiplyOperator = n -> n.getFirst() * n.getSecond();
-	    Function<TwoNumbers, Integer> divideOperator = n -> {
-	        if (n.getSecond() == 0) {
-	            return 0;
-	        }
-	        return n.getFirst() / n.getSecond();
-	    };
-	    Function<TwoNumbers, Integer> spareOperator = n -> {
-	        if (n.getSecond() == 0) {
-	            return 0;
-	        }
-	        return n.getFirst() % n.getSecond();
-	    };
-	    TwoNumbers numbers = new TwoNumbers(new Random().nextInt(10000), new Random().nextInt(10000));
-	    int plus = plusOperator.apply(numbers);
-	    int minus = minusOperator.apply(numbers);
-	    int multiply = multiplyOperator.apply(numbers);
-	    int divide = divideOperator.apply(numbers);
-	    int spare = spareOperator.apply(numbers);
+		Function<TwoNumbers, Integer> plusOperator = n -> n.getFirst() + n.getSecond();
+		Function<TwoNumbers, Integer> minusOperator = n -> n.getFirst() - n.getSecond();
+		Function<TwoNumbers, Integer> multiplyOperator = n -> n.getFirst() * n.getSecond();
+		Function<TwoNumbers, Integer> divideOperator = n -> {
+			if (n.getSecond() == 0) {
+				return 0;
+			}
+			return n.getFirst() / n.getSecond();
+		};
+		Function<TwoNumbers, Integer> spareOperator = n -> {
+			if (n.getSecond() == 0) {
+				return 0;
+			}
+			return n.getFirst() % n.getSecond();
+		};
+		TwoNumbers numbers = new TwoNumbers(new Random().nextInt(10000), new Random().nextInt(10000));
+		int plus = plusOperator.apply(numbers);
+		int minus = minusOperator.apply(numbers);
+		int multiply = multiplyOperator.apply(numbers);
+		int divide = divideOperator.apply(numbers);
+		int spare = spareOperator.apply(numbers);
 	}
-	
-	
-/*
- * 	funcction PackageÀÇ ´ëÇ¥ÀûÀÎ Interface
- * 
- * 	Consumer<T> 
- * 		- void accept(T) ¸Ş¼­µå°¡ ¼±¾ğµÇ¾î ÀÖ´Â ÀÎÅÍÆäÀÌ½º
- * 		- ÀÔ·ÂµÈ T type µ¥ÀÌÅÍ¿¡ ´ëÇØ ¾î¶² ÀÛ¾÷À» ¼öÇàÇÏ°íÀÚ ÇÒ ¶§ »ç¿ë
- * 		- ¸®ÅÏÅ¸ÀÔÀÌ voidÀÌ¹Ç·Î, Ã³¸® °á°ú¸¦ ¸®ÅÏÇØ¾ß ÇÏ´Â °æ¿ì¿¡´Â Function ÀÎÅÍÆäÀÌ½º¸¦ »ç¿ëÇØ¾ß ÇÑ´Ù.
- * 		- È¤Àº call by reference¸¦ ÀÌ¿ëÇÏ¿©, ÀÔ·ÂµÈ µ¥ÀÌÅÍÀÇ ³»ºÎ Property¸¦ º¯°æÇÒ ¼öµµ ÀÖ´Ù
- * 		
- * 	Function<T,R>
- * 		- R apply(T) ¸Ş¼­µå°¡ ¼±¾ğµÇ¾î ÀÖ´Â ÀÎÅÍÆäÀÌ½º
- * 		- ÀÔ·ÂµÈ T type µ¥ÀÌÅÍ¿¡ ´ëÇØ ÀÏ·ÃÀÇ ÀÛ¾÷À» ¼öÇàÇÏ°í, R type µ¥ÀÌÅÍ¸¦ ¸®ÅÏÇÒ ¶§ »ç¿ë
- * 		- ÀÔ·ÂµÈ µ¥ÀÌÅÍ¸¦ º¯È¯ÇÒ ¶§ »ç¿ëÇÒ ¼ö ÀÖ´Ù.
- * 
- * 	Predicate<T>
- * 		- bollean test(T) ¸Ş¼­µå°¡ ¼±¾ğµÇ¾î ÀÖ´Â ÀÎÅÍÆäÀÌ½º
- * 		- ÀÔ·ÂµÈ T type µ¥ÀÌÅÍ°¡ Æ¯Á¤ Á¶°Ç¿¡ ºÎÇÕµÇ´ÂÁö È®ÀÎÇÏ¿© boolean °á°ú¸¦ ¸®ÅÏ
- * 	
- * 	Supplier<T>
- * 		- T get() ¸Ş¼­µå°¡ ¼±¾ğµÇ¾î ÀÖ´Â ÀÎÅÍÆäÀÌ½º
- * 		- ¸Å°³º¯¼ö¸¦ ¹ŞÁö ¾Ê°í, Æ¯Á¤ Å¸ÀÔÀÇ °á°ú¸¦ ¸®ÅÏ ÇÑ´Ù.
- * 	
- *  
- *  
- *  ÀÌ¿Ü¿¡µµ ¸¹Àº ÇÔ¼öÇü ÀÎÅÍÆäÀÌ½º°¡ ÀÖ´Âµ¥ 
- *  ÇÊ¿äÇÒ ¶§¸¶´Ù Ã£¾Æº¸ÀÚ.. ´ëÇ¥ÀûÀÎ°Ç À§¿¡²¨¾ß	
- */
+
+
+	/*
+	 * 	funcction Packageì˜ ëŒ€í‘œì ì¸ Interface
+	 *
+	 * 	Consumer<T>
+	 * 		- void accept(T) ë©”ì„œë“œê°€ ì„ ì–¸ë˜ì–´ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤
+	 * 		- ì…ë ¥ëœ T type ë°ì´í„°ì— ëŒ€í•´ ì–´ë–¤ ì‘ì—…ì„ ìˆ˜í–‰í•˜ê³ ì í•  ë•Œ ì‚¬ìš©
+	 * 		- ë¦¬í„´íƒ€ì…ì´ voidì´ë¯€ë¡œ, ì²˜ë¦¬ ê²°ê³¼ë¥¼ ë¦¬í„´í•´ì•¼ í•˜ëŠ” ê²½ìš°ì—ëŠ” Function ì¸í„°í˜ì´ìŠ¤ë¥¼ ì‚¬ìš©í•´ì•¼ í•œë‹¤.
+	 * 		- í˜¹ì€ call by referenceë¥¼ ì´ìš©í•˜ì—¬, ì…ë ¥ëœ ë°ì´í„°ì˜ ë‚´ë¶€ Propertyë¥¼ ë³€ê²½í•  ìˆ˜ë„ ìˆë‹¤
+	 *
+	 * 	Function<T,R>
+	 * 		- R apply(T) ë©”ì„œë“œê°€ ì„ ì–¸ë˜ì–´ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤
+	 * 		- ì…ë ¥ëœ T type ë°ì´í„°ì— ëŒ€í•´ ì¼ë ¨ì˜ ì‘ì—…ì„ ìˆ˜í–‰í•˜ê³ , R type ë°ì´í„°ë¥¼ ë¦¬í„´í•  ë•Œ ì‚¬ìš©
+	 * 		- ì…ë ¥ëœ ë°ì´í„°ë¥¼ ë³€í™˜í•  ë•Œ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤.
+	 *
+	 * 	Predicate<T>
+	 * 		- bollean test(T) ë©”ì„œë“œê°€ ì„ ì–¸ë˜ì–´ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤
+	 * 		- ì…ë ¥ëœ T type ë°ì´í„°ê°€ íŠ¹ì • ì¡°ê±´ì— ë¶€í•©ë˜ëŠ”ì§€ í™•ì¸í•˜ì—¬ boolean ê²°ê³¼ë¥¼ ë¦¬í„´
+	 *
+	 * 	Supplier<T>
+	 * 		- T get() ë©”ì„œë“œê°€ ì„ ì–¸ë˜ì–´ ìˆëŠ” ì¸í„°í˜ì´ìŠ¤
+	 * 		- ë§¤ê°œë³€ìˆ˜ë¥¼ ë°›ì§€ ì•Šê³ , íŠ¹ì • íƒ€ì…ì˜ ê²°ê³¼ë¥¼ ë¦¬í„´ í•œë‹¤.
+	 *
+	 *
+	 *
+	 *  ì´ì™¸ì—ë„ ë§ì€ í•¨ìˆ˜í˜• ì¸í„°í˜ì´ìŠ¤ê°€ ìˆëŠ”ë°
+	 *  í•„ìš”í•  ë•Œë§ˆë‹¤ ì°¾ì•„ë³´ì.. ëŒ€í‘œì ì¸ê±´ ìœ„ì—êº¼ì•¼
+	 */
 
 
 }

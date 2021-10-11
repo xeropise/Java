@@ -10,14 +10,14 @@ public class More_Precise_Rethrowing_of_Exception {
 	public static void main(String[] args) throws ParseException, IOException {
 		// TODO Auto-generated method stub
 		More_Precise_Rethrowing_of_Exception test = new More_Precise_Rethrowing_of_Exception();
-		
+
 		test.precise();
-		
-		//JDK7 ÀÌÀü ¹öÁ¯¿¡¼­´Â catch ±¸¹®³»¿¡¼­ ¼±¾ğÇÑ ¿¹¿Ü À¯Çü¸¸ ¹ÛÀ¸·Î ´øÁú ¼ö ÀÖ´Ù
-		//JDK7¿¡¼­´Â catch ±¸¹®¿¡¼­ ¼±¾ğÇÑ ¿¹¿Ü¸¦ ¹ÛÀ¸·Î ´øÁú ¼ö ÀÖ´Ù
+
+		//JDK7 ì´ì „ ë²„ì ¼ì—ì„œëŠ” catch êµ¬ë¬¸ë‚´ì—ì„œ ì„ ì–¸í•œ ì˜ˆì™¸ ìœ í˜•ë§Œ ë°–ìœ¼ë¡œ ë˜ì§ˆ ìˆ˜ ìˆë‹¤
+		//JDK7ì—ì„œëŠ” catch êµ¬ë¬¸ì—ì„œ ì„ ì–¸í•œ ì˜ˆì™¸ë¥¼ ë°–ìœ¼ë¡œ ë˜ì§ˆ ìˆ˜ ìˆë‹¤
 	}
-	
-	
+
+
 	//before jdk7
 	public void obscure() throws Exception {
 		try {
@@ -27,8 +27,8 @@ public class More_Precise_Rethrowing_of_Exception {
 			System.out.println("Caught exception: " + ex.getMessage());
 			throw ex;
 		}
-	}  
-	
+	}
+
 	//jdk7
 	public void precise() throws ParseException, IOException {
 		try {
