@@ -6,30 +6,29 @@ public class reflect {
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		/*
-		// ¸®ÇÃ·º¼Ç(Reflection) »ç¿ëÀ» À§ÇÑ Set up
-		
-		// ** ÀÚ¹Ù ±âº»Çü¿¡ ´ëÇÑ Å¬·¡½º Á¤º¸¸¦ ¾ò´Â ¹æ¹ı **
-			// ´Ù¾çÇÑ ¹æ¹ıÀ¸·Î Å¬·¡½º Á¤º¸¸¦ ¾ò´Â´Ù
+		// ë¦¬í”Œë ‰ì…˜(Reflection) ì‚¬ìš©ì„ ìœ„í•œ Set up
+
+		// ** ìë°” ê¸°ë³¸í˜•ì— ëŒ€í•œ í´ë˜ìŠ¤ ì •ë³´ë¥¼ ì–»ëŠ” ë°©ë²• **
+			// ë‹¤ì–‘í•œ ë°©ë²•ìœ¼ë¡œ í´ë˜ìŠ¤ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤
 		// 1)
 		//	Class c = Class.forName("java.lang.String");
-		
-		// 2) 
-		// 	Class c = int.class;
-		
-		// 3) ±âº»ÇüÀÇ °æ¿ì Wrapper¿¡ ±âÁ¤ÀÇ µÈ TypeÀ» »ç¿ë ÇÑ´Ù.
-		//	Class c = Integer.TYPE; 	
 
-		// ÈÄ getDeclaredMethods¿Í °°Àº ¸Ş¼Òµå¸¦ È£Ãâ ÇØ¼­, Å¬·¡½º¿¡ Á¤ÀÇµÈ ¸ğµç ¸Ş¼ÒµåÀÇ ¸®½ºÆ®¸¦ ÀĞ´Â´Ù.
-		
+		// 2)
+		// 	Class c = int.class;
+
+		// 3) ê¸°ë³¸í˜•ì˜ ê²½ìš° Wrapperì— ê¸°ì •ì˜ ëœ Typeì„ ì‚¬ìš© í•œë‹¤.
+		//	Class c = Integer.TYPE;
+		// í›„ getDeclaredMethodsì™€ ê°™ì€ ë©”ì†Œë“œë¥¼ í˜¸ì¶œ í•´ì„œ, í´ë˜ìŠ¤ì— ì •ì˜ëœ ëª¨ë“  ë©”ì†Œë“œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ì½ëŠ”ë‹¤.
+
 			Class c = Class.forName("java.lang.String");
 			Method m[] = c.getDeclaredMethods();
-			
+
 			for(Method a : m) {
 				System.out.println(a);
 			}
-		// ¸¶Áö¸·À¸·Î Á¤º¸ ¼öÁ¤À» À§ÇØ Reflection API¸¦ ÀÌ¿ëÇÑ´Ù.
-		 * 
-		 * 
+		// ë§ˆì§€ë§‰ìœ¼ë¡œ ì •ë³´ ìˆ˜ì •ì„ ìœ„í•´ Reflection APIë¥¼ ì´ìš©í•œë‹¤.
+		 *
+		 *
 		 */
 
 

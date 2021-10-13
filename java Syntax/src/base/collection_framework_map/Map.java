@@ -10,84 +10,84 @@ import java.util.Set;
 
 public class Map {
 
-	public static void main(String[] args) {
-		
-		
-		// Å°(Key)¿Í °ª(Value)·Î ±¸¼ºµÈ Entry °´Ã¼¸¦ ÀúÀåÇÏ´Â ±¸Á¶
-		
-		// Å°´Â Áßº¹µÉ ¼ö ¾øÁö¸¸, °ªÀº Áßº¹ ÀúÀåµÉ ¼ö ÀÖÀ½
-		// ±âÁ¸¿¡ ÀúÀåµÈ Å°¿Í µ¿ÀÏÇÑ Å°·Î °ªÀ» ÀúÀåÇÏ¸é, ±âÁ¸ ÀúÀå °ªÀº ¾ø¾îÁö°í, »õ·Î¿î °ªÀ¸·Î ´ëÃ¼
-		
-		
-		// 1. HashMap
-		
-		// ´ëÇ¥ÀûÀÎ Map Collection
-		// HashMapÀÇ Å°·Î »ç¿ëÇÒ °´Ã¼´Â hashCode()¿Í equals()¸¦ ÀçÁ¤ÀÇÇØ¼­, µ¿µî °´Ã¼°¡ µÉ Á¶°ÇÀ» Á¤ÇØ¾ß ÇÔ
-		
+    public static void main(String[] args) {
+
+
+        // í‚¤(Key)ì™€ ê°’(Value)ë¡œ êµ¬ì„±ëœ Entry ê°ì²´ë¥¼ ì €ì¥í•˜ëŠ” êµ¬ì¡°
+
+        // í‚¤ëŠ” ì¤‘ë³µë  ìˆ˜ ì—†ì§€ë§Œ, ê°’ì€ ì¤‘ë³µ ì €ì¥ë  ìˆ˜ ìˆìŒ
+        // ê¸°ì¡´ì— ì €ì¥ëœ í‚¤ì™€ ë™ì¼í•œ í‚¤ë¡œ ê°’ì„ ì €ì¥í•˜ë©´, ê¸°ì¡´ ì €ì¥ ê°’ì€ ì—†ì–´ì§€ê³ , ìƒˆë¡œìš´ ê°’ìœ¼ë¡œ ëŒ€ì²´
+
+
+        // 1. HashMap
+
+        // ëŒ€í‘œì ì¸ Map Collection
+        // HashMapì˜ í‚¤ë¡œ ì‚¬ìš©í•  ê°ì²´ëŠ” hashCode()ì™€ equals()ë¥¼ ì¬ì •ì˜í•´ì„œ, ë™ë“± ê°ì²´ê°€ ë  ì¡°ê±´ì„ ì •í•´ì•¼ í•¨
+
         HashMap<String, Integer> map = new HashMap<String, Integer>();
-        
+
         map.put("Jack", 30);
         map.put("Andy", 40);
         map.put("John", 22);
         map.put("Jolie", 10);
         map.put("Exo", 50);
         map.put("Tiger", 91);
-        
-        System.out.println("ÃÑ Entry ¼ö: " + map.size());
-        
+
+        System.out.println("ì´ Entry ìˆ˜: " + map.size());
+
         System.out.println("\tJolie" + map.get("Jolie"));
         System.out.println();
-        
-        // °´Ã¼¸¦ ÇÏ³ª¾¿ Ã³¸®
+
+        // ê°ì²´ë¥¼ í•˜ë‚˜ì”© ì²˜ë¦¬
         Set<String> keySet = map.keySet();
         Iterator<String> it = keySet.iterator();
-        
+
         while (it.hasNext()) {
             String key = it.next();
             Integer value = map.get(key);
             System.out.println("\t" + key + " : " + value);
         }
-        
-        System.out.println();
-        
-        // °´Ã¼ »èÁ¦
-        map.remove("Exo");
-        System.out.println("ÃÑ Entry ¼ö: " + map.size());
-        
-        map.clear();
-        System.out.println("ÃÑ Entry ¼ö: " + map.size());
-        
-        
-        // 2. HashTable
-        
-        // HashTableµµ Å°·Î »ç¿ëÇÒ °´Ã¼´Â hashCode()¿Í equals()¸¦ ÀçÁ¤ÀÇÇØ¼­, µ¿µî °´Ã¼°¡ µÉ Á¶°ÇÀ» Á¤ÇØ¾ß ÇÔ
-        
-        // HashMap°úÀÇ Â÷ÀÌÁ¡Àº, HashTableÀº µ¿±âÈ­(Synchronized)°¡ µÇ¾î ÀÖ´Ù. ¸ÖÆ¼ ½º·¹µå È¯°æ¿¡ ÀûÇÕ
-        
-        
-        // 3. Properties
-        
-        // HashTableÀÇ ÇÏÀ§ Å¬·¡½º, HashTableÀÇ ¸ğµç Æ¯Â¡À» ±×´ë·Î °¡Áö°í ÀÖÀ½
-        
-        // Â÷ÀÌÁ¡Àº HashTableÀº Å°¿Í °ªÀº ´Ù¾çÇÑ Å¸ÀÔÀ¸·Î ÁöÁ¤ °¡´ÉÇÑµ¥ ºñÇØ, Properties´Â Å°¿Í °ªÀ» StringÀ¸·Î Á¦ÇÑ
-        
-        // ÇÁ·ÎÆÛÆ¼(*.properties) ÆÄÀÏÀ» ÀĞÀ» ¶§ ÁÖ·Î »ç¿ë
-        // ÇÁ·ÎÆÛÆ¼ ÆÄÀÏÀº Å°¿Í °ªÀÌ = ±âÈ£·Î ¿¬°á¿Ü¾î ÀÖ´Â ÅØ½ºÆ® ÆÄÀÏ·Î ISO 8859-1 ¹®ÀÚ¼ÂÀ¸·Î ÀúÀåµÈ´Ù
-        
-        Properties properties = new Properties();
-        
-        try {
-			properties.load(new FileReader("C:/~/database.properties"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
-        
-        
-	}
+        System.out.println();
+
+        // ê°ì²´ ì‚­ì œ
+        map.remove("Exo");
+        System.out.println("ì´ Entry ìˆ˜: " + map.size());
+
+        map.clear();
+        System.out.println("ì´ Entry ìˆ˜: " + map.size());
+
+
+        // 2. HashTable
+
+        // HashTableë„ í‚¤ë¡œ ì‚¬ìš©í•  ê°ì²´ëŠ” hashCode()ì™€ equals()ë¥¼ ì¬ì •ì˜í•´ì„œ, ë™ë“± ê°ì²´ê°€ ë  ì¡°ê±´ì„ ì •í•´ì•¼ í•¨
+
+        // HashMapê³¼ì˜ ì°¨ì´ì ì€, HashTableì€ ë™ê¸°í™”(Synchronized)ê°€ ë˜ì–´ ìˆë‹¤. ë©€í‹° ìŠ¤ë ˆë“œ í™˜ê²½ì— ì í•©
+
+
+        // 3. Properties
+
+        // HashTableì˜ í•˜ìœ„ í´ë˜ìŠ¤, HashTableì˜ ëª¨ë“  íŠ¹ì§•ì„ ê·¸ëŒ€ë¡œ ê°€ì§€ê³  ìˆìŒ
+
+        // ì°¨ì´ì ì€ HashTableì€ í‚¤ì™€ ê°’ì€ ë‹¤ì–‘í•œ íƒ€ì…ìœ¼ë¡œ ì§€ì • ê°€ëŠ¥í•œë° ë¹„í•´, PropertiesëŠ” í‚¤ì™€ ê°’ì„ Stringìœ¼ë¡œ ì œí•œ
+
+        // í”„ë¡œí¼í‹°(*.properties) íŒŒì¼ì„ ì½ì„ ë•Œ ì£¼ë¡œ ì‚¬ìš©
+        // í”„ë¡œí¼í‹° íŒŒì¼ì€ í‚¤ì™€ ê°’ì´ = ê¸°í˜¸ë¡œ ì—°ê²°ì™¸ì–´ ìˆëŠ” í…ìŠ¤íŠ¸ íŒŒì¼ë¡œ ISO 8859-1 ë¬¸ìì…‹ìœ¼ë¡œ ì €ì¥ëœë‹¤
+
+        Properties properties = new Properties();
+
+        try {
+            properties.load(new FileReader("C:/~/database.properties"));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+
+    }
 
 }

@@ -8,44 +8,44 @@ import java.util.Stack;
 public class Stack_and_Queue {
 
 	public static void main(String[] args) {
-		
+
 		// 1. Stack
-		// ÀÚ¹Ù¿¡¼­´Â Vector¸¦ È®ÀåÇÑ Å¬·¡½º, ListÀÇ ÇÏÀ§ Å¬·¡½ºÀÓ
+		// ìë°”ì—ì„œëŠ” Vectorë¥¼ í™•ì¥í•œ í´ë˜ìŠ¤, Listì˜ í•˜ìœ„ í´ë˜ìŠ¤ì„
 		// LIFO ( Last In First Out )
 		Stack<Integer> stack = new Stack<>();
-		
+
 		stack.push(1);
 		stack.push(2);
 		stack.push(3);
 		stack.push(4);
-		
+
 		//System.out.println(stack);
 		System.out.println("=== Stack ===");
 		while(!stack.isEmpty()) {
 			System.out.println( stack.pop() );
 		}
 		//System.out.println(stack);
-		
-		
+
+
 
 		// 2. Queue
-		// ÀÚ¹Ù¿¡¼­´Â ÀÎÅÍÆäÀÌ½º
+		// ìë°”ì—ì„œëŠ” ì¸í„°í˜ì´ìŠ¤
 		// FIFO ( First In First Out )
 		Queue<Integer> queue = new LinkedList<>();
-		
+
 		queue.offer(1);
 		queue.offer(2);
 		queue.offer(3);
 		queue.offer(4);
-		
+
 		//System.out.println(queue);
 		System.out.println("=== Queue ===");
 		while(!queue.isEmpty()) {
 			System.out.println(queue.poll());
-			
+
 		}
-		
-		
+
+
 	}
 
 }

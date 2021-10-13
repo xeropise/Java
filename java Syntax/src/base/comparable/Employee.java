@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Employee implements Comparable<Employee> {
-	
+
 	private int id;
 	private String name;
 	private String department;
@@ -24,25 +24,25 @@ public class Employee implements Comparable<Employee> {
 	@Override
 	public int compareTo(Employee o) {
 		return this.name.compareTo(o.name);
-        //return this.id - o.id;
-        //return this.department.compareTo(o.department);		
+		//return this.id - o.id;
+		//return this.department.compareTo(o.department);
 	}
-	
-	// compareTo() ´Â int Å¸ÀÔÀ» ¹İÈ¯
-	
-	// ÆÄ¶ó¹ÌÅÍ·Î ºñ±³ ´ë»óÀÌ µÇ´Â °´Ã¼°¡ µé¾î¿À°Ô µÊ
-	
-	// A.compareTo(B) ÀÏ ¶§, 
-	// A<B ÀÎ °æ¿ì À½¼ö ¸®ÅÏ,
-	// A==B ÀÏ ¶§´Â 0 À» ¸®ÅÏ,
-	// A>B ÀÏ ¶§ ¾ç¼ö¸¦ ¸®ÅÏ
-	// Á¤·Ä¿¡ ÀÖ¾î¼­ ¾Õ¿¡ ¿À°í ½ÍÀ» ¶§ À½¼ö¸¦ ³»º¸³»¸é µÈ´Ù.
-	// * ÁÖÀÇÇØ¾ßÇÒ Á¡Àº ¾Æ¹« À½¼ö, ¾Æ¹« ¾ç¼ö¸¦ ³»º¸³»¸é µÇ´Â°ÍÀÌ ¾Æ´Ï¶ó, ¸¶Âù°¡Áö·Î -1, 0, 1 ¸¸ »ç¿ëÇÒ °Í
+
+	// compareTo() ëŠ” int íƒ€ì…ì„ ë°˜í™˜
+
+	// íŒŒë¼ë¯¸í„°ë¡œ ë¹„êµ ëŒ€ìƒì´ ë˜ëŠ” ê°ì²´ê°€ ë“¤ì–´ì˜¤ê²Œ ë¨
+
+	// A.compareTo(B) ì¼ ë•Œ,
+	// A<B ì¸ ê²½ìš° ìŒìˆ˜ ë¦¬í„´,
+	// A==B ì¼ ë•ŒëŠ” 0 ì„ ë¦¬í„´,
+	// A>B ì¼ ë•Œ ì–‘ìˆ˜ë¥¼ ë¦¬í„´
+	// ì •ë ¬ì— ìˆì–´ì„œ ì•ì— ì˜¤ê³  ì‹¶ì„ ë•Œ ìŒìˆ˜ë¥¼ ë‚´ë³´ë‚´ë©´ ëœë‹¤.
+	// * ì£¼ì˜í•´ì•¼í•  ì ì€ ì•„ë¬´ ìŒìˆ˜, ì•„ë¬´ ì–‘ìˆ˜ë¥¼ ë‚´ë³´ë‚´ë©´ ë˜ëŠ”ê²ƒì´ ì•„ë‹ˆë¼, ë§ˆì°¬ê°€ì§€ë¡œ -1, 0, 1 ë§Œ ì‚¬ìš©í•  ê²ƒ
 	@Override
 	public String toString() {
 		return String.format("id=%d, name=%s, department=%s, position=%s, sales=%d \n", this.getId(), this.getName(), this.getDepartment(), this.getPosition(), this.getSales());
-	}	
-	
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -73,44 +73,44 @@ public class Employee implements Comparable<Employee> {
 	public void setSales(BigInteger sales) {
 		this.sales = sales;
 	}
-	
+
 
 	public static void main(String[] args) {
-		Employee employee1 = new Employee(1, "jdk", "¼Ö·ç¼Ç°³¹ß1", "¿¬±¸¿ø", new BigInteger("2800"));
-        Employee employee2 = new Employee(2, "jeong", "¼Ö·ç¼Ç°³¹ß1", "¼±ÀÓ¿¬±¸¿ø", new BigInteger("3200"));
-        Employee employee3 = new Employee(3, "amateur", "¼Ö·ç¼Ç°³¹ß2", "¿¬±¸¿ø", new BigInteger("2800"));
-        Employee employee4 = new Employee(4, "pro", "¼Ö·ç¼Ç°³¹ß2", "¼ö¼®¿¬±¸¿ø", new BigInteger("7000"));
-        List<Employee> list = new ArrayList<>();
-        list.add(employee1);
-        list.add(employee2);
-        list.add(employee3);
-        list.add(employee4);
-        System.out.println(list);//³ÖÀº ¼ø¼­´ë·Î
-        Collections.sort(list);
-        System.out.println("##########");
-        System.out.println(list);//ÀÌ¸§ ¼ø¼­´ë·Î
-        
-        System.out.println("##########");
-        
-        // ÀÍ¸íÀÇ Comparator¸¦ ¸¸µê
-        Comparator<Employee> salesComparator = new Comparator<Employee>() {
+		Employee employee1 = new Employee(1, "jdk", "ì†”ë£¨ì…˜ê°œë°œ1", "ì—°êµ¬ì›", new BigInteger("2800"));
+		Employee employee2 = new Employee(2, "jeong", "ì†”ë£¨ì…˜ê°œë°œ1", "ì„ ì„ì—°êµ¬ì›", new BigInteger("3200"));
+		Employee employee3 = new Employee(3, "amateur", "ì†”ë£¨ì…˜ê°œë°œ2", "ì—°êµ¬ì›", new BigInteger("2800"));
+		Employee employee4 = new Employee(4, "pro", "ì†”ë£¨ì…˜ê°œë°œ2", "ìˆ˜ì„ì—°êµ¬ì›", new BigInteger("7000"));
+		List<Employee> list = new ArrayList<>();
+		list.add(employee1);
+		list.add(employee2);
+		list.add(employee3);
+		list.add(employee4);
+		System.out.println(list);//ë„£ì€ ìˆœì„œëŒ€ë¡œ
+		Collections.sort(list);
+		System.out.println("##########");
+		System.out.println(list);//ì´ë¦„ ìˆœì„œëŒ€ë¡œ
+
+		System.out.println("##########");
+
+		// ìµëª…ì˜ Comparatorë¥¼ ë§Œë“¦
+		Comparator<Employee> salesComparator = new Comparator<Employee>() {
 
 			@Override
 			public int compare(Employee o1, Employee o2) {
 				return o2.getSales().intValue() - o1.getSales().intValue();
 			}
-        	
-        };
-        
-        Collections.sort(list,salesComparator);
-        System.out.println("#############sort###########");
-        System.out.println(list); //Comparator sort
-        
-        
-        // °á·Ğ
-        // ComparableÀº ÀÏ¹İÀûÀÎ Á¤·Ä
-        // Comparator´Â Ä¿½ºÅÍ¸¶ÀÌÁî Á¤·Ä¿¡ »ç¿ëµÇ¾î, ºñ±³°¡ ¾Æ´Ô
-    }
+
+		};
+
+		Collections.sort(list,salesComparator);
+		System.out.println("#############sort###########");
+		System.out.println(list); //Comparator sort
+
+
+		// ê²°ë¡ 
+		// Comparableì€ ì¼ë°˜ì ì¸ ì •ë ¬
+		// ComparatorëŠ” ì»¤ìŠ¤í„°ë§ˆì´ì¦ˆ ì •ë ¬ì— ì‚¬ìš©ë˜ì–´, ë¹„êµê°€ ì•„ë‹˜
+	}
 
 
 

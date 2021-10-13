@@ -1,142 +1,150 @@
 package base;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class generic {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		//ºñ Á¦³×¸¯
-		Corn corn = new Corn();
-		
-		corn.set("ÄÜ");						// String -> Object (ÀÚµ¿ Å¸ÀÔ º¯È¯)
-		
-		String name = (String) corn.get();  // Object -> String (°­Á¦ Å¸ÀÔ º¯È¯)
-		//String
-		
-		// Á¦³×¸¯
-		Corn2<String> corn2 = new Corn2();
+        //ë¹„ ì œë„¤ë¦­
+        Corn corn = new Corn();
 
-		corn2.set("ÄÜ");
-		
-		String name2 = corn2.get();
-		
-		/*------------------------------------------------------*/
-		
-		
-		// ¸ÖÆ¼ Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ
-		// Á¦³×¸¯ Å¸ÀÔÀº µÎ °³ ÀÌ»óÀÇ ¸ÖÆ¼ ÆÄ¶ó¹ÌÅÍ¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖ´Ù, ÀÌ °æ¿ì °¢ Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ´Â ÄŞ¸¶·Î ±¸ºĞÇÑ´Ù.
-		
-		Entry<String, String> ent = new Entry("±Ôºñ", "´Â ´©±¸ÀÎ°¡");
-		
-		
-		/*------------------------------------------------------*/
-		
-		// Á¦³×¸¯ ¸Ş¼Òµå
-		
-		String[] name3 = {"±èÃ¶¼ö", "±è¿µÈñ", "±è¼÷ÀÚ", "±è¸»³â" };
-		String[] last = generic.genericMethod(name3); // ÄÄÆÄÀÏ·¯´Â ÀÌ¹Ì Å¸ÀÔ Á¤º¸¸¦ ¾Ë°í ÀÖÀ½
-		
-		/*------------------------------------------------------*/
-		// ¿ÍÀÏµå Ä«µå ? , Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ°¡ ÀÇ¹Ì°¡ ¾øÀ» ¶§ »ç¿ë
-		// »óÀ§ Á¦ÇÑÀÚ 
-		List<? super Integer> foo3 = new ArrayList<>();
-		
-		// ÇÏÀ§ Á¦ÇÑÀÚ
-		List<? extends Integer> foo4 = new ArrayList<>();
-	}
-	
-	
-	// Á¦³×¸¯ Å¸ÀÔ(class, interface)
-	// Å¸ÀÔÀ» ÆÄ¶ó¹ÌÅÍ·Î °¡Áö´Â Å¬·¡½º¿Í ÀÎÅÍÆäÀÌ½º
-	// Å¬·¡½º ¶Ç´Â ÀÎÅÍÆäÀÌ½º ÀÌ¸§ µÚ¿¡ "<>" ºÎÈ£°¡ ºÙ°í, »çÀÌ¿¡ Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ°¡ À§Ä¡ÇÑ´Ù.
-	public class Person<T> {}
-	
-	public interface interfacePerson<T> {}
-	
-	
-	
-	//ºñ Á¦³×¸¯ Å¸ÀÔ ÀÌ¿ë ½Ã
-	
-	static public class Corn {
-		private Object obj;
-		
-		public Object get() { return obj; }
-		
-		public void set(Object obj) { this.obj = obj; }
-	}
-	
-	// Á¦³×¸¯ Å¸ÀÔ ÀÌ¿ë½Ã
-	
-	static public class Corn2<T> {
-		
-		private T t;
-		
-		public T get() {return t; }
-		
-		public void set(T t) {this.t = t; }
-		
-	}
-	
-/*------------------------------------------------------*/
-	
-	// ¸ÖÆ¼ Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ (class<K,V,...>, interface<K,V,...>)
-	// Á¦³×¸¯ Å¸ÀÔÀº µÎ °³ ÀÌ»óÀÇ ¸ÖÆ¼ ÆÄ¶ó¹ÌÅÍ¸¦ ÀÌ¿ëÇÒ ¼ö ÀÖ´Ù. ÀÌ °æ¿ì °¢ Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ´Â ÄŞ¸¶·Î ±¸ºĞÇÑ´Ù.
-	
-	static public class Entry<K, V> implements Map.Entry<K, V> {
-		
-		private K key;
-		
-		private V value;
-		
-		public Entry(K key, V Value) {
-			this.key = key;
-			this.value = value;
-		}
-		@Override
-		public K getKey() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+        corn.set("ì½˜");                        // String -> Object (ìë™ íƒ€ì… ë³€í™˜)
 
-		@Override
-		public V getValue() {
-			// TODO Auto-generated method stub
-			return null;
-		}
+        String name = (String) corn.get();  // Object -> String (ê°•ì œ íƒ€ì… ë³€í™˜)
+        //String
 
-		@Override
-		public V setValue(V value) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}
-	
-/*------------------------------------------------------*/
-	
-	// Á¦³×¸¯ ¸Ş¼Òµå (<T,R> R method(T t))
-	
-	// Á¦³×¸¯ ¸Ş¼Òµå´Â ¸Å°³Å¸ÀÔ°ú ¸®ÅÏÅ¸ÀÔÀ¸·Î Å¸ÀÔÆÄ¶ó¹ÌÅÍ¸¦ °®´Â ¸Ş¼Òµå¸¦ ¸»ÇÑ´Ù.
-	
-	// Á¦³×¸¯ ¸Ş¼Òµå¸¦ ¼±¾ğÇÏ´Â ¹æ¹ıÀº ¸®ÅÏ Å¸ÀÔ ¾Õ¿¡ "<>" ±âÈ£¸¦ Ãß°¡ÇÏ°í, Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ¸¦ ±â¼úÇÑ ´ÙÀ½,
-	
-	// ¸®ÅÏ Å¸ÀÔ°ú ¸Å°³ Å¸ÀÔÀ¸·Î Å¸ÀÔ ÆÄ¶ó¹ÌÅÍ¸¦ »ç¿ëÇÏ¸é µÈ´Ù.
-	
-	public static <T> T genericMethod(T name3) {
-		
-		return name3;
-		
-	}
-	
-/*------------------------------------------------------*/
-	
-	// ÇÑÁ¤Àû Å¸ÀÔ ¸Å°³º¯¼ö (Bounded Type Parameter)
-	// ¹üÀ§ Á¦ÇÑ
-	
+        // ì œë„¤ë¦­
+        Corn2<String> corn2 = new Corn2();
 
-	
+        corn2.set("ì½˜");
+
+        String name2 = corn2.get();
+
+        /*------------------------------------------------------*/
+
+
+        // ë©€í‹° íƒ€ì… íŒŒë¼ë¯¸í„°
+        // ì œë„¤ë¦­ íƒ€ì…ì€ ë‘ ê°œ ì´ìƒì˜ ë©€í‹° íŒŒë¼ë¯¸í„°ë¥¼ ì´ìš©í•  ìˆ˜ ìˆë‹¤, ì´ ê²½ìš° ê° íƒ€ì… íŒŒë¼ë¯¸í„°ëŠ” ì½¤ë§ˆë¡œ êµ¬ë¶„í•œë‹¤.
+
+        Entry<String, String> ent = new Entry("ê·œë¹„", "ëŠ” ëˆ„êµ¬ì¸ê°€");
+
+
+        /*------------------------------------------------------*/
+
+        // ì œë„¤ë¦­ ë©”ì†Œë“œ
+
+        String[] name3 = {"ê¹€ì² ìˆ˜", "ê¹€ì˜í¬", "ê¹€ìˆ™ì", "ê¹€ë§ë…„"};
+        String[] last = generic.genericMethod(name3); // ì»´íŒŒì¼ëŸ¬ëŠ” ì´ë¯¸ íƒ€ì… ì •ë³´ë¥¼ ì•Œê³  ìˆìŒ
+
+        /*------------------------------------------------------*/
+        // ì™€ì¼ë“œ ì¹´ë“œ ? , íƒ€ì… íŒŒë¼ë¯¸í„°ê°€ ì˜ë¯¸ê°€ ì—†ì„ ë•Œ ì‚¬ìš©
+        // ìƒìœ„ ì œí•œì
+        List<? super Integer> foo3 = new ArrayList<>();
+
+        // í•˜ìœ„ ì œí•œì
+        List<? extends Integer> foo4 = new ArrayList<>();
+    }
+
+
+    // ì œë„¤ë¦­ íƒ€ì…(class, interface)
+    // íƒ€ì…ì„ íŒŒë¼ë¯¸í„°ë¡œ ê°€ì§€ëŠ” í´ë˜ìŠ¤ì™€ ì¸í„°í˜ì´ìŠ¤
+    // í´ë˜ìŠ¤ ë˜ëŠ” ì¸í„°í˜ì´ìŠ¤ ì´ë¦„ ë’¤ì— "<>" ë¶€í˜¸ê°€ ë¶™ê³ , ì‚¬ì´ì— íƒ€ì… íŒŒë¼ë¯¸í„°ê°€ ìœ„ì¹˜í•œë‹¤.
+    public class Person<T> {
+    }
+
+    public interface interfacePerson<T> {
+    }
+
+
+    //ë¹„ ì œë„¤ë¦­ íƒ€ì… ì´ìš© ì‹œ
+
+    static public class Corn {
+        private Object obj;
+
+        public Object get() {
+            return obj;
+        }
+
+        public void set(Object obj) {
+            this.obj = obj;
+        }
+    }
+
+    // ì œë„¤ë¦­ íƒ€ì… ì´ìš©ì‹œ
+
+    static public class Corn2<T> {
+
+        private T t;
+
+        public T get() {
+            return t;
+        }
+
+        public void set(T t) {
+            this.t = t;
+        }
+
+    }
+
+    /*------------------------------------------------------*/
+
+    // ë©€í‹° íƒ€ì… íŒŒë¼ë¯¸í„° (class<K,V,...>, interface<K,V,...>)
+    // ì œë„¤ë¦­ íƒ€ì…ì€ ë‘ ê°œ ì´ìƒì˜ ë©€í‹° íŒŒë¼ë¯¸í„°ë¥¼ ì´ìš©í•  ìˆ˜ ìˆë‹¤. ì´ ê²½ìš° ê° íƒ€ì… íŒŒë¼ë¯¸í„°ëŠ” ì½¤ë§ˆë¡œ êµ¬ë¶„í•œë‹¤.
+
+    static public class Entry<K, V> implements Map.Entry<K, V> {
+
+        private K key;
+
+        private V value;
+
+        public Entry(K key, V Value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public K getKey() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public V getValue() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public V setValue(V value) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
+
+    /*------------------------------------------------------*/
+
+    // ì œë„¤ë¦­ ë©”ì†Œë“œ (<T,R> R method(T t))
+
+    // ì œë„¤ë¦­ ë©”ì†Œë“œëŠ” ë§¤ê°œíƒ€ì…ê³¼ ë¦¬í„´íƒ€ì…ìœ¼ë¡œ íƒ€ì…íŒŒë¼ë¯¸í„°ë¥¼ ê°–ëŠ” ë©”ì†Œë“œë¥¼ ë§í•œë‹¤.
+
+    // ì œë„¤ë¦­ ë©”ì†Œë“œë¥¼ ì„ ì–¸í•˜ëŠ” ë°©ë²•ì€ ë¦¬í„´ íƒ€ì… ì•ì— "<>" ê¸°í˜¸ë¥¼ ì¶”ê°€í•˜ê³ , íƒ€ì… íŒŒë¼ë¯¸í„°ë¥¼ ê¸°ìˆ í•œ ë‹¤ìŒ,
+
+    // ë¦¬í„´ íƒ€ì…ê³¼ ë§¤ê°œ íƒ€ì…ìœ¼ë¡œ íƒ€ì… íŒŒë¼ë¯¸í„°ë¥¼ ì‚¬ìš©í•˜ë©´ ëœë‹¤.
+
+    public static <T> T genericMethod(T name3) {
+
+        return name3;
+
+    }
+
+    /*------------------------------------------------------*/
+
+    // í•œì •ì  íƒ€ì… ë§¤ê°œë³€ìˆ˜ (Bounded Type Parameter)
+    // ë²”ìœ„ ì œí•œ
+
+
 }

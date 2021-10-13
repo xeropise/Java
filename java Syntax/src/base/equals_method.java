@@ -4,30 +4,30 @@ public class equals_method {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		 
-	      String s1 = new String("HELLO"); 
-	      String s2 = new String("HELLO"); 
-	      String s3 = s1; // °°Àº ´ë»óÀ» °¡¸®Å²´Ù.
-	      String s4 = new String("WORLD"); 
-	      /* --print-- */
-	      
-	      // equals()
-	      System.out.println(s1.equals(s2)); // true
-	      System.out.println(s1.equals(s3)); // true
-	      System.out.println(s3.equals(s4)); // false
-	      // µÎ °´Ã¼ÀÇ °ªÀÌ °°ÀºÁö È®ÀÎÇÑ´Ù.
-	      // Áï, ¹®ÀÚ¿­ÀÇ µ¥ÀÌÅÍ/ ´Ï¿ëÀ» ±â¹İÀ¸·Î ºñ±³ÇÑ´Ù 
-	      // ±âº» À¯Çü(Primitive Types)¿¡ ´ëÇØ¼­´Â Àû¿ëÇÒ ¼ö ¾ø´Ù
-	      // °°Àº °ª(³»¿ë)ÀÌ¸é true, ´Ù¸¥ ³»¿ëÀÌ¸é false¸¦ ¸®ÅÏ 
-	      
-	      // == ¿¬»êÀÚ
-	      System.out.println(s1==s2); //false
-	      System.out.println(s1==s3); //true
-	      System.out.println(s1==s4); //false
-	      // µÎ °´Ã¼°¡ °°Àº ¸Ş¸ğ¸® °ø°£À» °¡¸®Å°´ÂÁö È®ÀÎÇÑ´Ù.
-	      // °°Àº ÁÖ¼Ò¸é return true, ´Ù¸¥ ÁÖ¼Ò¸é return false
-	      // ¸ğµç ±âº» À¯Çü(Primitive Types)¿¡ ´ëÇØ Àû¿ëÇÒ ¼ö ÀÖ´Ù
+
+
+		String s1 = new String("HELLO");
+		String s2 = new String("HELLO");
+		String s3 = s1; // ê°™ì€ ëŒ€ìƒì„ ê°€ë¦¬í‚¨ë‹¤.
+		String s4 = new String("WORLD");
+		/* --print-- */
+
+		// equals()
+		System.out.println(s1.equals(s2)); // true
+		System.out.println(s1.equals(s3)); // true
+		System.out.println(s3.equals(s4)); // false
+		// ë‘ ê°ì²´ì˜ ê°’ì´ ê°™ì€ì§€ í™•ì¸í•œë‹¤.
+		// ì¦‰, ë¬¸ìì—´ì˜ ë°ì´í„°/ ë‹ˆìš©ì„ ê¸°ë°˜ìœ¼ë¡œ ë¹„êµí•œë‹¤
+		// ê¸°ë³¸ ìœ í˜•(Primitive Types)ì— ëŒ€í•´ì„œëŠ” ì ìš©í•  ìˆ˜ ì—†ë‹¤
+		// ê°™ì€ ê°’(ë‚´ìš©)ì´ë©´ true, ë‹¤ë¥¸ ë‚´ìš©ì´ë©´ falseë¥¼ ë¦¬í„´
+
+		// == ì—°ì‚°ì
+		System.out.println(s1==s2); //false
+		System.out.println(s1==s3); //true
+		System.out.println(s1==s4); //false
+		// ë‘ ê°ì²´ê°€ ê°™ì€ ë©”ëª¨ë¦¬ ê³µê°„ì„ ê°€ë¦¬í‚¤ëŠ”ì§€ í™•ì¸í•œë‹¤.
+		// ê°™ì€ ì£¼ì†Œë©´ return true, ë‹¤ë¥¸ ì£¼ì†Œë©´ return false
+		// ëª¨ë“  ê¸°ë³¸ ìœ í˜•(Primitive Types)ì— ëŒ€í•´ ì ìš©í•  ìˆ˜ ìˆë‹¤
 	}
 
 }

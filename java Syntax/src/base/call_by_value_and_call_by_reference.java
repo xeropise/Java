@@ -1,17 +1,17 @@
 package base;
 
 public class call_by_value_and_call_by_reference {
-    
+
 	public static void main(String[] args) {
-		
-		// Call By Value´Â '°ª¿¡ ÀÇÇÑ È£Ãâ'
-		// ¸Ş¼Òµå·Î ÀÎÀÚ°ªÀ» ³Ñ±æ ¶§ ±× °ªÀ» º¹»çÇÏ¿© ³Ñ±â´Â ÇüÅÂ
-		// ÀÌ ¹æ½ÄÀ¸·Î ¸Ş¼Òµå È£ÃâÀ» ÇÏ¸é ¸Ş¼Òµå ³»¿¡¼­´Â º¹»çµÈ °ªÀ¸·Î ÀÛ¾÷À» ÇÏ±â ¶§¹®¿¡
-		// ¿ø·¡ÀÇ °ªÀ» º¯°æ½ÃÅ°Áö ¾Ê´Â´Ù.
-		
-		// 1. ÀÎÀÚ °ªÀ» ±âº»ÇüÀ» »ç¿ë ÇßÀ» ¶§
+
+		// Call By ValueëŠ” 'ê°’ì— ì˜í•œ í˜¸ì¶œ'
+		// ë©”ì†Œë“œë¡œ ì¸ìê°’ì„ ë„˜ê¸¸ ë•Œ ê·¸ ê°’ì„ ë³µì‚¬í•˜ì—¬ ë„˜ê¸°ëŠ” í˜•íƒœ
+		// ì´ ë°©ì‹ìœ¼ë¡œ ë©”ì†Œë“œ í˜¸ì¶œì„ í•˜ë©´ ë©”ì†Œë“œ ë‚´ì—ì„œëŠ” ë³µì‚¬ëœ ê°’ìœ¼ë¡œ ì‘ì—…ì„ í•˜ê¸° ë•Œë¬¸ì—
+		// ì›ë˜ì˜ ê°’ì„ ë³€ê²½ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
+
+		// 1. ì¸ì ê°’ì„ ê¸°ë³¸í˜•ì„ ì‚¬ìš© í–ˆì„ ë•Œ
 //		int num1= 10, num2 = 20;
-//		
+//
 //		System.out.println("Before");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
@@ -19,14 +19,14 @@ public class call_by_value_and_call_by_reference {
 //		System.out.println("After");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
-		
-		// °á·Ğ : ÀÚ¹Ù´Â ±âº»Çü µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÒ ¶§ Call By Value Çü½ÄÀ¸·Î Ã³¸®ÇÑ´Ù.
-		
-		// 2. ÀÎÀÚ °ªÀ¸·Î °´Ã¼¸¦ »ç¿ëÇßÀ» ¶§(wrapper Å¬·¡½º »ç¿ë), °ú¿¬ Call By reference ÀÏ±î?
-		
+
+		// ê²°ë¡  : ìë°”ëŠ” ê¸°ë³¸í˜• ë°ì´í„°ë¥¼ ì²˜ë¦¬í•  ë•Œ Call By Value í˜•ì‹ìœ¼ë¡œ ì²˜ë¦¬í•œë‹¤.
+
+		// 2. ì¸ì ê°’ìœ¼ë¡œ ê°ì²´ë¥¼ ì‚¬ìš©í–ˆì„ ë•Œ(wrapper í´ë˜ìŠ¤ ì‚¬ìš©), ê³¼ì—° Call By reference ì¼ê¹Œ?
+
 //		Integer num1 = 10, num2 = 20;
 //		// Integer num1 = new Integer(10), num2 = new Integer(20)
-//		// °ú °°À½
+//		// ê³¼ ê°™ìŒ
 //		System.out.println("Before");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
@@ -34,15 +34,15 @@ public class call_by_value_and_call_by_reference {
 //		System.out.println("After");
 //		System.out.println("num1 = " + num1);
 //		System.out.println("num2 = " + num2);
-		
-		// °´Ã¼¸¦  swapÀ» ÅëÇØ ¹Ù²Ù¾úÁö¸¸ call By reference¶ó¸é ¹Ù²î¾î¾ßÇß´Âµ¥ ¹Ù²îÁö ¾Ê¾Ò´Ù
-		// °á·Ğ : °´Ã¼ ¶ÇÇÑ ¸Ş¼Òµå·Î °ªÀÌ Àü´Ş µÉ ¶§, ±× ÂüÁ¶°ªÀÌ Call By ValueÀÇ ÇüÅÂ·Î Àü´ŞµÈ´Ù.
-		
-		// 3. ÀÎÀÚ°ªÀ¸·Î ¹ŞÀº ÂüÁ¶°ªÀ» ÅëÇØ ¸â¹ö º¯¼ö·Î Á¢±Ù
-		
+
+		// ê°ì²´ë¥¼  swapì„ í†µí•´ ë°”ê¾¸ì—ˆì§€ë§Œ call By referenceë¼ë©´ ë°”ë€Œì–´ì•¼í–ˆëŠ”ë° ë°”ë€Œì§€ ì•Šì•˜ë‹¤
+		// ê²°ë¡  : ê°ì²´ ë˜í•œ ë©”ì†Œë“œë¡œ ê°’ì´ ì „ë‹¬ ë  ë•Œ, ê·¸ ì°¸ì¡°ê°’ì´ Call By Valueì˜ í˜•íƒœë¡œ ì „ë‹¬ëœë‹¤.
+
+		// 3. ì¸ìê°’ìœ¼ë¡œ ë°›ì€ ì°¸ì¡°ê°’ì„ í†µí•´ ë©¤ë²„ ë³€ìˆ˜ë¡œ ì ‘ê·¼
+
 //		NumberClass num3 = new NumberClass(10);
 //		NumberClass num4 = new NumberClass(20);
-//		
+//
 //		System.out.println("Before");
 //		System.out.println("num3 = " + num3.num);
 //		System.out.println("num4 = " + num4.num);
@@ -50,18 +50,18 @@ public class call_by_value_and_call_by_reference {
 //		System.out.println("After");
 //		System.out.println("num3 = " + num3.num);
 //		System.out.println("num4 = " + num4.num);
-		
-		// °´Ã¼ÀÇ ÂüÁ¶°ªÀ» Á÷Á¢ ¹Ù²Û °ÍÀÌ ¾Æ´Ï¶ó, °´Ã¼ÀÇ ÂüÁ¶°ªÀ» ÅëÇØ¼­ 
-		// ±× °´Ã¼ÀÇ ¸â¹öº¯¼ö¿¡ Á¢±ÙÇÏ¿© ±× °ªÀ» ¹Ù²åÀ½
-		
-		// ÀÚ¹Ù´Â °´Ã¼¸¦ ¸Ş¼Òµå·Î ³Ñ±æ ¶§, °´Ã¼¸¦ ÂüÁ¶ÇÏ´Â  Áö¿ªº¯¼öÀÇ ½ÇÁ¦ ÁÖ¼Ò¸¦ ³Ñ±â´Â °ÍÀÌ ¾Æ´Ï¶ó, 
-		// ±× Áö¿ªº¯¼ö°¡ °¡¸®Å°°í ÀÖ´Â Èü ¿µ¿ªÀÇ °´Ã¼¸¦ °¡¸®Å°´Â ÇàÀ§ÀÇ »õ·Î¿î Áö¿ªº¯¼ö¸¦ »ı¼ºÇÏ¿©,
-		// ±×°ÍÀ» ÅëÇÏ¿© °°Àº °´Ã¼¸¦ °¡¸®Å°µµ·Ï ÇÏ´Â ¹æ½Ä
-		
-		// ÃÖÁ¾ °á·Ğ ÀÚ¹ÙÀÇ ¸Ş¼Òµå·Î ÀÎÀÚ °ªÀ» ³Ñ±â´Â ¹æ¹ıÀº Call By ValueÀÌ´Ù
-		
-		// 4. StringÀ¸·Î Swap ¿¹Á¦
-		
+
+		// ê°ì²´ì˜ ì°¸ì¡°ê°’ì„ ì§ì ‘ ë°”ê¾¼ ê²ƒì´ ì•„ë‹ˆë¼, ê°ì²´ì˜ ì°¸ì¡°ê°’ì„ í†µí•´ì„œ
+		// ê·¸ ê°ì²´ì˜ ë©¤ë²„ë³€ìˆ˜ì— ì ‘ê·¼í•˜ì—¬ ê·¸ ê°’ì„ ë°”ê¿¨ìŒ
+
+		// ìë°”ëŠ” ê°ì²´ë¥¼ ë©”ì†Œë“œë¡œ ë„˜ê¸¸ ë•Œ, ê°ì²´ë¥¼ ì°¸ì¡°í•˜ëŠ”  ì§€ì—­ë³€ìˆ˜ì˜ ì‹¤ì œ ì£¼ì†Œë¥¼ ë„˜ê¸°ëŠ” ê²ƒì´ ì•„ë‹ˆë¼,
+		// ê·¸ ì§€ì—­ë³€ìˆ˜ê°€ ê°€ë¦¬í‚¤ê³  ìˆëŠ” í™ ì˜ì—­ì˜ ê°ì²´ë¥¼ ê°€ë¦¬í‚¤ëŠ” í–‰ìœ„ì˜ ìƒˆë¡œìš´ ì§€ì—­ë³€ìˆ˜ë¥¼ ìƒì„±í•˜ì—¬,
+		// ê·¸ê²ƒì„ í†µí•˜ì—¬ ê°™ì€ ê°ì²´ë¥¼ ê°€ë¦¬í‚¤ë„ë¡ í•˜ëŠ” ë°©ì‹
+
+		// ìµœì¢… ê²°ë¡  ìë°”ì˜ ë©”ì†Œë“œë¡œ ì¸ì ê°’ì„ ë„˜ê¸°ëŠ” ë°©ë²•ì€ Call By Valueì´ë‹¤
+
+		// 4. Stringìœ¼ë¡œ Swap ì˜ˆì œ
+
 		String a = "10";
 		String b = "20";
 		System.out.println("Before");
@@ -72,53 +72,53 @@ public class call_by_value_and_call_by_reference {
 		System.out.println("String a = " + a);
 		System.out.println("String b = " + b);
 	}
-	
-	// ÀÚ¸® ¹Ù²Ù±â ¸Ş¼Òµå
-	
+
+	// ìë¦¬ ë°”ê¾¸ê¸° ë©”ì†Œë“œ
+
 	static void swap1(int num1, int num2) {
 		int temp;
-		
+
 		temp = num2;
 		num1 = temp;
 		num2 = num1;
 	}
 	static void swap2(Integer num1, Integer num2) {
-		Integer temp;	//ÀÓ½Ã º¯¼ö
-		
-		// ÀÚ¸® ¹Ù²Ù±â
+		Integer temp;	//ì„ì‹œ ë³€ìˆ˜
+
+		// ìë¦¬ ë°”ê¾¸ê¸°
 		temp = num1;
 		num1 = num2;
 		num2 = temp;
 	}
-	
-	// ÀÚ¸® ¹Ù²Ù±â ¸Ş¼Òµå
+
+	// ìë¦¬ ë°”ê¾¸ê¸° ë©”ì†Œë“œ
 	static void swapFinal(NumberClass one, NumberClass two) {
-		
+
 		int temp = one.num;
-		
+
 		one.setNum(two.num);
-		
+
 		two.setNum(temp);
 	}
-	
+
 	static void swapString(String a, String b) {
-		String temp; // ÀÓ½Ã º¯¼ö
-		
-		// ÀÚ¸® ¹Ù²Ù±â
-		
-		temp = a; 
+		String temp; // ì„ì‹œ ë³€ìˆ˜
+
+		// ìë¦¬ ë°”ê¾¸ê¸°
+
+		temp = a;
 		a = b;
 		b= temp;
-		
+
 	}
-	
+
 	static class NumberClass {
 		int num;
-		
+
 		public NumberClass(int num) {
 			this.num = num;
 		}
-		
+
 		public void setNum(int num) {
 			this.num = num;
 		}

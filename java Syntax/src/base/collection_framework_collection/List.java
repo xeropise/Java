@@ -11,112 +11,98 @@ import java.util.Vector;
 public class List {
 
 	public static void main(String[] args) {
-		
-		// 1. ¿ä¼ÒÀÇ ÀúÀå ¼ø¼­°¡ À¯ÁöµÈ´Ù.
-		// 2. °°Àº ¿ä¼ÒÀÇ Áßº¹ ÀúÀåÀ» Çã¿ëÇÕ´Ï´Ù.
-		// 3. µÑ´Ù Thread-safe ÇÏÁö ¾ÊÀ¸¹Ç·Î, ÇÊ¿äÇÏ´Ù¸é Collections.synchronizedList »ç¿ë °í·Á
+
+		// 1. ìš”ì†Œì˜ ì €ì¥ ìˆœì„œê°€ ìœ ì§€ëœë‹¤.
+		// 2. ê°™ì€ ìš”ì†Œì˜ ì¤‘ë³µ ì €ì¥ì„ í—ˆìš©í•©ë‹ˆë‹¤.
+		// 3. ë‘˜ë‹¤ Thread-safe í•˜ì§€ ì•Šìœ¼ë¯€ë¡œ, í•„ìš”í•˜ë‹¤ë©´ Collections.synchronizedList ì‚¬ìš© ê³ ë ¤
 		// https://www.holaxprogramming.com/2014/02/12/java-list-interface/
 /*
 		// 1) ArrayList
-		
-		// ¨ç ³»ºÎÀûÀ¸·Î ¹è¿­À» ÀÌ¿ëÇÏ¿©, ¿ä¼Ò¸¦ ÀúÀåÇÕ´Ï´Ù.
-		// ¨è ¹è¿­Àº Å©±â¸¦ º¯°æÇÒ ¼ö ¾ø´Â ÀÎ½ºÅÏ½ºÀÌ¹Ç·Î, Å©±â¸¦ ´Ã¸®±â À§ÇØ¼­´Â »õ·Î¿î ¹è¿­À» »ı¼ºÇÏ°í ±âÁ¸ ¿ä¼ÒµéÀ» ¿Å°Ü¾ßÇÏ´Â º¹ÀâÇÑ °úÁ¤À» °ÅÄ¨´Ï´Ù.
-		// ¨é ¹°·Ğ ÀÌ °úÁ¤Àº ÀÚµ¿À¸·Î ¼öÇàµÇÁö¸¸, ¿ä¼ÒÀÇ Ãß°¡ ¹× »èÁ¦ ÀÛ¾÷¿¡ °É¸®´Â ½Ã°£ÀÌ ¸Å¿ì ±æ¾îÁö´Â ´ÜÁ¡À» °¡Áö°Ô µË´Ï´Ù.
-		// µ¿±âÈ­°¡ Á¦°øµÇÁö ¾ÊÀ½, µ¥ÀÌÅÍÀÇ °Ë»ö¿¡ À¯¸®ÇÏ¸ç Ãß°¡, »èÁ¦¿¡´Â ¼º´É °í·Á
+
+		// â‘  ë‚´ë¶€ì ìœ¼ë¡œ ë°°ì—´ì„ ì´ìš©í•˜ì—¬, ìš”ì†Œë¥¼ ì €ì¥í•©ë‹ˆë‹¤.
+		// â‘¡ ë°°ì—´ì€ í¬ê¸°ë¥¼ ë³€ê²½í•  ìˆ˜ ì—†ëŠ” ì¸ìŠ¤í„´ìŠ¤ì´ë¯€ë¡œ, í¬ê¸°ë¥¼ ëŠ˜ë¦¬ê¸° ìœ„í•´ì„œëŠ” ìƒˆë¡œìš´ ë°°ì—´ì„ ìƒì„±í•˜ê³  ê¸°ì¡´ ìš”ì†Œë“¤ì„ ì˜®ê²¨ì•¼í•˜ëŠ” ë³µì¡í•œ ê³¼ì •ì„ ê±°ì¹©ë‹ˆë‹¤.
+		// â‘¢ ë¬¼ë¡  ì´ ê³¼ì •ì€ ìë™ìœ¼ë¡œ ìˆ˜í–‰ë˜ì§€ë§Œ, ìš”ì†Œì˜ ì¶”ê°€ ë° ì‚­ì œ ì‘ì—…ì— ê±¸ë¦¬ëŠ” ì‹œê°„ì´ ë§¤ìš° ê¸¸ì–´ì§€ëŠ” ë‹¨ì ì„ ê°€ì§€ê²Œ ë©ë‹ˆë‹¤.
+		// ë™ê¸°í™”ê°€ ì œê³µë˜ì§€ ì•ŠìŒ, ë°ì´í„°ì˜ ê²€ìƒ‰ì— ìœ ë¦¬í•˜ë©° ì¶”ê°€, ì‚­ì œì—ëŠ” ì„±ëŠ¥ ê³ ë ¤
 		ArrayList<Integer> arrList = new ArrayList<Integer>();
-		
+
 		arrList.add(40);
 		arrList.add(30);
 		arrList.add(20);
 		arrList.add(10);
-		
-		// for ¹®°ú get() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ Ãâ·Â
+
+		// for ë¬¸ê³¼ get() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì¶œë ¥
 		for(int i=0; i<arrList.size(); i++) {
 			System.out.println(arrList.get(i) + " ");
 		}
-		
-		// remove() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ Á¦°Å
+
+		// remove() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì œê±°
 		arrList.remove(1);
-		
-		// Enhanced for ¹®°ú get() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ Ãâ·Â
 
+		// Enhanced for ë¬¸ê³¼ get() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì¶œë ¥
 		for (int e : arrList) {
-
 		    System.out.print(e + " ");
-
 		}
-		
-		System.out.println("");
-		
-		// Collections.sort() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ Á¤·Ä
 
+		System.out.println("");
+
+		// Collections.sort() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì •ë ¬
 		Collections.sort(arrList);
-
-		// iterator() ¸Ş¼Òµå¿Í get() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ Ãâ·Â
-
+		// iterator() ë©”ì†Œë“œì™€ get() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì¶œë ¥
 		Iterator<Integer> iter = arrList.iterator();
-
 		while (iter.hasNext()) {
-
 		    System.out.print(iter.next() + " ");
-
 		}
-		
+
 		System.out.println("");
-		// set() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ º¯°æ
-
+		// set() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ë³€ê²½
 		arrList.set(0, 20);
-
 		System.out.println(arrList);
+		// size() ë©”ì†Œë“œë¥¼ ì´ìš©í•œ ìš”ì†Œì˜ ì´ ê°œìˆ˜
+		System.out.println("ë¦¬ìŠ¤íŠ¸ì˜ í¬ê¸° : " + arrList.size());
 
-		// size() ¸Ş¼Òµå¸¦ ÀÌ¿ëÇÑ ¿ä¼ÒÀÇ ÃÑ °³¼ö
-
-		System.out.println("¸®½ºÆ®ÀÇ Å©±â : " + arrList.size());
-		
 		*/
-/*		
+/*
 		// 2) LinkedList
-		
+
 		// https://m.blog.naver.com/PostView.nhn?blogId=highkrs&logNo=220443469613&proxyReferer=https%3A%2F%2Fwww.google.com%2F
-		
-		// ¨ç ArrayList Å¬·¡½º°¡ ¹è¿­À» ÀÌ¿ëÇÏ¿©, ¿ä¼Ò¸¦ ÀúÀåÇÔÀ¸·Î½á ¹ß»ıÇÏ´Â ´ÜÁ¡À» ±Øº¹ÇÏ±â À§ÇØ °í¾ÈµÇ¾ú½À´Ï´Ù.
-		// ArrayList¿¡ ºñÇØ µ¥ÀÌÅÍÀÇ Ãß°¡, »èÁ¦¿¡ À¯¸®ÇÏ¸ç µ¥ÀÌÅÍ °Ë»ö ½Ã¿¡´Â ¼º´ÉÀ» °í·Á
-		
+
+		// â‘  ArrayList í´ë˜ìŠ¤ê°€ ë°°ì—´ì„ ì´ìš©í•˜ì—¬, ìš”ì†Œë¥¼ ì €ì¥í•¨ìœ¼ë¡œì¨ ë°œìƒí•˜ëŠ” ë‹¨ì ì„ ê·¹ë³µí•˜ê¸° ìœ„í•´ ê³ ì•ˆë˜ì—ˆìŠµë‹ˆë‹¤.
+		// ArrayListì— ë¹„í•´ ë°ì´í„°ì˜ ì¶”ê°€, ì‚­ì œì— ìœ ë¦¬í•˜ë©° ë°ì´í„° ê²€ìƒ‰ ì‹œì—ëŠ” ì„±ëŠ¥ì„ ê³ ë ¤
+
 		LinkedList<Integer> lnkList = new LinkedList();
-		
+
 		lnkList.add(1);
 		lnkList.add(2);
 		lnkList.add(3);
 		lnkList.add(4);
-		
+
 		System.out.println(lnkList);
-		
+
 		System.out.println(lnkList.indexOf(1));
-		
+
 */
 
 /*
 		// 3) Vector
-		
-		// legacy Å¬·¡½º : Collections ÇÁ·¹ÀÓ¿öÅ©°¡ Æ÷ÇÔµÇ¾î ÀÖÁö ¾Ê´ø, ÃÊ±â ÀÚ¹Ù ¹öÀü¿¡¼­ Á¤ÀÇÇÑ ÀÎÅÍÆäÀÌ½º
-		// ÇöÀç´Â Àç±¸¼º ¹× ¼³°èµÇ¾î¼­ ÇöÀçÀÇ Collections ÇÁ·¹ÀÓ¿öÅ©°¡ ¿Ïº®ÇÏ°Ô È£È¯µË´Ï´Ù
-		
-		// ArrayList¿Í ´Ş¸® Vector´Â µ¿±âÈ­¸¦ Áö¿ø, Thread-safe
-		// ´Ü µ¿±âÈ­µÇ¾î ÀÖÁö ¾ÊÀº ArrayListº¸´Ù´Â ¼º´É »ó ´À¸²
-		// ¸ÖÆ¼½º·¹µå È¯°æÀÌ ¾Æ´Ñ °æ¿ì, ArrayList¸¦ »ç¿ëÇÏ´Â °ÍÀÌ ¹Ù¶÷Á÷ ÇÏ´Ù
-		
+
+		// legacy í´ë˜ìŠ¤ : Collections í”„ë ˆì„ì›Œí¬ê°€ í¬í•¨ë˜ì–´ ìˆì§€ ì•Šë˜, ì´ˆê¸° ìë°” ë²„ì „ì—ì„œ ì •ì˜í•œ ì¸í„°í˜ì´ìŠ¤
+		// í˜„ì¬ëŠ” ì¬êµ¬ì„± ë° ì„¤ê³„ë˜ì–´ì„œ í˜„ì¬ì˜ Collections í”„ë ˆì„ì›Œí¬ê°€ ì™„ë²½í•˜ê²Œ í˜¸í™˜ë©ë‹ˆë‹¤
+
+		// ArrayListì™€ ë‹¬ë¦¬ VectorëŠ” ë™ê¸°í™”ë¥¼ ì§€ì›, Thread-safe
+		// ë‹¨ ë™ê¸°í™”ë˜ì–´ ìˆì§€ ì•Šì€ ArrayListë³´ë‹¤ëŠ” ì„±ëŠ¥ ìƒ ëŠë¦¼
+		// ë©€í‹°ìŠ¤ë ˆë“œ í™˜ê²½ì´ ì•„ë‹Œ ê²½ìš°, ArrayListë¥¼ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ ë°”ëŒì§ í•˜ë‹¤
+
 		Vector<Integer> vector = new Vector<>();
-		
+
 		vector.add(1);
 		vector.add(2);
 		vector.add(3);
 		vector.add(4);
-		
-		System.out.println(vector.toString());
 
+		System.out.println(vector.toString());
 */
 		Collections.synchronizedList(new ArrayList());
 		Collections.unmodifiableMap(new HashMap());
 	}
- 
+
 }

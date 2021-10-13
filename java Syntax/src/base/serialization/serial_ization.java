@@ -11,93 +11,93 @@ import java.util.Base64;
 public class serial_ization {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		
-		// Á÷·ÄÈ­ ¿¹Áµ
+
+		// ì§ë ¬í™” ì˜ˆì¡”
 		/*
-		Member member = new Member("±è¹è¹Î", "deliverkim@baemin.com", 25);
+		Member member = new Member("ê¹€ë°°ë¯¼", "deliverkim@baemin.com", 25);
 		byte[] serializedMember;
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 			try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
 				oos.writeObject(member);
-				// serializedMember - > Á÷·ÄÈ­µÈ member °´Ã¼
+				// serializedMember - > ì§ë ¬í™”ëœ member ê°ì²´
 				serializedMember = baos.toByteArray();
 			}
 		}
-		
-		// ¹ÙÀÌÆ® ¹è¿­·Î »ý¼ºµÈ Á÷·ÄÈ­ µ¥ÀÌÅÍ¸¦ base64·Î º¯È¯
+
+		// ë°”ì´íŠ¸ ë°°ì—´ë¡œ ìƒì„±ëœ ì§ë ¬í™” ë°ì´í„°ë¥¼ base64ë¡œ ë³€í™˜
 		System.out.println(Base64.getEncoder().encodeToString(serializedMember));
-		
-		// °´Ã¼¸¦ Á÷·ÄÈ­ÇÏ¿©, ¹ÙÀÌÆ® ¹è¿­(byte []) ÇüÅÂ·Î º¯È¯
-		 * 
+
+		// ê°ì²´ë¥¼ ì§ë ¬í™”í•˜ì—¬, ë°”ì´íŠ¸ ë°°ì—´(byte []) í˜•íƒœë¡œ ë³€í™˜
+		 *
 		 */
-		
-		// Á÷·ÄÈ­ ¿¹Á¦¿¡¼­ »ý¼ºµÈ base64 µ¥ÀÌÅÍ
-		String base64Member = "...»ý·«";
+
+		// ì§ë ¬í™” ì˜ˆì œì—ì„œ ìƒì„±ëœ base64 ë°ì´í„°
+		String base64Member = "...ìƒëžµ";
 		byte[] serializedMember = Base64.getDecoder().decode(base64Member);
 		try (ByteArrayInputStream bais = new ByteArrayInputStream(serializedMember)) {
 			try (ObjectInputStream ois = new ObjectInputStream(bais)) {
-				// ¿ªÁ÷·ÄÈ­µÈ Member °´Ã¼¸¦ ÀÐ¾î¿Â´Ù.
+				// ì—­ì§ë ¬í™”ëœ Member ê°ì²´ë¥¼ ì½ì–´ì˜¨ë‹¤.
 				Object objectMember = ois.readObject();
 				Member member = (Member) objectMember;
 				System.out.println(member);;
 			}
 		}
-		
-		// ÀÚ¹ÙÀÇ Á÷·ÄÈ­ ¿Ö »ç¿ëÇÒ±î?
-		
+
+		// ìžë°”ì˜ ì§ë ¬í™” ì™œ ì‚¬ìš©í• ê¹Œ?
+
 		//CSV
-		// µ¥ÀÌÅÍ¸¦ Ç¥ÇöÇÏ´Â °¡Àå ¸¹ÀÌ »ç¿ëµÇ´Â ¹æ¹ý Áß ÇÏ³ª·Î ÄÞ¸¶(,)¸¦ ±âÁØÀ¸·Î µ¥ÀÌÅÍ ±¸ºÐ
-		Member member = new Member("±è¹è¹Î", "deliverykim@baemin.com", 25 );
-		// member °´Ã¼¸¦ csv·Î º¯È¯
-		String csv = String.format("%s,%s,%d",member.getName(), member.getEmail(), member.getAge()); 
+		// ë°ì´í„°ë¥¼ í‘œí˜„í•˜ëŠ” ê°€ìž¥ ë§Žì´ ì‚¬ìš©ë˜ëŠ” ë°©ë²• ì¤‘ í•˜ë‚˜ë¡œ ì½¤ë§ˆ(,)ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë°ì´í„° êµ¬ë¶„
+		Member member = new Member("ê¹€ë°°ë¯¼", "deliverykim@baemin.com", 25 );
+		// member ê°ì²´ë¥¼ csvë¡œ ë³€í™˜
+		String csv = String.format("%s,%s,%d",member.getName(), member.getEmail(), member.getAge());
 		System.out.println(csv);
-		
+
 		//JSON
-		// ÃÖ±Ù¿¡ °¡Àå ¸¹ÀÌ »ç¿ëÇÏ´Â Æ÷¸Ë, ÀÚ¹Ù½ºÅ©¸³Æ®(ECMAScript)¿¡¼­ ½±°Ô »ç¿ë°¡´É, ´Ù¸¥ µ¥ÀÌÅÍ Æ÷¸Ë ¹æ½Ä¿¡ ºñÇØ ¿À¹öÇìµå°¡ Àû¾î ÀÎ±â°¡ ¸¹´Ù.
-		  // member°´Ã¼¸¦ jsonÀ¸·Î º¯È¯ 
-		  String json = String.format(
-		          "{\"name\":\"%s\",\"email\":\"%s\",\"age\":%d}",
-		          member.getName(), member.getEmail(), member.getAge());
-		  System.out.println(json);    
-		  
-		// Protocol Buffer, Apache Avro µîÀÌ ÀÖ´Ù.
-		  
-		// " ÀÚ¹Ù Á÷·ÄÈ­ ÇüÅÂÀÇ µ¥ÀÌÅÍ ±³È¯Àº ÀÚ¹Ù ½Ã½ºÅÛ °£ÀÇ µ¥ÀÌÅÍ ±³È¯À» À§ÇØ¼­ Á¸Àç "
-		  
-		// " ÀÚ¹Ù¿¡¼­µµ CSV,JSONÀ» »ç¿ëÇÏ¸éµÇ´Âµ¥ ÀÚ¹Ù Á÷·ÄÈ­¸¦ ¿Ö½á¾ßµÇ³ª¿ä? "
-		  
-		// => ¸ñÀû¿¡ µû¶ó ÀûÀýÈ÷ »ç¿ëÇÒ °Í
-		  
+		// ìµœê·¼ì— ê°€ìž¥ ë§Žì´ ì‚¬ìš©í•˜ëŠ” í¬ë§·, ìžë°”ìŠ¤í¬ë¦½íŠ¸(ECMAScript)ì—ì„œ ì‰½ê²Œ ì‚¬ìš©ê°€ëŠ¥, ë‹¤ë¥¸ ë°ì´í„° í¬ë§· ë°©ì‹ì— ë¹„í•´ ì˜¤ë²„í—¤ë“œê°€ ì ì–´ ì¸ê¸°ê°€ ë§Žë‹¤.
+		// memberê°ì²´ë¥¼ jsonìœ¼ë¡œ ë³€í™˜
+		String json = String.format(
+				"{\"name\":\"%s\",\"email\":\"%s\",\"age\":%d}",
+				member.getName(), member.getEmail(), member.getAge());
+		System.out.println(json);
+
+		// Protocol Buffer, Apache Avro ë“±ì´ ìžˆë‹¤.
+
+		// " ìžë°” ì§ë ¬í™” í˜•íƒœì˜ ë°ì´í„° êµí™˜ì€ ìžë°” ì‹œìŠ¤í…œ ê°„ì˜ ë°ì´í„° êµí™˜ì„ ìœ„í•´ì„œ ì¡´ìž¬ "
+
+		// " ìžë°”ì—ì„œë„ CSV,JSONì„ ì‚¬ìš©í•˜ë©´ë˜ëŠ”ë° ìžë°” ì§ë ¬í™”ë¥¼ ì™œì¨ì•¼ë˜ë‚˜ìš”? "
+
+		// => ëª©ì ì— ë”°ë¼ ì ì ˆížˆ ì‚¬ìš©í•  ê²ƒ
+
 		/*
-		 * - ÀÚ¹Ù Á÷·ÄÈ­ÀÇ ÀåÁ¡
-		 *  1) ÀÚ¹Ù ½Ã½ºÅÛ °³¹ß¿¡ ÃÖÀûÈ­ µÇ¾î ÀÖ´Ù.
-		 *  2) º¹ÀâÇÑ µ¥ÀÌÅÍ±¸Á¶ÀÇ Å¬·¡½ºÀÇ °´Ã¼¶óµµ Á÷·ÄÈ­ ±âº» Á¶°Ç¸¸ ÁöÅ°¸é Å« ÀÛ¾÷ ¾øÀÌ ¹Ù·Î Á÷·ÄÈ­ °¡´ÉÇÏ´Ù, ¿ªÁ÷·ÄÈ­µµ ¸¶Âù°¡Áö
-		 *  3) µ¥ÀÌÅÍ Å¸ÀÔÀÌ ÀÚµ¿À¸·Î ¸ÂÃçÁö±â ¶§¹®¿¡, °ü·Ã ºÎºÐÀ» Å« ½Å°æÀ» ¾²Áö ¾Ê¾Æµµ µÈ´Ù.
-		 * 
-		 * - ÀÚ¹Ù Á÷·ÄÈ­´Â ¾ðÁ¦ ¾îµð¼­ »ç¿ëµÇ³ª¿ä?
-		 *  1) JVM ¸Þ¸ð¸®¿¡¼­¸¸ »óÁÖµÇ¾î ÀÖ´Â °´Ã¼ µ¥ÀÌÅÍ¸¦ ±×´ë·Î ¿µ¼ÓÈ­(Persistence)°¡ ÇÊ¿äÇÒ ¶§ »ç¿ë
-		 *  2) ½Ã½ºÅÛÀÌ Á¾·áµÇ´õ¶óµµ ¾ø¾îÁöÁö ¾Ê´Â ÀåÁ¡, ¿µ¼ÓÈ­µÈ µ¥ÀÌÅÍÀÌ±â ¶§¹®¿¡ ³×Æ®¿öÅ©·Îµµ Àü¼Û °¡´É
-		 *  3) ÇÊ¿äÇÒ ¶§ Á÷·ÄÈ­µÈ °´Ã¼ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­, ¿ªÁ÷·ÄÈ­ÇÏ¿© °´Ã¼¸¦ ¹Ù·Î »ç¿ëÇÒ ¼ö ÀÖ°Ô µÈ´Ù.
-		 *  
-		 *  *»ç¿ëÇÏ´Â °÷
-		 *  - ¼­ºí¸´ ¼¼¼Ç ( Servlet Session )
-		 *  - Ä³½Ã ( Cache )
-		 *  - ÀÚ¹Ù RMI( Remote Method Invocation )
+		 * - ìžë°” ì§ë ¬í™”ì˜ ìž¥ì 
+		 *  1) ìžë°” ì‹œìŠ¤í…œ ê°œë°œì— ìµœì í™” ë˜ì–´ ìžˆë‹¤.
+		 *  2) ë³µìž¡í•œ ë°ì´í„°êµ¬ì¡°ì˜ í´ëž˜ìŠ¤ì˜ ê°ì²´ë¼ë„ ì§ë ¬í™” ê¸°ë³¸ ì¡°ê±´ë§Œ ì§€í‚¤ë©´ í° ìž‘ì—… ì—†ì´ ë°”ë¡œ ì§ë ¬í™” ê°€ëŠ¥í•˜ë‹¤, ì—­ì§ë ¬í™”ë„ ë§ˆì°¬ê°€ì§€
+		 *  3) ë°ì´í„° íƒ€ìž…ì´ ìžë™ìœ¼ë¡œ ë§žì¶°ì§€ê¸° ë•Œë¬¸ì—, ê´€ë ¨ ë¶€ë¶„ì„ í° ì‹ ê²½ì„ ì“°ì§€ ì•Šì•„ë„ ëœë‹¤.
+		 *
+		 * - ìžë°” ì§ë ¬í™”ëŠ” ì–¸ì œ ì–´ë””ì„œ ì‚¬ìš©ë˜ë‚˜ìš”?
+		 *  1) JVM ë©”ëª¨ë¦¬ì—ì„œë§Œ ìƒì£¼ë˜ì–´ ìžˆëŠ” ê°ì²´ ë°ì´í„°ë¥¼ ê·¸ëŒ€ë¡œ ì˜ì†í™”(Persistence)ê°€ í•„ìš”í•  ë•Œ ì‚¬ìš©
+		 *  2) ì‹œìŠ¤í…œì´ ì¢…ë£Œë˜ë”ë¼ë„ ì—†ì–´ì§€ì§€ ì•ŠëŠ” ìž¥ì , ì˜ì†í™”ëœ ë°ì´í„°ì´ê¸° ë•Œë¬¸ì— ë„¤íŠ¸ì›Œí¬ë¡œë„ ì „ì†¡ ê°€ëŠ¥
+		 *  3) í•„ìš”í•  ë•Œ ì§ë ¬í™”ëœ ê°ì²´ ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ, ì—­ì§ë ¬í™”í•˜ì—¬ ê°ì²´ë¥¼ ë°”ë¡œ ì‚¬ìš©í•  ìˆ˜ ìžˆê²Œ ëœë‹¤.
+		 *
+		 *  *ì‚¬ìš©í•˜ëŠ” ê³³
+		 *  - ì„œë¸”ë¦¿ ì„¸ì…˜ ( Servlet Session )
+		 *  - ìºì‹œ ( Cache )
+		 *  - ìžë°” RMI( Remote Method Invocation )
 		 */
 	}
-	
-	
+
+
 	public static class Member implements Serializable {
-		
+
 		private String name;
 		private String email;
 		private int age;
-		
+
 		public Member(String name, String email, int age) {
 			this.name = name;
 			this.email = email;
 			this.age = age;
-			
+
 		}
 
 		public String getName() {
@@ -128,7 +128,7 @@ public class serial_ization {
 		public String toString() {
 			return String.format("Member{name='%s', email='%s', age='%s'}", name, email, age);
 		}
-		
-		
+
+
 	}
 }

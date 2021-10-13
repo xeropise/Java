@@ -3,53 +3,53 @@ package base;
 public class Object_equals_hashcode_method {
 
 	public static void main(String[] args) {
-		
-		// 1. Object·Î ºñ±³
+
+		// 1. Objectë¡œ ë¹„êµ
 //		Object object1 = new Object();
 //		Object object2 = new Object();
 //		Object object3 = new Object();
 //		Object object4 = new Object();
-//		
+//
 //		System.out.println(object1.equals(object2));
 //		System.out.println(object2.equals(object3));
 //		System.out.println(object3.equals(object4));
 //		System.out.println(object4.equals(object1));
-//		
+//
 //		System.out.println("\n");
-//		
+//
 //		System.out.println(object1.hashCode());
 //		System.out.println(object2.hashCode());
 //		System.out.println(object3.hashCode());
 //		System.out.println(object4.hashCode());
-		
-		// 2. °´Ã¼·Î ºñ±³ 
-		Member member = new Member("Á¶±Ôºñ",31);
-		Member member2 = new Member("Á¶±Ôºñ",31);
-		
-		System.out.println(member.equals(member2)); // false, ÀçÁ¤ÀÇ ÇÒ °æ¿ì true ¸®ÅÏ
-		
-		System.out.println("member 1ÀÇ "+member.hashCode());
-		System.out.println("member 2ÀÇ "+member2.hashCode());
-		
-		//´äÀº false ÀÌÁö¸¸ Member Å¬·¡½º Æ¯¼º »ó µÎ°³´Â °°¾Æ¾ß ÇÑ´Ù
-		// Áï »õ·Ó°Ô Á¤ÀÇÇÑ Å¬·¡½º¿¡¼­´Â µÎ °´Ã¼°¡ °°Àº °´Ã¼ÀÓÀ» ÀÇ¹ÌÇÏ´Â equals ¸Ş¼Òµå¸¦ ÀçÁ¤ÀÇ ÇØ¾ßÇÒ ÇÊ¿ä¼º
-		
-		// ÇÏÁö¸¸ ÀçÁ¤ÀÇÇÏ¿© equal true¸¦ ¾ò¾î³ÂÀ¸³ª hashCode°¡ ´Ù¸£´Ù´Â °ÍÀº ´Ù¸¥ °´Ã¼¶ó´Â ¾ê±â°¡ µÈ´Ù.
-		
-		// hashcode() ÀçÁ¤ÀÇÇÏ¸é true·Î ÇÑ´Ù
-		
-		// ÃÖÁ¾ °á·Ğ : equals()¿¡ ÀÇÇØ true°¡ ³ª¿À´Â µÎ °´Ã¼ÀÇ hashCode´Â °°¾Æ¾ß ÇÑ´Ù.
+
+		// 2. ê°ì²´ë¡œ ë¹„êµ
+		Member member = new Member("ì¡°ê·œë¹„",31);
+		Member member2 = new Member("ì¡°ê·œë¹„",31);
+
+		System.out.println(member.equals(member2)); // false, ì¬ì •ì˜ í•  ê²½ìš° true ë¦¬í„´
+
+		System.out.println("member 1ì˜ "+member.hashCode());
+		System.out.println("member 2ì˜ "+member2.hashCode());
+
+		//ë‹µì€ false ì´ì§€ë§Œ Member í´ë˜ìŠ¤ íŠ¹ì„± ìƒ ë‘ê°œëŠ” ê°™ì•„ì•¼ í•œë‹¤
+		// ì¦‰ ìƒˆë¡­ê²Œ ì •ì˜í•œ í´ë˜ìŠ¤ì—ì„œëŠ” ë‘ ê°ì²´ê°€ ê°™ì€ ê°ì²´ì„ì„ ì˜ë¯¸í•˜ëŠ” equals ë©”ì†Œë“œë¥¼ ì¬ì •ì˜ í•´ì•¼í•  í•„ìš”ì„±
+
+		// í•˜ì§€ë§Œ ì¬ì •ì˜í•˜ì—¬ equal trueë¥¼ ì–»ì–´ëƒˆìœ¼ë‚˜ hashCodeê°€ ë‹¤ë¥´ë‹¤ëŠ” ê²ƒì€ ë‹¤ë¥¸ ê°ì²´ë¼ëŠ” ì–˜ê¸°ê°€ ëœë‹¤.
+
+		// hashcode() ì¬ì •ì˜í•˜ë©´ trueë¡œ í•œë‹¤
+
+		// ìµœì¢… ê²°ë¡  : equals()ì— ì˜í•´ trueê°€ ë‚˜ì˜¤ëŠ” ë‘ ê°ì²´ì˜ hashCodeëŠ” ê°™ì•„ì•¼ í•œë‹¤.
 	}
-	
-	
-	
-	
+
+
+
+
 	public static class Member {
-		
+
 		private String name;
 		private int age;
-		
-		
+
+
 		public Member(String name, int age) {
 			this.name = name;
 			this.age = age;
@@ -91,8 +91,7 @@ public class Object_equals_hashcode_method {
 		public int hashCode() {
 			return age + name.hashCode();
 		}
-		
-		
+
+
 	}
 }
-

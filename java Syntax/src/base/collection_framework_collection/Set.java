@@ -4,62 +4,58 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 public class Set {
-	
+
 	public static void main(String args[]) {
 /*
  * 		 1. HashSet
  * 		
-		//¼ø¼­¸¦ À¯Áö ÇÏÁö ¾Ê´Â µ¥ÀÌÅÍÀÇ ÁıÇÕ, ¼ø¼­¸¦ À¯ÁöÇÏ·Á¸é LinkedHashSet
-		//µ¥ÀÌÅÍÀÇ Áßº¹À» Çã¿ëÇÏÁö ¾Ê´Â´Ù
-		//³»ºÎÀûÀ¸·Î ÇØ½ÌÀ» ÀÌ¿ëÇØ¼­ ±¸ÇöÇÑ ÄÃ·º¼Ç
-		
+		//ìˆœì„œë¥¼ ìœ ì§€ í•˜ì§€ ì•ŠëŠ” ë°ì´í„°ì˜ ì§‘í•©, ìˆœì„œë¥¼ ìœ ì§€í•˜ë ¤ë©´ LinkedHashSet
+		//ë°ì´í„°ì˜ ì¤‘ë³µì„ í—ˆìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
+		//ë‚´ë¶€ì ìœ¼ë¡œ í•´ì‹±ì„ ì´ìš©í•´ì„œ êµ¬í˜„í•œ ì»¬ë ‰ì…˜
+
 		Set<Integer> set = new HashSet<>();
 		Set<String> set2 = new HashSet<>();
 		int[] valArr = {99,120,12, 1, 2, 2, 10, 3, 3, 5, 6, 10};
-		
+
 		for(int i=0; i< valArr.length; i++) {
 			set.add(valArr[i]);
 		}
-		
+
 		System.out.println(set);
 		System.out.println();
-		
-		String[] valArr2 = {"³ª", "´Ù", "¶ó", "¸¶", "°¡", "Â÷", "°¡", "ÇÏ", "ÆÄ", "ÆÄ"};
-		
+
+		String[] valArr2 = {"ë‚˜", "ë‹¤", "ë¼", "ë§ˆ", "ê°€", "ì°¨", "ê°€", "í•˜", "íŒŒ", "íŒŒ"};
+
 		for (int i=0; i<valArr2.length; i++) {
 			set2.add(valArr2[i]);
 		}
-		
+
 		System.out.println(set2);
-		
+
 */
 		//2. TreeSet
-		
+
 		TreeSet<Integer> set2 = new TreeSet<>();
-		
+
 		set2.add(1);
 		set2.add(2);
 		set2.add(3);
 		set2.add(4);
-		
+
 		System.out.println( set2.first() );
-		
+
 		System.out.println( set2.subSet(1, 3));
-		
-/*	
-		1. ±¸Çö ¹æ½Ä
 
-		 - HashSetÀº ÇØ½ÌÀ» ÀÌ¿ëÇÏ¿© ±¸Çö
-		 - TreeSetÀº ÀÌÁøÅ½»öÆ®¸®¸¦ ÀÌ¿ëÇÏ¿© ±¸Çö
-
-		2. ¼Óµµ ºñ±³
+/*
+		1. êµ¬í˜„ ë°©ì‹
+		 - HashSetì€ í•´ì‹±ì„ ì´ìš©í•˜ì—¬ êµ¬í˜„
+		 - TreeSetì€ ì´ì§„íƒìƒ‰íŠ¸ë¦¬ë¥¼ ì´ìš©í•˜ì—¬ êµ¬í˜„
+		2. ì†ë„ ë¹„êµ
 		 - HashSet > TreeSet
-		 - ÇØ½ÌÀÌ ÀÌÁøÅ½»öÆ®¸®º¸´Ù ºü¸£´Ù
-
-		3. Á¤·Ä ±â´É
+		 - í•´ì‹±ì´ ì´ì§„íƒìƒ‰íŠ¸ë¦¬ë³´ë‹¤ ë¹ ë¥´ë‹¤
+		3. ì •ë ¬ ê¸°ëŠ¥
 		 - HashSet < TreeSet
-		 - ÀÌÁøÅ½»öÆ®¸®¸¦ ÀÌ¿ëÇß±â ¶§¹®¿¡ µ¥ÀÌÅÍ Á¤·ÄÀÌ °¡´É (Comparator ÀÌ¿ë)
-
+		 - ì´ì§„íƒìƒ‰íŠ¸ë¦¬ë¥¼ ì´ìš©í–ˆê¸° ë•Œë¬¸ì— ë°ì´í„° ì •ë ¬ì´ ê°€ëŠ¥ (Comparator ì´ìš©)
 */
 	}
 }

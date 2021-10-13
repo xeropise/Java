@@ -1,58 +1,60 @@
+
+
 package base;
 
 public class printf {
 
 	public static void main(String[] args) {
-		
-		//boolean Ãâ·Â Áö½ÃÀÚ
+
+		//boolean ì¶œë ¥ ì§€ì‹œì
 
 		boolean isTrue = true;
 
 		System.out.printf("isTrue[%b]%n",isTrue);
 
-		
 
-		//10Áø¼ö Ãâ·Â Áö½ÃÀÚ
+
+		//10ì§„ìˆ˜ ì¶œë ¥ ì§€ì‹œì
 
 		int number = 10;
 
 		System.out.printf("isTrue[%d]%n",number);
 
-		
 
-		//¹®ÀÚ Ãâ·Â Áö½ÃÀÚ
+
+		//ë¬¸ì ì¶œë ¥ ì§€ì‹œì
 
 		char c = 'A';
 
 		System.out.printf("c[%c]%n",c);
 
-		
 
-		//8Áø¼ö Ãâ·Â Áö½ÃÀÚ
+
+		//8ì§„ìˆ˜ ì¶œë ¥ ì§€ì‹œì
 
 		int oNum = 010;
 
 		System.out.printf("oNum[%o],[%d]%n",oNum, oNum);
 
-		
 
-		//16Áø¼ö Ãâ·Â Áö½ÃÀÚ
+
+		//16ì§„ìˆ˜ ì¶œë ¥ ì§€ì‹œì
 
 		int hNum = 0x10;
 
 		System.out.printf("hNum[%x],[%d]%n",hNum, hNum);
 
-		
 
-		//¹®ÀÚ¿­ Ãâ·Â Áö½ÃÀÚ
 
-	    String msg = "hello world";
+		//ë¬¸ìì—´ ì¶œë ¥ ì§€ì‹œì
+
+		String msg = "hello world";
 
 		System.out.printf("msg[%s]%n",msg);
 
 
 
-//ÃâÃ³: https://jink1982.tistory.com/183 [µÅ¹ÎÀÌ]
+//ì¶œì²˜: https://jink1982.tistory.com/183 [ë¼ë¯¼ì´]
 	}
 
 }
