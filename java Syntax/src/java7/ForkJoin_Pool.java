@@ -14,6 +14,7 @@ public class ForkJoin_Pool {
         // https://hamait.tistory.com/612
         // https://www.baeldung.com/java-fork-join
         // https://junghyungil.tistory.com/m/103?category=892275
+        // https://codechacha.com/ko/java-fork-join-pool/
 
         // Runnable이나 Callable 인터페이스를 사용하지 않고 ForkJoinTask라는 추상클래스를 사용한다.
         // 대표적으로 ForkJoinTask에서 RecursiveAction(리턴 없음), RecursiveTask(리턴 있음) 라는 형태가 있다.
@@ -40,7 +41,7 @@ public class ForkJoin_Pool {
         protected void compute() {
             //if work is above threshold, break tasks up into smaller tasks
             if(this.workLoad > 16) {
-                System.out.println("Splitting workLoad : " + this.workLoad);
+                System.out.println(Thread.currentThread().getName() + " is Splitting workLoad : " + this.workLoad);
                 List<MyRecursiveAction> subtasks = new ArrayList<MyRecursiveAction>();
 
                 subtasks.addAll(createSubtasks());
@@ -51,6 +52,8 @@ public class ForkJoin_Pool {
             } else {
                 System.out.println("Doing workLoad myself: " + this.workLoad);
             }
+
+            System.out.println(Thread.currentThread().getName() + " is Forking");
         }
 
         private List<MyRecursiveAction> createSubtasks() {
