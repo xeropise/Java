@@ -26,8 +26,14 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
             return compueSequentially();
         }
 
+        // TODO(ForkJoin 완료 해야함)
+        /*
         ForkJoinSumCalculator leftTask =
-                new ForkJoinSumCalculator()
+                new ForkJoinSumCalculator();
+
+         */
+
+        return 0L;
     }
 
     private long compueSequentially() {
