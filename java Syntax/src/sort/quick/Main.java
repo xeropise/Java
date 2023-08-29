@@ -12,24 +12,34 @@ public class Main {
     }
 
     private static void quickSort(int [] arr, int left, int right) {
-        if (left >= right) {
-            return;
-        }
+        int low = left;
+        int high = right;
 
-        int pivot = arr[right];
+        int pivot = arr[(left + right) / 2];
 
-        int sortedIndex = left;
+        while(low <= high) {
+            while(arr[low] < pivot) {
+                low++;
+            }
 
-        for (int i = left; i < right; i++) {
-            if (arr[i] <= pivot) {
-                swap(arr, i, sortedIndex);
-                sortedIndex++;
+            while(arr[high] > pivot) {
+                high--;
+            }
+
+            if (low <= high) {
+                swap(arr, low, high);
+                low++;
+                high--;
             }
         }
 
-        swap(arr, sortedIndex, right);
-        quickSort(arr, left, sortedIndex - 1);
-        quickSort(arr, sortedIndex + 1, right);
+        if (low < right) {
+            quickSort(arr, low, right);
+        }
+
+        if (left < high) {
+            quickSort(arr, left, high);
+        }
     }
 
     private static void swap(int[] arr, int i, int j) {
