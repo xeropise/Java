@@ -16,4 +16,5 @@
 5. 퀵 정렬 (Quick sort)
 
 
-![캡처](https://github.com/xeropise/Books/assets/50399804/75a8c150-069f-4ce2-9f36-80b8ad8ea5f8)
+![캡처](https://github.com/xeropise/Java/assets/50399804/f6a5de3f-06d5-4427-9433-1a6dde6eecd1)
+
