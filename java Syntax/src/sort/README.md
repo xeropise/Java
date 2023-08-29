@@ -9,5 +9,11 @@
    - 불안정 정렬 :  키값이 같은 요소의 순서가 정렬 전후에도 유지되지 않는 것
 ---
 
-1. 버블 정렬(Bubble sort)
+1. 버블 정렬 (Bubble sort)
 2. 선택 정렬 (Selection sort)
+3. 삽입 정렬 (Insertion sort)
+4. 쉘 정렬 (Shell sort)
+5. 퀵 정렬 (Quick sort)
+
+
+![캡처](https://github.com/xeropise/Books/assets/50399804/75a8c150-069f-4ce2-9f36-80b8ad8ea5f8)
