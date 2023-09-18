@@ -1,5 +1,6 @@
 ### 자바 컬렉션 프레임워크
 
-![](https://velog.velcdn.com/images/xeropise1/post/c879345d-18af-4850-afec-943d1a95b242/image.JPG)
+![업로드중..](blob:https://velog.io/77c078e5-7ec9-4d61-ad38-f04ca727d419)
+
 
 
