@@ -7,9 +7,6 @@ import java.text.NumberFormat;
 
 public class bigdecimal {
 
-
-
-
 	public static void main(String[] args) {
 		// 흔히 쓰이는 값은 상수로 정의 되어 있다.
 		// 0
