@@ -2,8 +2,6 @@
 
 package base;
 
-import java.util.List;
-
 public class printf {
 
 	public static void main(String[] args) {
@@ -14,7 +12,7 @@ public class printf {
 
 		System.out.printf("isTrue[%b]%n",isTrue);
 
-		List
+
 
 		//10진수 출력 지시자
 
