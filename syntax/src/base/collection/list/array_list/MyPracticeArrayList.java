@@ -1,6 +1,5 @@
-package base.collection.array_list;
+package base.collection.list.array_list;
 
-import javax.swing.text.Element;
 import java.util.Arrays;
 
 public class MyPracticeArrayList<E> implements MyList<E> {

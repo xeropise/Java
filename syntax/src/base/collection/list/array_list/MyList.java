@@ -1,4 +1,4 @@
-package base.collection.array_list;
+package base.collection.list.array_list;
 
 public interface MyList<T> {
 

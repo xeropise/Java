@@ -1,4 +1,4 @@
-package base.collection.array_list;
+package base.collection.list.array_list;
 
 import java.util.Arrays;
 
@@ -73,7 +73,7 @@ public class MyArrayList<E> implements MyList<E> {
     @Override
     public void add(int index, E value) {
         // 인덱스가 음수이거나, 배열 크기를 벗어난 경우 예외 발생 (리스트는 데이터가 연속되어야 한다.)
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
 
@@ -112,7 +112,7 @@ public class MyArrayList<E> implements MyList<E> {
 
     @Override
     public E remove(int index) {
-        // 인덱스가 음수이거나, size 보다 크거나 같을 경우 빈 공간
+        // 인덱스가 음수이거나, size 보다 크거나 같을 경우(빈 공간)
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
