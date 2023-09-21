@@ -1,3 +1,5 @@
+package sort.merge;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,23 +8,18 @@ import java.util.StringTokenizer;
 
 public class Main {
 
+    // 추가적인 공간이 필요하다
     static int[] sorted;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        sorted = new int[arr.length];
 
-        sorted = new int[N];
+        merge_sort(arr, 0, arr.length - 1);
 
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            sorted[i] = Integer.parseInt(st.nextToken());
-        }
-
-        merge_sort(Arrays.copyOf(sorted, sorted.length), 0, sorted.length - 1);
+        System.out.println(Arrays.toString(sorted));
 
         br.close();
     }
@@ -59,6 +56,8 @@ public class Main {
                  *  오른쪽 부분리스트 end번째 원소가 왼쪽 부분리스트 start번째 원소보다 작거나 같을 경우
                  *  오른쪽의 end번째 원소를 새 배열에 넣고 end과 idx를 1 증가시킨다.
                  */
+
+                // arr[start] > arr[end]
             } else {
                 sorted[idx] = arr[end];
                 idx++;
