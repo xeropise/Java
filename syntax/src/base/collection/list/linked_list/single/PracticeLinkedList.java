@@ -2,66 +2,64 @@ package base.collection.list.linked_list.single;
 
 import java.util.Objects;
 
-public class MyPracticeSinglyLinkedList<E> {
+class PracticeLinkedList <E> {
     private Node<E> head;
     private Node<E> tail;
 
+
     private int size;
 
-    public MyPracticeSinglyLinkedList() {
-        this.head = null;
-        this.tail = null;
-        this.size = 0;
-    }
-
     private Node<E> search(int index) {
-        Node<E> n = head;
+        Node<E> node = head;
 
         for (int i = 0; i < index; i++) {
-            n = head.next;
+            node = head.next;
         }
 
-        return n;
+        return node;
     }
 
     public void addFirst(E value) {
-        Node<E> first = head;
+        Node<E> oldHead = head;
 
-        Node<E> newNode = new Node<>(value, first);
+        Node<E> new_Node = new Node(value, oldHead);
 
         size++;
 
-        head = newNode;
+        head = new_Node;
 
-        if (first == null) {
-            tail = newNode;
+        // 최초
+        if (oldHead == null) {
+            tail = new_Node;
         }
     }
 
     public void addLast(E value) {
-        Node<E> last = tail;
+        Node<E> oldTail = tail;
 
-        Node<E> newNode = new Node<>(value, null);
+        Node<E> new_Node = new Node<>(value, null);
 
         size++;
 
-        tail = newNode;
+        tail = new_Node;
 
+        // 최초 인 경우
+        if (oldTail == null) {
+            head = new_Node;
 
-        if (last == null) {
-            head = newNode;
+        // 기존 oldTail과 새 노드를 이어 준다.
         } else {
-            last.next = newNode;
+            oldTail.next = new_Node;
         }
     }
 
     public boolean add(E value) {
         addLast(value);
-        return true;
+        return false;
     }
 
     public void add(int index, E value) {
-        if (index > 0 || index >= size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
 
@@ -70,33 +68,39 @@ public class MyPracticeSinglyLinkedList<E> {
             return;
         }
 
-        if (index == size-1) {
+        if (index == size - 1) {
             addLast(value);
             return;
         }
 
         Node<E> prev_node = search(index - 1);
         Node<E> next_node = prev_node.next;
-        Node<E> newNode = new Node<>(value, next_node);
+
+        Node<E> new_Node = new Node<>(value, next_node);
 
         size++;
 
-        prev_node.next = newNode;
+        prev_node.next = new_Node;
+
+
     }
 
     public E removeFirst() {
+
         if (head == null) {
             throw new IndexOutOfBoundsException();
         }
 
-        E returnValue = head.item;
+        Node<E> oldHead = head;
 
-        Node<E> first = head.next;
+        E returnedValue = oldHead.item;
+
+        Node<E> nextNode = oldHead.next;
 
         head.next = null;
         head.item = null;
 
-        head = first;
+        head = nextNode;
 
         size--;
 
@@ -104,11 +108,11 @@ public class MyPracticeSinglyLinkedList<E> {
             tail = null;
         }
 
-
-        return returnValue;
+        return returnedValue;
     }
 
     public E remove() {
+
         return removeFirst();
     }
 
@@ -127,10 +131,10 @@ public class MyPracticeSinglyLinkedList<E> {
 
         Node<E> next_node = del_node.next;
 
+        E returnValue = del_node.item;;
+
         del_node.next = null;
         del_node.item = null;
-
-        E returnValue = del_node.item;
 
         size--;
 
@@ -140,7 +144,6 @@ public class MyPracticeSinglyLinkedList<E> {
     }
 
     public boolean remove(Object value) {
-
         if (head == null) {
             throw new RuntimeException();
         }
@@ -171,7 +174,9 @@ public class MyPracticeSinglyLinkedList<E> {
             return true;
         }
 
+
         next_node = del_node.next;
+
 
         del_node.next = null;
         del_node.item = null;
@@ -184,6 +189,7 @@ public class MyPracticeSinglyLinkedList<E> {
     }
 
     public E removeLast() {
+
         return remove(size - 1);
     }
 
@@ -200,11 +206,13 @@ public class MyPracticeSinglyLinkedList<E> {
             throw new IndexOutOfBoundsException();
         }
 
+        // 1. search 메소드를 이용해 교체할 노드를 얻는다.
         Node<E> replace_node = search(index);
-        replace_node.next = null;
-        replace_node.item = value;
 
+        // 2. 교체할 노드의 요소를 변경한다.
+        replace_node.item = value;
     }
+
 
 
 

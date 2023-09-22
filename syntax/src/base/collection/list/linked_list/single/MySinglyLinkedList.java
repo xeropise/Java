@@ -253,7 +253,6 @@ public class MySinglyLinkedList<E> {
         Node<E> replace_node = search(index);
 
         // 2. 교체할 노드의 요소를 변경한다.
-        replace_node.next = null;
         replace_node.item = value;
     }
 
