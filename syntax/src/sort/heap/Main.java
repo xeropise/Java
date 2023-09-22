@@ -1,68 +1,119 @@
 package sort.heap;
 
+import java.util.Arrays;
+
 public class Main {
-    static int[] data = {0, 32, 53, 61, 1, 2, 100, 42, 58, 98, 72};
-    static int n = 10;
-    static int[] heap = new int[11];
-    static int size = 0;
-
     public static void main(String[] args) {
-        for (int i = 1; i <= n; i++) {
-            addNode(data[i], i);
-        }
+        int[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 
-        System.out.print("push: ");
-        for (int i = 1; i <= size; i++) {
-            System.out.print(heap[i] + " ");
-        }
+        sort(arr);
 
-        System.out.println("\npop: ");
-        while (size > 0) {
-            System.out.print(pop() + " ");
-        }
+        System.out.println(Arrays.toString(arr));
     }
 
-    static void swap(int[] data, int index1, int index2) {
-        int temp = data[index1];
-        data[index1] = data[index2];
-        data[index2] = temp;
+    public static void sort(int[] a) {
+        sort(a, a.length);
     }
 
-    static void upHeapify(int index) {
-        int parent = index / 2;
-        while (parent >= 1) {
-            if (heap[parent] > heap[index]) return;
-            swap(heap, parent, index);
-            index = parent;
-            parent = index / 2;
+    private static void sort(int[] a, int size) {
+
+        /*
+         * 부모노드와 heaify과정에서 음수가 발생하면 잘못 된 참조가 발생하기 때문에
+         * 원소가 1개이거나 0개일 경우는 정렬 할 필요가 없으므로 바로 함수를 종료한다.
+         */
+        if(size < 2) {
+            return;
         }
+
+        /*
+         * left child node = index * 2 + 1
+         * right child node = index * 2 + 2
+         * parent node = (index - 1) / 2
+         */
+
+        // 가장 마지막 요소의 부모 인덱스
+        int parentIdx = getParent(size - 1);
+
+        // max heap
+        for(int i = parentIdx; i >= 0; i--) {
+            heapify(a, i, size - 1);
+        }
+
+
+        for(int i = size - 1; i > 0; i--) {
+
+            /*
+             *  root인 0번째 인덱스와 i번째 인덱스의 값을 교환해준 뒤
+             *  0 ~ (i-1) 까지의 부분트리에 대해 max heap을 만족하도록
+             *  재구성한다.
+             */
+            swap(a, 0, i);
+            heapify(a, 0, i - 1);
+        }
+
     }
 
-    static void downHeapify(int index) {
-        int left = index * 2;
-        while (left <= size) {
-            int right = left + 1;
-            if (right <= size) {
-                if (heap[left] < heap[right]) left = right;
+
+    // 부모 인덱스를 얻는 함수
+    private static int getParent(int child) {
+        return (child - 1) / 2;
+    }
+
+    // 두 인덱스의 원소를 교환하는 함수
+    private static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+
+    private static void heapify(int[] a, int parentIdx, int lastIdx) {
+
+        int leftChildIdx;
+        int rightChildIdx;
+        int largestIdx;
+
+        /*
+         * 현재 부모 인덱스의 자식 노드 인덱스가
+         * 마지막 인덱스를 넘지 않을 때 까지 반복한다.
+         *
+         * 이 때 왼쪽 자식 노드를 기준으로 해야 한다.
+         * 오른쪽 자식 노드를 기준으로 범위를 검사하게 되면
+         * 마지막 부모 인덱스가 왼쪽 자식만 갖고 있을 경우
+         * 왼쪽 자식노드와는 비교 및 교환을 할 수 없기 때문이다.
+         */
+        while((parentIdx * 2) + 1 <= lastIdx) {
+            leftChildIdx = (parentIdx * 2) + 1;
+            rightChildIdx = (parentIdx * 2) + 2;
+            largestIdx = parentIdx;
+
+            /*
+             * left child node와 비교
+             * (범위는 while문에서 검사했으므로 별도 검사 필요 없음)
+             */
+            if (a[leftChildIdx] > a[largestIdx]) {
+                largestIdx = leftChildIdx;
             }
-            if (heap[left] < heap[index]) return;
-            swap(heap, index, left);
-            index = left;
-            left = index * 2;
+
+            /*
+             * right child node와 비교
+             * right child node는 범위를 검사해주어야한다.
+             */
+            if (rightChildIdx <= lastIdx && a[rightChildIdx] > a[largestIdx]) {
+                largestIdx = rightChildIdx;
+            }
+
+            /*
+             * 교환이 발생했을 경우 두 원소를 교체 한 후
+             * 교환이 된 자식노드를 부모 노드가 되도록 교체한다.
+             */
+            if (largestIdx != parentIdx) {
+                swap(a, parentIdx, largestIdx);
+                parentIdx = largestIdx;
+            }
+            else {
+                return;
+            }
         }
-    }
-
-    static void addNode(int data, int index) {
-        heap[index] = data;
-        upHeapify(index);
-        size++;
-    }
-
-    static int pop() {
-        int root = heap[1];
-        heap[1] = heap[size];
-        size--;
-        downHeapify(1);
-        return root;
     }
 }
