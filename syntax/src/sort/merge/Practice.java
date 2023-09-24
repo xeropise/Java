@@ -37,26 +37,26 @@ class Practice {
         while (start <= mid && end <= right) {
             if (arr[start] <= arr[end]) {
                 newArr[idx] = arr[start];
-                start++;
                 idx++;
+                start++;
             } else {
                 newArr[idx] = arr[end];
-                end++;
                 idx++;
+                end++;
             }
         }
 
         if (start > mid) {
-            while (end <= right) {
+            while (end <= end) {
                 newArr[idx] = arr[end];
-                end++;
                 idx++;
+                end++;
             }
         } else {
             while (start <= mid) {
                 newArr[idx] = arr[start];
-                start++;
                 idx++;
+                start++;
             }
         }
 
