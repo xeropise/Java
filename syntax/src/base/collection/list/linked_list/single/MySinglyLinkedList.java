@@ -73,7 +73,7 @@ public class MySinglyLinkedList<E> {
 
     public void add(int index, E value) {
         // 1. 인덱스가 0보다 작거나 size 보다 같거나 클 경우 에러
-        if (index > 0 || index >= size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
 

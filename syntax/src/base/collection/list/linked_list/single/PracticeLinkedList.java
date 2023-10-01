@@ -2,16 +2,14 @@ package base.collection.list.linked_list.single;
 
 import java.util.Objects;
 
-class PracticeLinkedList <E> {
+public class PracticeLinkedList<E> implements MyLinkedList {
     private Node<E> head;
     private Node<E> tail;
-
 
     private int size;
 
     private Node<E> search(int index) {
-        Node<E> node = head;
-
+        Node node = null;
         for (int i = 0; i < index; i++) {
             node = head.next;
         }
@@ -19,49 +17,39 @@ class PracticeLinkedList <E> {
         return node;
     }
 
-    public void addFirst(E value) {
-        Node<E> oldHead = head;
+    @Override
+    public void addFirst(Object object) {
+        Node<E> first = head;
 
-        Node<E> new_Node = new Node(value, oldHead);
+        Node<E> new_node = new Node<>((E) object, first);
 
         size++;
+        head = new_node;
 
-        head = new_Node;
-
-        // 최초
-        if (oldHead == null) {
-            tail = new_Node;
+        if (first == null) {
+            tail = new_node;
         }
     }
 
-    public void addLast(E value) {
-        Node<E> oldTail = tail;
+    @Override
+    public void addLast(Object object) {
+        Node<E> last = tail;
 
-        Node<E> new_Node = new Node<>(value, null);
+        Node<E> new_node = new Node<>((E) object, null);
 
         size++;
+        tail = new_node;
 
-        tail = new_Node;
-
-        // 최초 인 경우
-        if (oldTail == null) {
-            head = new_Node;
-
-        // 기존 oldTail과 새 노드를 이어 준다.
+        if (last == null) {
+            head = new_node;
         } else {
-            oldTail.next = new_Node;
+            last.next = new_node;
         }
     }
 
-    public boolean add(E value) {
-        addLast(value);
-        return false;
-    }
-
-    public void add(int index, E value) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+    @Override
+    public void add(int index, Object value) {
+        checkIndex(index);
 
         if (index == 0) {
             addFirst(value);
@@ -74,78 +62,33 @@ class PracticeLinkedList <E> {
         }
 
         Node<E> prev_node = search(index - 1);
+
         Node<E> next_node = prev_node.next;
 
-        Node<E> new_Node = new Node<>(value, next_node);
+        Node<E> new_node = new Node<>((E) value, next_node);
+
+        prev_node.next = new_node;
 
         size++;
-
-        prev_node.next = new_Node;
-
-
     }
 
-    public E removeFirst() {
-
-        if (head == null) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        Node<E> oldHead = head;
-
-        E returnedValue = oldHead.item;
-
-        Node<E> nextNode = oldHead.next;
-
-        head.next = null;
-        head.item = null;
-
-        head = nextNode;
-
-        size--;
-
-        if (head == null) {
-            tail = null;
-        }
-
-        return returnedValue;
-    }
-
-    public E remove() {
-
-        return removeFirst();
-    }
-
-    public E remove(int index) {
+    private void checkIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
-
-        if (index == 0) {
-            return removeFirst();
-        }
-
-        Node<E> prev_node = search(index - 1);
-
-        Node<E> del_node = prev_node.next;
-
-        Node<E> next_node = del_node.next;
-
-        E returnValue = del_node.item;;
-
-        del_node.next = null;
-        del_node.item = null;
-
-        size--;
-
-        prev_node.next = next_node;
-
-        return returnValue;
     }
 
+    @Override
+    public boolean add(Object value) {
+        addLast(value);
+        return true;
+    }
+
+    @Override
     public boolean remove(Object value) {
+
         if (head == null) {
-            throw new RuntimeException();
+            throw new IndexOutOfBoundsException();
         }
 
         Node<E> prev_node = null;
@@ -155,13 +98,12 @@ class PracticeLinkedList <E> {
         Node<E> i = head;
 
         while (i != null) {
-            if (Objects.equals(i.item, value)) {
+            if (Objects.equals(value, i.item)) {
                 del_node = i;
                 break;
             }
 
             prev_node = i;
-
             i = i.next;
         }
 
@@ -174,55 +116,94 @@ class PracticeLinkedList <E> {
             return true;
         }
 
-
         next_node = del_node.next;
 
-
-        del_node.next = null;
-        del_node.item = null;
-
         size--;
+        del_node.unlink();
 
         prev_node.next = next_node;
 
         return true;
     }
 
-    public E removeLast() {
+    @Override
+    public Object removeFirst() {
+        if (head == null) {
+            throw new IndexOutOfBoundsException();
+        }
 
+        Node<E> del_node = head;
+
+        E returnValue = del_node.item;
+        Node<E> next_node = del_node.next;
+
+        size--;
+
+        head = next_node;
+        del_node.unlink();
+
+        if (head == null) {
+            tail = null;
+        }
+
+        return returnValue;
+    }
+
+    @Override
+    public Object removeLast() {
         return remove(size - 1);
     }
 
-    public E get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+    @Override
+    public Object remove(int index) {
+        checkIndex(index);
+
+        if (index == 0) {
+            return removeFirst();
         }
 
+        Node<E> prev_Node = search(index - 1);
+
+        Node<E> del_node = prev_Node.next;
+
+        E returnValue = (E) del_node.item;
+        Node<E> next_node = del_node.next;
+
+        size--;
+
+        del_node.unlink();
+        prev_Node.next = next_node;
+
+        return returnValue;
+    }
+
+    @Override
+    public Object get(int index) {
+        checkIndex(index);
         return search(index).item;
     }
 
-    public void set(int index, E value) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+    @Override
+    public void set(int index, Object value) {
+        checkIndex(index);
 
-        // 1. search 메소드를 이용해 교체할 노드를 얻는다.
-        Node<E> replace_node = search(index);
+        Node node = search(index);
 
-        // 2. 교체할 노드의 요소를 변경한다.
-        replace_node.item = value;
+        node.item = value;
     }
 
-
-
-
-    private static class Node<E> {
-        private E item;
+    static class Node<E> {
         private Node<E> next;
+        private E item;
 
-        Node(E item, Node<E> next) {
-            this.item = item;
+        public Node(E item, Node<E> next) {
             this.next = next;
+            this.item = item;
+        }
+
+        public void unlink() {
+            this.next = null;
+            this.item = null;
         }
     }
 }
