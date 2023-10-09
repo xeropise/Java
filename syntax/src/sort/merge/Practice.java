@@ -47,7 +47,7 @@ class Practice {
         }
 
         if (start > mid) {
-            while (end <= end) {
+            while (end <= right) {
                 newArr[idx] = arr[end];
                 idx++;
                 end++;
